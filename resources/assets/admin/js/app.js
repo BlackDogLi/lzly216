@@ -43,6 +43,16 @@ Vue.axios.defaults.headers.common = {
 };
 Vue.axios.defaults.baseURL = Laravel.apiUrl;
 
+/**
+ * import custom/other function library
+ */
+import util from './lib/util';
+import marked from 'marked';
+import localforage from 'localforage';
+Vue.prototype.util = util;
+Vue.prototype.marked = marked;
+Vue.prototype.localforage = localforage;
+
 
 /* 导入vue单页 */
 import App from './AdminApp.vue';
@@ -52,7 +62,7 @@ const routes = [
     {
         path: '/login',
         component: Login,
-        //hidden: true
+        hidden: true
     },
 ];
 

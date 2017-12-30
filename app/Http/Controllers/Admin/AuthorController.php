@@ -21,7 +21,7 @@ Class AuthorController extends Controller{
 
     //登录
     public function login(){
-        echo 111;
+
     }
     //校验
     public function check(){

@@ -55,11 +55,33 @@
 			},
 			methods: {
 				loginSubmit: function (myForm) {
-					var _this = this;
-					var _duration = 2 * 1000;
-					_this.$refs[myForm].validate((valid) => {
+					var $_this = this;
+					var $_duration = 2 * 1000;
+					$_this.$refs[myForm].validate((valid) => {
 						if (valid) {
-							console.log('111');
+							$_this.loading = true;
+							$_this.axios.post('auth/login', $this.myForm).then(function (response) {
+								let data = response.data;
+								if (data.status == 200) {
+									sessionStorage.setItem('lzly', JSON.stringify(data.user));
+									$_this.$message ({
+										message: data.info,
+										type: 'success',
+										duration: $_duration
+									});
+									setTimeout (function () {
+										$_this.$router.push({path: '/author'})
+									}, $_duration);
+								} else {
+									$_this.$message.error(data.info);
+									$_this.loading = false;
+								}
+							}).catch( function (error) {
+								$_this.loading = false;
+								console.log(error);
+							});
+						} else {
+							console.log('myForm valid error.');
 							return false;
 						}
 					});
