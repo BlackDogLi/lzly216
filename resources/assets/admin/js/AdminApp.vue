@@ -12,7 +12,7 @@
 			}
 		},
 		watch: {
-			'$route'(to, from) {    //监听路由改变
+			'$route' (to, from) {    //监听路由改变
 				this.authLogin();
 			}
 		},
@@ -23,10 +23,10 @@
 				if (!user) {
 					$_this.$router.push({path: 'login'});
 				}
-				$_this.axios.post('auth/check').then(function (response) {
-					if (reponse.data.auth == 'Unauthenticated') {
+				$_this.axios.post('/login/check').then(function (response) {
+					if (response.data.auth == 'Unauthenticated') {
 						sessionStorage.removeItem('lzly');
-						$_this.$router.push({path: 'login'});
+						$_this.$router.push({path: '/login'});
 					}
 				}).catch(function (error) {
 					console.log(error);

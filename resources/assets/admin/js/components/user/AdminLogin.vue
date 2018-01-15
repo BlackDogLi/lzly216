@@ -2,7 +2,7 @@
     <div class = "login-form" v-loading = "loading">
         <el-row>
             <el-col :span = "24">
-                <el-form ref = "myForm" :model = "myForm" :rules = "myRules" label-width = "100px;">
+                <el-form ref="myForm" :model="myForm" :rules ="myRules" label-width = "100px;">
                     <el-form-item label = "用户名：" prop = "email">
                         <el-input type = "email" v-model = "myForm.email" placeholder = "请输入用户名"></el-input>
                     </el-form-item>
@@ -60,7 +60,7 @@
 					$_this.$refs[myForm].validate((valid) => {
 						if (valid) {
 							$_this.loading = true;
-							$_this.axios.post('auth/login', $this.myForm).then(function (response) {
+							$_this.axios.post('/login/login', $_this.myForm).then(function (response) {
 								let data = response.data;
 								if (data.status == 200) {
 									sessionStorage.setItem('lzly', JSON.stringify(data.user));
@@ -70,7 +70,7 @@
 										duration: $_duration
 									});
 									setTimeout (function () {
-										$_this.$router.push({path: '/author'})
+										$_this.$router.push({path: '/admin'})
 									}, $_duration);
 								} else {
 									$_this.$message.error(data.info);

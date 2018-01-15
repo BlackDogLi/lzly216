@@ -31,8 +31,17 @@ Route::group(['namespace' => 'Home'], function (){
     Route::post('/login', 'AuthorController@login')->name('admin.login');
 });*/
 Route::group(['prefix' => 'back', 'namespace' => 'Admin'], function (){
-    Route::get('/', 'AuthorController@index')->name('admin');
-    Route::post('/check', 'AuthorController@check')->name('admin.check');
-    Route::post('/login', 'AuthorController@login')->name('admin.login');
+    Route::get('/', 'AdminController@index')->name('admin');
+    Route::post('/login/check', 'LoginController@check')->name('admin.check');
+    Route::post('/login/login', 'LoginController@login')->name('admin.login');
+    Route::post('/login/logout', 'LoginController@logout')->name('admin.logout');
+    Route::post('/user/reset', 'UserController@resetPassword');
+    //Route::get('index', 'AdminController@index');
+
+
+});
+Route::group(['prefix' => 'back', 'middleware' => 'auth.admin', 'namespace' => 'Admin'], function () {
+   // Route::get('/', 'AdminController@index')->name('admin');
+    Route::get('/admin/lately', 'AdminController@lately');
 });
 

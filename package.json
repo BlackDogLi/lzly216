@@ -1,10 +1,11 @@
 {
     "private": true,
     "scripts": {
+	  	"clear": "rm -rf build&& mkdir build",
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-        "watch-poll": "corss-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch-poll": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "hot": "corss-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
@@ -24,8 +25,8 @@
         "babel-preset-stage-2": "^6.22.0",
         "bootstrap-sass": "^3.3.7",
         "cross-env": "^5.1.3",
-        "element-theme-default": "^1.2.1",
-        "element-ui": "^2.0.9",
+        "element-theme-default": "^1.4.12",
+        "element-ui": "^2.0.11",
         "font-awesome": "^4.7",
         "hotkeys-js": "^2.0.1",
         "jquery": "^3.2",

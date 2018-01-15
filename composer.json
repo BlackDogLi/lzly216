@@ -37,7 +37,10 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+		  	"Models\\": "models/",
+		  	"Http\\Middleware": "middleware",
+		  	"Http\\Controllers": "controller"
         }
     },
     "autoload-dev": {
@@ -77,5 +80,11 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true
-    }
+    },
+  	"respositories": {
+	  	"packagist": {
+		  'type': "composer",
+		  "url": "https://packagist.phpcomposer.com"
+		}
+	}
 }
