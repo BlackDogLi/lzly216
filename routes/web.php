@@ -35,7 +35,7 @@ Route::group(['prefix' => 'back', 'namespace' => 'Admin'], function (){
     Route::post('/login/check', 'LoginController@check')->name('admin.check');
     Route::post('/login/login', 'LoginController@login')->name('admin.login');
     Route::post('/login/logout', 'LoginController@logout')->name('admin.logout');
-    Route::post('/user/reset', 'UserController@resetPassword');
+    Route::post('/user/resetPassword', 'UserController@resetPassword');
     //Route::get('index', 'AdminController@index');
 
 

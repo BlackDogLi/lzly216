@@ -24,14 +24,14 @@ class UserController extends Controller
 	 * @return Response
 	 */
 	public function resetPassword (Request $request) {
-		echo 111;
-		die;
+
 		$this -> validate($request, [
 			'password' => 'required|min:6|confirmed',
 			'password_confirmation' => 'required|min:6'
 		]);
-		$result = $request ->user()->fill([
-			'password' => Hash::make($request->password)
+		
+		$result = $request ->user('admin')->fill([
+			'password' => bcrypt($request->password)
 		])->save();
 		return response()->json(['status' => !$result ? 'error' : 'success']);
 	}

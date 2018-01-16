@@ -105572,7 +105572,7 @@ exports.default = {
 					console.log('myForm valid error.');
 					return false;
 				}
-				$_this.axios.post('/user/reset', $_this.myForm).then(function (response) {
+				$_this.axios.post('/user/resetPassword', $_this.myForm).then(function (response) {
 					var res = response.data;
 					$_this.$message({
 						message: res.status == 'success' ? '更新成功' : '信息更新失败',
@@ -105582,7 +105582,7 @@ exports.default = {
 						$_this.closeForm('myForm');
 					}
 					setTimeout(function () {
-						sessionStorage.removeItem('myPersimmon');
+						sessionStorage.removeItem('lzly');
 						$_this.$router.push({ path: '/login' });
 					}, 2 * 1000);
 				}).catch(function () {
