@@ -60,6 +60,8 @@ import Login from './components/user/AdminLogin.vue';
 import Menu from './components/main/menu.vue';
 import Main from './components/main/main.vue';
 import User from './components/user/user.vue';
+import Setting from './components/set/setting.vue';
+import Options from './components/set/options.vue';
 /* router规则 */
 const routes = [
     {
@@ -76,8 +78,8 @@ const routes = [
 		children: [
 			{ path: '/admin', component: Main, name: '仪表盘'}
 		]
-	},
-	/*{
+	},/*
+	{
 		path: '/',
 		component: Menu,
 		name: '文章',
@@ -96,17 +98,17 @@ const routes = [
 			{ path: '/navigations', component: User, name: '导航管理'},
 			{ path: 'options', component: User, name: '配置管理'}
 		]
-	},
+	},*/
 	{
 		path: '/',
 		component: Menu,
 		name: '设置',
 		iconCls: 'fa fa-cog',
-		leaf: true,
 		children: [
-			{ path: '/user', component: User, name: '用户设置'}
+			{path: '/options', component:Options, name: '配置项管理'},
+			{ path: '/setting', component: Setting, name: '网站设置'}
 		]
-	},*/
+	},
 	{
 		path: '/',
 		component: Menu,

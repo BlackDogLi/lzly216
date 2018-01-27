@@ -29,7 +29,7 @@ class UserController extends Controller
 			'password' => 'required|min:6|confirmed',
 			'password_confirmation' => 'required|min:6'
 		]);
-		
+
 		$result = $request ->user('admin')->fill([
 			'password' => bcrypt($request->password)
 		])->save();

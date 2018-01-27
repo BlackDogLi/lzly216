@@ -40,8 +40,9 @@ Route::group(['prefix' => 'back', 'namespace' => 'Admin'], function (){
 
 
 });
-Route::group(['prefix' => 'back', 'middleware' => 'auth.admin', 'namespace' => 'Admin'], function () {
+Route::group(['prefix' => 'back', 'middleware' => 'auth.admin:admin', 'namespace' => 'Admin'], function () {
    // Route::get('/', 'AdminController@index')->name('admin');
     Route::get('/admin/lately', 'AdminController@lately');
+    Route::resource('/options', 'OptionsController');
 });
 

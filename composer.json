@@ -6,29 +6,28 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-	  	"appstract/laravel-opcache": "^1.2",
-	  	"barryvdh/laravel-debugbar":  "^2.3",
-	  	"barryvdh/laravel-ide-helper": "^2.4",
-	  	"erusev/parsedown": "^1.6",
+        "appstract/laravel-opcache": "^1.2",
+        "barryvdh/laravel-debugbar": "^2.3",
+        "barryvdh/laravel-ide-helper": "^2.4",
+        "erusev/parsedown": "^1.6",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/passport": "^4.0",
-        "laravel/tinker": "~1.0"
-	  	"league/html-to-markdown": "^4.6",
-	  	"naux/auto-correct": "^1.0.*",
-	  	"orangehill/iseed": "^2.5",
-	  	"overtrue/laravel-lang": "^3.0",
-	  	"predis/predis": "^1.1.1",
-	  	"suin/php-rss-writer": "^2.0",
-	  	"tom-lingham/searchy": "^2.0"
+        "laravel/tinker": "~1.0",
+        "league/html-to-markdown": "^4.6",
+        "naux/auto-correct": "^1.0",
+        "orangehill/iseed": "^2.5",
+        "overtrue/laravel-lang": "^3.0",
+        "predis/predis": "^1.1.1",
+        "suin/php-rss-writer": "^1.5",
+        "tom-lingham/searchy": "^2.0"
     },
     "require-dev": {
-	  	"mockery/mockery": "^1.0",
-	  	"symfony/css-selector": "4.0.*",
-	  	"symfony/dom-crawler": "4.0.*",
+	  	"mockery/mockery": "1.0.*",
+	  	"symfony/css-selector": "3.3.13",
+	  	"symfony/dom-crawler": "3.1.*",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "~1.0",
         "phpunit/phpunit": "~6.0"
     },
     "autoload": {
@@ -39,8 +38,9 @@
         "psr-4": {
             "App\\": "app/",
 		  	"Models\\": "models/",
-		  	"Http\\Middleware": "middleware",
-		  	"Http\\Controllers": "controller"
+		  	"Middleware\\": "Http/middleware",
+		  	"Controllers\\": "Http/controller",
+		    "Factorymethod\\": "app/Factorymethod"
         }
     },
     "autoload-dev": {
@@ -83,7 +83,7 @@
     },
   	"respositories": {
 	  	"packagist": {
-		  'type': "composer",
+		  "type": "composer",
 		  "url": "https://packagist.phpcomposer.com"
 		}
 	}
