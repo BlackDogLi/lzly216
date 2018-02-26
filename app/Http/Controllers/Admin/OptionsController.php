@@ -49,4 +49,45 @@ class OptionsController extends Controller implements FactoryInterface
 		$set->create($this, $request);
 		return response()->json($this->_response);
 	}
+
+	/* Update a  data
+	 * @param Request $request
+	 * @param $id
+	 */
+	public function update (Request $request)
+	{
+		$this->validate($request, [
+			'set_title' => 'required',
+			'set_name' => 'required'
+		]);
+		app(SettingFactory::class)->update($this, $request);
+		return response()->json($this->_response);
+	}
+
+	/*
+	 * Display the specified resource
+	 * @param   int $id
+	 * @return  Response
+	 */
+
+	public function show ($id)
+	{
+		$data = Setting::find($id);
+		return response()->json($data);
+	}
+
+	/*
+	 * Remove the spectified from datas
+	 * @param   int $id
+	 * @return  Request
+	 */
+	public function destory (Request $request)
+	{
+		if (empty($request->ids)) {
+			return response()->json(['status' => 'error', 'info' => 'ID不能为空']);
+		}
+		$result = Setting::notbase()->whereIn('id', $request->ids)->delete();
+		return response()->json(['status' => !$request ? 'error' : 'success']);
+	}
+
 }

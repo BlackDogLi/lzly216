@@ -44,5 +44,9 @@ Route::group(['prefix' => 'back', 'middleware' => 'auth.admin:admin', 'namespace
    // Route::get('/', 'AdminController@index')->name('admin');
     Route::get('/admin/lately', 'AdminController@lately');
     Route::resource('/options', 'OptionsController');
+    Route::resource('/setting', 'SettingController');
+    Route::resource('/categorys', 'CategorysController');
+    Route::resource('/articles', 'ArticlesController');
+    Route::resource('/tags', 'TagsController');
 });
 

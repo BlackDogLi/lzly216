@@ -2,3 +2,13 @@
 @import "../../common/sass/markdown.css";
 @import "../../../../node_modules/element-ui/lib/theme-chalk/index.css";
 @import "../../../../node_modules/font-awesome/css/font-awesome.min.css";
+
+.main-content {
+  padding: 20px;
+}
+.main-action-btn {
+  margin: 20px 0;
+}
+.main-content .tableheader {
+  text-align: center !important;
+}

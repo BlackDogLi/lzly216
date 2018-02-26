@@ -13,5 +13,5 @@ interface Product
 {
 	public function create(FactoryInterface $observer, Request $request);
 	public function update(FactoryInterface $observer, Request $request);
-	public function transform(Setting $options, Request $request);
+	//public function transform(tables $tables, Request $request);
 }

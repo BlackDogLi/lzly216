@@ -16,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        Validator::extend('flag','App\Factorymethod\Validator\MyValidator@validateFlag');
     }
 
     /**

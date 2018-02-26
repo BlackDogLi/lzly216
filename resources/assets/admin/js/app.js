@@ -62,6 +62,10 @@ import Main from './components/main/main.vue';
 import User from './components/user/user.vue';
 import Setting from './components/set/setting.vue';
 import Options from './components/set/options.vue';
+import Articles from './components/article/articles.vue';
+import Article from './components/article/article.vue';
+import Categorys from './components/article/categorys.vue';
+import Tags from './components/article/tags.vue';
 /* router规则 */
 const routes = [
     {
@@ -78,17 +82,20 @@ const routes = [
 		children: [
 			{ path: '/admin', component: Main, name: '仪表盘'}
 		]
-	},/*
+	},
 	{
 		path: '/',
 		component: Menu,
 		name: '文章',
 		iconCls: 'fa fa-file-word-o',
 		children: [
-			{ path: '/user', component: User, name: '文章管理'},
-			{ path: '/article/add', component: User, name: '发布文章'},
+			{ path: '/articles', component: Articles, name: '文章管理'},
+			{ path: '/articles/add', component: Article, name: '发布文章'},
+			{ path: '/categorys', component: Categorys, name: '分类管理'},
+			{ path: '/tags', component: Tags, name: '标签管理'}
 		]
 	},
+		/*
 	{
 		path: '/',
 		component: Menu,

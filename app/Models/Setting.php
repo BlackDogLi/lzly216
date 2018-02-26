@@ -21,7 +21,7 @@ class Setting extends Model
 	}
 
 	//非隐藏数据
-	public function scopeNohidden ($query) {
+	public function scopeNothidden ($query) {
 		return $query->where('set_status', '!=', 'hidden');
 	}
 }
