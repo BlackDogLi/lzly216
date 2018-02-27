@@ -95,6 +95,18 @@ const routes = [
 			{ path: '/tags', component: Tags, name: '标签管理'}
 		]
 	},
+	{
+		path: '/',
+		component:Menu,
+		name: '',
+		iconCls: 'fa fa-home',
+		leaf: true,
+		hidden: true,
+		children:[
+			{path: 'articles/edit/:id', component: Article, name: '编辑文章'}
+		]
+
+	},
 		/*
 	{
 		path: '/',

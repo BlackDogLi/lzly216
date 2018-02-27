@@ -59,7 +59,7 @@ class CategorysController extends Controller implements FactoryInterface
 	}
 
 	//Delete a category form storage
-	public function destory (Request $request)
+	public function destroy (Request $request)
 	{
 		if (empty($request->ids)) {
 			return response()->json(['status' => 'error', 'info' => 'ID不能为空']);

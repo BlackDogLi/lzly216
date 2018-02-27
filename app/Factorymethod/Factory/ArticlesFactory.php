@@ -54,7 +54,7 @@ class ArticlesFactory implements Product
 		$articles->flag = strtolower($request->flag);
 		$articles->thumb = $request->thumb;
 		$articles->category_id = $request->category_id;
-		$articles->user_id = Auth('admin')::id();
+		$articles->user_id = Auth('admin')->id();
 		$articles->content = (new \Parsedown())->text($request->markdown);
 		$articles->markdown = $request->markdown;
 		$articles->ipaddress = !empty($request->ipaddress) ? $request->ipaddress : $request->ip();

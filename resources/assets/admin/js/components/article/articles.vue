@@ -32,10 +32,10 @@
 				<el-table-column prop="created_at" :formatter="formatterDate" sortable label="日期" width="100"></el-table-column>
 				<el-table-column  label="操作" width="150">
 					<template scope="scope">
-						<router-link to="{ path: '/articles/edit/'+ row.id}">
+						<router-link :to="{ path: '/articles/edit/'+ scope.row.id}">
 							<el-button size="small" icon="el-icon-edit"></el-button>
 						</router-link>
-						<el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one', row)"></el-button>
+						<el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one', scope.row.id)"></el-button>
 					</template>
 				</el-table-column>
 			</el-table>
@@ -148,7 +148,7 @@
 				}
 				$_this.$confirm('确认删除该记录吗?', '提示', {}).then( () => {
 					$_this.listLoading = true;
-					$_this.axios.delete('/articles/destory', {data: idsParam}).then(function (response) {
+					$_this.axios.delete('/articles/destroy', {data: idsParam}).then(function (response) {
 						$_this.listLoading = false;
 						let res = response.data;
 						$_this.$message({

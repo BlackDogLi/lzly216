@@ -1,6 +1,6 @@
 <template>
-	<div class="pit-post-form">
-		<el-form ref="myForm" :model="myForm" :rules="myRules" v-loading="editFormLoading" label-width="80px;" class="pit-common">
+	<div class="main-content">
+		<el-form ref="myForm" :model="myForm" :rules="myRules" v-loading="editFormLoading" class="pit-common">
 			<el-form-item label="标题" prop="title">
 				<el-input v-model="myForm.title" @blur="titleBlur"></el-input>
 			</el-form-item>
@@ -46,9 +46,46 @@
 		</el-dialog>
 	</div>
 </template>
+<style type="text/css">
+	.pit-common {
+		margin: 20px;
+		width: 60%;
+	}
+	.pit-common label {
+		width: 80px;
+	}
+	.pit-common .el-form-item__content {
+		margin-left: 80px;
+	}
+	.pit-previews .markdown-previews {
+		border: 1px dashed #ccc;
+		margin-left: 80px;
+		background: #faf5eb;
+		padding: 10px;
+	}
+	.input-new-tag {
+		width: 50%;
+		margin-left: 10px;
+	}
+	.avatar-uploader .el-upload {
+		border: 1px dashed #ccc;
+		border-radius: 6px;
+		cursor: pointer;
+		position: relative;
+		overflow: hidden;
+	}
+	.avatar-uploader-icon {
+		font-size: 28px;
+		color: #8c939d;
+		width: 250px;
+		height: 110px;
+		line-height: 100px;
+		text-align: center;
+	}
+</style>
 <script type="text/ecmascript-6">
-	import inlineAttachment from '../../../lib/inline-attachment';
-	import hotkeys from '../../../lib/hotkeys.min';
+	import inlineAttachment from '../../lib/inline-attachment';
+	import hotkeys from '../../lib/hotkeys.min';
 	export default {
 		data(){
 			return {
@@ -88,7 +125,7 @@
 			}
 		},
 		created () {
-			if (this.$route.params.id != undefind) {
+			if (this.$route.params.id != undefined) {
 				this.getPost(this.$route.params.id);
 			}
 		},
@@ -243,7 +280,7 @@
 			},
 			getCategorys: function () {
 				let $_this = this;
-				$_this.axios.get('/articles', {params: {rows: 999}}).then(function (response){
+				$_this.axios.get('/categorys', {params: {rows: 999}}).then(function (response){
 					let res = response.data;
 					if (res != false) {
 						res.data.splice(0, 0, {id: 0, category_name: '顶级分类', hidden: true, category_parent: 0});
@@ -306,46 +343,46 @@
 					}
 				});
 			},
-			computed: {
-				compiledMarkdown: function () {
-					return marked(this.input, { sanitize: true});
+		},
+		computed: {
+			compiledMarkdown: function () {
+				return marked(this.input, { sanitize: true});
+				let $_this = this;
+				$_this.compileMarkdown();
+				let markdown2json = JSON.stringify($_this.myForm.markdown);
+				this.localforage.setItem('myFormMarkdown', markdown2json).then(function (value) {
+					//console.log(value);
+				}).catch(function (error) {
+					console.log(error);
+				});
+			}
+		},
+		watch: {
+			'myForm.markdown': {
+				handler: function (curVar, oldVar) {
 					let $_this = this;
 					$_this.compileMarkdown();
 					let markdown2json = JSON.stringify($_this.myForm.markdown);
 					this.localforage.setItem('myFormMarkdown', markdown2json).then(function (value) {
-						console.log(value);
+
 					}).catch(function (error) {
 						console.log(error);
 					});
 				}
 			},
-			watch: {
-				'myForm.markdown': {
-					handler: function (curVar, oldVar) {
-						let $_this = this;
-						$_this.compileMarkdown();
-						let markdown2Json = JSON.stringify($_this.myForm.markdown);
-						this.localforage.setItem('myFormMarkdown', markdown2json).then(function (value) {
-
-						}).catch(function (error) {
-							console.log(error);
-						});
-					}
-				},
-				'$route'(to, form) {
-					if (this.$route.params.id == undefined) {
-						this.$refs['myForm'].resetFields();
-						this.fileList = [];
-					}
+			'$route'(to, form) {
+				if (this.$route.params.id == undefined) {
+					this.$refs['myForm'].resetFields();
+					this.fileList = [];
 				}
-			},
-			mounted() {
-				this.getCategorys();
-				this.setDomain();
-				this.setMarkdown();
-				this.inlineAttachment(this.$refs.myMarkdown.$el.firstElementChild);
-				this.hotkeys();
 			}
+		},
+		mounted() {
+			this.getCategorys();
+			this.setDomain();
+			this.setMarkdown();
+			this.inlineAttachment(this.$refs.myMarkdown.$el.firstElementChild);
+			this.hotkeys();
 		}
 	}
 </script>

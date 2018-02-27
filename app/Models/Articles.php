@@ -50,7 +50,7 @@ class Articles extends Model
 
 	//标签对应
 	public function tags () {
-		return $this->belongsToMany(Tags::class, 'article_tags', '');
+		return $this->belongsToMany(Tags::class, 'articles_tags', '');
 	}
 
 	//

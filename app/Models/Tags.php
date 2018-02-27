@@ -15,7 +15,7 @@ class Tags extends Model
 {
 	protected $fillable = ['tags_name', 'tags_flag'];
 
-	public static function createArticlesTags ($article_id, $tag) {
+	public static function createArticlesTags ($article_id, $tags) {
 		$articles_tags = [];
 		foreach ($tags as $k => $tag) {
 			$tagsInfo = self::firstOrCreate(['tags_name' => $tag]);

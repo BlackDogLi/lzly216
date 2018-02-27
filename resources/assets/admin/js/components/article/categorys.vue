@@ -180,7 +180,7 @@
 				}
 				$_this.$confirm('确认删除该记录么?', '提示', {}).then(() => {
 					$_this.listLoading = true;
-					$_this.axios.get('/categorys/destory', {data: idsParam}).then(function (response) {
+					$_this.axios.get('/categorys/destroy', {data: idsParam}).then(function (response) {
 						$_this.listLoading = false;
 						let res = response.data;
 						$_this.$message({

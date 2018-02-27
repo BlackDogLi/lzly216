@@ -31,8 +31,7 @@ class ArticlesController extends Controller implements FactoryInterface
 	//listing
 	public function index (Request $request)
 	{
-		var_dump('111');
-		die;
+
 		$rows = intval($request->rows) > 0 ? $request->rows : 20;
 		$listData = Articles::OfCategory($request->category_id)->OfTitle($request->q)->paginate($rows);
 		$listData = $this->transform($listData);
@@ -49,7 +48,7 @@ class ArticlesController extends Controller implements FactoryInterface
 			'markdown' => 'required'
 		]);
 		app(ArticlesFactory::class)->create($this, $request);
-		return response()->json($this->_reponse);
+		return response()->json($this->_response);
 	}
 
 	//Update a article info
@@ -74,7 +73,7 @@ class ArticlesController extends Controller implements FactoryInterface
 	}
 
 	//Remove a article from storage
-	public function destory (Request $request)
+	public function destroy (Request $request)
 	{
 		$this->validate($request, [
 			'ids' => 'required'
