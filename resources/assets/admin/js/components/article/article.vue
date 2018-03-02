@@ -26,7 +26,10 @@
 				</el-upload>
 			</el-form-item>
 			<el-form-item label="内容" prop="markdown">
-				<el-input type="textarea" ref="myMarkdown" @change="textcomplete" :autosize="{ minRows: 12}" :rows="textareaRow" v-model="myForm.markdown"></el-input>
+				/*<el-input type="textarea" ref="myMarkdown" @change="textcomplete" :autosize="{ minRows: 12}" :rows="textareaRow" v-model="myForm.markdown"></el-input>*/
+				<el-input type="textarea" ref="myMarkdown">
+					<UE :dafaultMsg=defaultMsg :config=config ref="ue"></UE>
+				</el-input>
 			</el-form-item>
 			<el-form-item>
 				<el-button @click="closeForm('myForm')">取消</el-button>
@@ -86,7 +89,9 @@
 <script type="text/ecmascript-6">
 	import inlineAttachment from '../../lib/inline-attachment';
 	import hotkeys from '../../lib/hotkeys.min';
+	import UE from '../../../../js/ueditor/UEditor.vue';
 	export default {
+		components: {UE},
 		data(){
 			return {
 				editFormLoading: false,
@@ -181,6 +186,15 @@
 					this.myForm.thumb = '';
 				}
 				this.imageUrl = response.filename;
+			},
+			getUEContent() {
+				let content = $this.$refs.ue.getUEContent();
+				$this.$notify({
+					title: '获取成功',
+					message: content,
+					type: 'success'
+				});
+				console.log(content);
 			},
 			/*emojies not do*/
 			textcomplete: function (markdown) {},
