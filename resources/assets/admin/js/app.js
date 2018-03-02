@@ -55,7 +55,6 @@ Vue.prototype.localforage = localforage;
 
 
 /* 导入vue单页 */
-import App from './AdminApp.vue';
 import Login from './components/user/AdminLogin.vue';
 import Menu from './components/main/menu.vue';
 import Main from './components/main/main.vue';
@@ -66,6 +65,8 @@ import Articles from './components/article/articles.vue';
 import Article from './components/article/article.vue';
 import Categorys from './components/article/categorys.vue';
 import Tags from './components/article/tags.vue';
+import Navigations from './components/extends/navigation.vue';
+import App from './AdminApp.vue';
 /* router规则 */
 const routes = [
     {
@@ -107,17 +108,16 @@ const routes = [
 		]
 
 	},
-		/*
 	{
 		path: '/',
 		component: Menu,
 		name: '扩展',
 		iconCls: 'fa fa-external-link-square',
 		children: [
-			{ path: '/navigations', component: User, name: '导航管理'},
-			{ path: 'options', component: User, name: '配置管理'}
+			{ path: '/navigations', component:Navigations , name: '导航管理'}
+			//{ path: 'options', component: User, name: '配置管理'}
 		]
-	},*/
+	},
 	{
 		path: '/',
 		component: Menu,

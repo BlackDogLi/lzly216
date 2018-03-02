@@ -18123,10 +18123,6 @@ var _localforage = __webpack_require__(203);
 
 var _localforage2 = _interopRequireDefault(_localforage);
 
-var _AdminApp = __webpack_require__(204);
-
-var _AdminApp2 = _interopRequireDefault(_AdminApp);
-
 var _AdminLogin = __webpack_require__(206);
 
 var _AdminLogin2 = _interopRequireDefault(_AdminLogin);
@@ -18166,6 +18162,14 @@ var _categorys2 = _interopRequireDefault(_categorys);
 var _tags = __webpack_require__(244);
 
 var _tags2 = _interopRequireDefault(_tags);
+
+var _navigation = __webpack_require__(267);
+
+var _navigation2 = _interopRequireDefault(_navigation);
+
+var _AdminApp = __webpack_require__(204);
+
+var _AdminApp2 = _interopRequireDefault(_AdminApp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18243,19 +18247,15 @@ var routes = [{
 	hidden: true,
 	children: [{ path: 'articles/edit/:id', component: _article2.default, name: '编辑文章' }]
 
-},
-/*
-{
-path: '/',
-component: Menu,
-name: '扩展',
-iconCls: 'fa fa-external-link-square',
-children: [
-	{ path: '/navigations', component: User, name: '导航管理'},
-	{ path: 'options', component: User, name: '配置管理'}
-]
-},*/
-{
+}, {
+	path: '/',
+	component: _menu2.default,
+	name: '扩展',
+	iconCls: 'fa fa-external-link-square',
+	children: [{ path: '/navigations', component: _navigation2.default, name: '导航管理'
+		//{ path: 'options', component: User, name: '配置管理'}
+	}]
+}, {
 	path: '/',
 	component: _menu2.default,
 	name: '设置',
@@ -111513,6 +111513,681 @@ if (typeof jQuery === 'undefined') {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */,
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */,
+/* 265 */,
+/* 266 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _typeof2 = __webpack_require__(19);
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+	data: function data() {
+		return {
+			myForm: {
+				name: '',
+				url: '',
+				sorting: 0
+			},
+			myRules: {
+				name: [{ required: true, type: "string", message: '请填写菜单名称', trigger: 'blur' }, { min: 1, message: '长度大于1个字符', trigger: 'blur' }],
+				url: [{ required: true, type: "string", message: '请填写url地址', trigger: 'blur' }, { min: 1, message: '长度大于1个字符', trigger: 'blur' }]
+			},
+			navigations: [],
+			sortList: {},
+			activeMenuAddCollapse: '1',
+			listLoading: false,
+			editLoading: false,
+			showHeader: false
+		};
+	},
+
+	methods: {
+		onSubmit: function onSubmit(myForm) {
+			var _this = this;
+
+			var $_this = this;
+			$_this.$refs[myForm].validate(function (valid) {
+				if (!valid) {
+					console.log('myForm valid error.');
+					return false;
+				}
+				$_this.navigations.splice(-1, 0, _this.myForm);
+				$_this.myForm = {
+					name: '',
+					url: '',
+					sorting: 0
+				};
+			});
+		},
+		onReset: function onReset(myForm) {
+			this.myForm = {
+				name: '',
+				url: '',
+				sorting: 0
+			};
+		},
+		getData: function getData() {
+			var $_this = this;
+			$_this.listLoading = true;
+			$_this.axios.get('/navigations').then(function (response) {
+				var res = response.data;
+				if (res != false) {
+					res.sort(function (x, y) {
+						return x.sorting > y.sorting ? 1 : -1;
+					});
+					$_this.navigations = res;
+					//获取排序值
+					if ($_this.navigations.length > 0) {
+						for (var index in $_this.navigations) {
+							$_this.sortList[$_this.navigations[index]['name']] = $_this.navigations[index]['sorting'];
+						}
+					}
+				} else {
+					console.log('数据获取失败或者数据为空');
+				}
+				$_this.listLoading = false;
+			}).catch(function (error) {
+				$_this.listLoading = false;
+			});
+		},
+		removeItem: function removeItem(item) {
+			var $_this = this;
+			$_this.$confirm('确认删除该记录吗?', '提示').then(function () {
+				for (var index in $_this.navigations) {
+					$_this.navigations.splice(index, 1);
+				}
+			}).catch(function () {
+				$_this.listLoading = false;
+			});
+		},
+		inputSort: function inputSort(value) {
+			for (var key in this.sortList) {
+				for (var index in this.navigations) {
+					if (this.navigations[index].name == key) {
+						$this.navigations[index]['sorting'] = parseInt(this.sortList[key]);
+					}
+				}
+			}
+			this.navigations.sort(function (x, y) {
+				return x.sorting > y.sorting ? 1 : -1;
+			});
+		},
+		updateSort: function updateSort() {
+			if (this.navigations.length > 0) {
+				this.navigations.sort(function (x, y) {
+					return x.b > y.b ? 1 : -1;
+				});
+			}
+			console.log(this.navigations);
+		},
+		updateMenu: function updateMenu() {
+			var $_this = this;
+			$_this.editLoading = true;
+			$_this.axios.put('/navigations/update', $_this.navigations).then(function (response) {
+				var res = response.data;
+				if (res != false) {
+					$_this.$mesaage({
+						message: '更新成功',
+						type: 'success',
+						duration: 3 * 1000
+					});
+				} else {
+					$_this.$message({
+						message: '更新失败',
+						type: 'error',
+						duration: 3 * 1000
+					});
+				}
+				$_this.editLoading = false;
+			}).catch(function (error) {
+				console.log(error);
+				$_this.editLoading = false;
+			});
+		},
+		orderBy: function orderBy(name) {
+			return function (o, p) {
+				var a, b;
+				if ((typeof o === 'undefined' ? 'undefined' : (0, _typeof3.default)(o)) === "object" && (typeof p === 'undefined' ? 'undefined' : (0, _typeof3.default)(p)) === "object" && o && p) {
+					a = o[name];
+					b = p[name];
+					if (a === b) {
+						return 0;
+					}
+					if ((typeof a === 'undefined' ? 'undefined' : (0, _typeof3.default)(a)) === (typeof b === 'undefined' ? 'undefined' : (0, _typeof3.default)(b))) {
+						return a < b ? 1 : -1;
+					}
+					return (typeof a === 'undefined' ? 'undefined' : (0, _typeof3.default)(a)) < (typeof b === 'undefined' ? 'undefined' : (0, _typeof3.default)(b)) ? -1 : 1;
+				} else {
+					throw "error";
+				}
+			};
+		}
+	},
+	mounted: function mounted() {
+		this.getData();
+	}
+};
+
+/***/ }),
+/* 267 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_es2015_env_modules_false_targets_browsers_1_last_2_versions_not_ie_8_stage_2_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_transform_vue_jsx_transform_runtime_node_modules_vue_loader_lib_selector_type_script_index_0_navigation_vue__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_es2015_env_modules_false_targets_browsers_1_last_2_versions_not_ie_8_stage_2_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_transform_vue_jsx_transform_runtime_node_modules_vue_loader_lib_selector_type_script_index_0_navigation_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_es2015_env_modules_false_targets_browsers_1_last_2_versions_not_ie_8_stage_2_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_transform_vue_jsx_transform_runtime_node_modules_vue_loader_lib_selector_type_script_index_0_navigation_vue__);
+/* harmony namespace reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_es2015_env_modules_false_targets_browsers_1_last_2_versions_not_ie_8_stage_2_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_transform_vue_jsx_transform_runtime_node_modules_vue_loader_lib_selector_type_script_index_0_navigation_vue__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_es2015_env_modules_false_targets_browsers_1_last_2_versions_not_ie_8_stage_2_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_transform_vue_jsx_transform_runtime_node_modules_vue_loader_lib_selector_type_script_index_0_navigation_vue__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5b0500bb_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_navigation_vue__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(4);
+var disposed = false
+function injectStyle (context) {
+  if (disposed) return
+  __webpack_require__(269)
+}
+/* script */
+
+
+/* template */
+
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+
+var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_cacheDirectory_true_presets_env_modules_false_targets_browsers_2_uglify_true_es2015_env_modules_false_targets_browsers_1_last_2_versions_not_ie_8_stage_2_plugins_transform_object_rest_spread_transform_runtime_polyfill_false_helpers_false_transform_vue_jsx_transform_runtime_node_modules_vue_loader_lib_selector_type_script_index_0_navigation_vue___default.a,
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5b0500bb_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_navigation_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5b0500bb_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_navigation_vue__["b" /* staticRenderFns */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\admin\\js\\components\\extends\\navigation.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5b0500bb", Component.options)
+  } else {
+    hotAPI.reload("data-v-5b0500bb", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 268 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      directives: [
+        {
+          name: "loading",
+          rawName: "v-loading",
+          value: _vm.listLoading,
+          expression: "listLoading"
+        }
+      ],
+      staticClass: "navigation"
+    },
+    [
+      _c(
+        "el-row",
+        { attrs: { gutter: 20 } },
+        [
+          _c("el-col", { attrs: { span: 8 } }, [
+            _c(
+              "div",
+              { staticClass: "grid-content bg-purple" },
+              [
+                _c(
+                  "el-collapse",
+                  {
+                    model: {
+                      value: _vm.activeMenuAddCollapse,
+                      callback: function($$v) {
+                        _vm.activeMenuAddCollapse = $$v
+                      },
+                      expression: "activeMenuAddCollapse"
+                    }
+                  },
+                  [
+                    _c(
+                      "el-collapse-item",
+                      {
+                        staticStyle: {
+                          "padding-left": "10px",
+                          "padding-right": "15px"
+                        },
+                        attrs: { title: "添加导航", name: "1" }
+                      },
+                      [
+                        _c(
+                          "el-form",
+                          {
+                            ref: "myForm",
+                            attrs: { rules: _vm.myRules, model: _vm.myForm }
+                          },
+                          [
+                            _c(
+                              "el-form-item",
+                              { attrs: { label: "菜单名称", prop: "name" } },
+                              [
+                                _c("el-input", {
+                                  attrs: { size: "small" },
+                                  model: {
+                                    value: _vm.myForm.name,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.myForm, "name", $$v)
+                                    },
+                                    expression: "myForm.name"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "el-form-item",
+                              { attrs: { label: "菜单地址", prop: "url" } },
+                              [
+                                _c("el-input", {
+                                  attrs: { size: "small" },
+                                  model: {
+                                    value: _vm.myForm.url,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.myForm, "url", $$v)
+                                    },
+                                    expression: "myForm.url"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "el-form-item",
+                              { attrs: { label: "排序" } },
+                              [
+                                _c("el-input", {
+                                  attrs: { size: "small" },
+                                  model: {
+                                    value: _vm.myForm.sorting,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.myForm, "sorting", $$v)
+                                    },
+                                    expression: "myForm.sorting"
+                                  }
+                                })
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "el-form-item",
+                              [
+                                _c(
+                                  "el-button",
+                                  {
+                                    attrs: { type: "primary" },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.onSubmit("myForm")
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("确定")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "el-button",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        _vm.onReset("myForm")
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("取消")]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("el-col", { attrs: { span: 16 } }, [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "loading",
+                    rawName: "v-loading",
+                    value: _vm.editLoading,
+                    expression: "editLoading"
+                  }
+                ],
+                staticClass: "grid-content bg-purple-light"
+              },
+              [
+                _c(
+                  "el-card",
+                  { staticClass: "box-card" },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "clearfix",
+                        attrs: { slot: "header" },
+                        slot: "header"
+                      },
+                      [
+                        _c("span", { staticClass: "pit-header-title" }, [
+                          _vm._v("菜单列表")
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "el-button",
+                          {
+                            staticStyle: {
+                              float: "right",
+                              "margin-top": "5px"
+                            },
+                            attrs: {
+                              icon: "edit",
+                              size: "small",
+                              type: "primary"
+                            },
+                            on: { click: _vm.updateMenu }
+                          },
+                          [_vm._v("保存")]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-table",
+                      {
+                        staticStyle: { width: "100%" },
+                        attrs: {
+                          data: _vm.navigations,
+                          border: "",
+                          "default-sort": {
+                            prop: "sorting",
+                            order: "descending"
+                          }
+                        }
+                      },
+                      [
+                        _c("el-table-column", {
+                          attrs: { label: "排序", width: "50" },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "default",
+                              fn: function(scope) {
+                                return [
+                                  _c("el-input", {
+                                    staticStyle: {},
+                                    attrs: {
+                                      size: "mini",
+                                      placeholder: "请输入内容"
+                                    },
+                                    on: { change: _vm.inputSort },
+                                    model: {
+                                      value: _vm.sortList[scope.row.name],
+                                      callback: function($$v) {
+                                        _vm.$set(
+                                          _vm.sortList,
+                                          scope.row.name,
+                                          $$v
+                                        )
+                                      },
+                                      expression: "sortList[scope.row.name]"
+                                    }
+                                  })
+                                ]
+                              }
+                            }
+                          ])
+                        }),
+                        _vm._v(" "),
+                        _c("el-table-column", {
+                          attrs: {
+                            prop: "name",
+                            label: "菜单名称",
+                            "min-width": "150"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("el-table-column", {
+                          attrs: {
+                            prop: "url",
+                            label: "地址",
+                            "min-width": "150"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("el-table-column", {
+                          attrs: { label: "操作" },
+                          scopedSlots: _vm._u([
+                            {
+                              key: "default",
+                              fn: function(scope) {
+                                return [
+                                  _c("el-button", {
+                                    attrs: {
+                                      type: "danger",
+                                      size: "small",
+                                      icon: "el-icon-delete"
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.removeItem(_vm.row)
+                                      }
+                                    }
+                                  })
+                                ]
+                              }
+                            }
+                          ])
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5b0500bb", { render: render, staticRenderFns: staticRenderFns })
+  }
+}
+
+/***/ }),
+/* 269 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(270);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(9).default
+var update = add("621c4bc2", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5b0500bb\",\"scoped\":false,\"sourceMap\":false}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./navigation.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5b0500bb\",\"scoped\":false,\"sourceMap\":false}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./navigation.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 270 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(8)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.navigation {\n\tpadding: 2rem;\n}\n.navigation .el-collapse {\n\tborder: 1px solid #ebeef5;\n}\n.navigation label {\n\twidth: 100px;\n}\n.navigation  .el-form-item__content {\n\tmargin-left: 100px;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
