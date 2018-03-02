@@ -4,10 +4,10 @@
 <style></style>
 <script>
 	//引入相应配置文件
-	import './ueditor.config';
-	import './ueditor.all.min';
-	import './ueditor.parse.min';
-	import './lang/zh-cn/zh-cn';
+	import '../../../../public/plug/UE/ueditor.config';
+	import '../../../../public/plug/UE/ueditor.all.min';
+	//import '../../../../public/plug/UE/ueditor.parse.min';
+	import '../../../../public/plug/UE/lang/zh-cn/zh-cn';
 	export default {
 		props: {
 			defaultMsg: {type: String},
@@ -15,7 +15,7 @@
 		},
 		data() {
 			return {
-				editor: Math.ceil(Math.random()*1000) + 'editor'
+				id: Math.ceil(Math.random()*1000) + 'editor'
 			}
 		},
 		methods: {

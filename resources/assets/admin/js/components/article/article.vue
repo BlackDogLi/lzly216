@@ -26,10 +26,10 @@
 				</el-upload>
 			</el-form-item>
 			<el-form-item label="内容" prop="markdown">
-				/*<el-input type="textarea" ref="myMarkdown" @change="textcomplete" :autosize="{ minRows: 12}" :rows="textareaRow" v-model="myForm.markdown"></el-input>*/
-				<el-input type="textarea" ref="myMarkdown">
-					<UE :dafaultMsg=defaultMsg :config=config ref="ue"></UE>
-				</el-input>
+				<!--<el-input type="textarea" ref="myMarkdown" @change="textcomplete" :autosize="{ minRows: 12}" :rows="textareaRow" v-model="myForm.markdown"></el-input>-->
+				<div class="editor-container"  >
+					<UE :dafaultMsg=defaultMsg :config=config ref="myMarkdown" :v-model="myForm.markdown"></UE>
+				</div>
 			</el-form-item>
 			<el-form-item>
 				<el-button @click="closeForm('myForm')">取消</el-button>
@@ -51,8 +51,8 @@
 </template>
 <style type="text/css">
 	.pit-common {
-		margin: 20px;
-		width: 60%;
+		margin: 10px;
+		//width: 60%;
 	}
 	.pit-common label {
 		width: 80px;
@@ -89,11 +89,13 @@
 <script type="text/ecmascript-6">
 	import inlineAttachment from '../../lib/inline-attachment';
 	import hotkeys from '../../lib/hotkeys.min';
-	import UE from '../../../../js/ueditor/UEditor.vue';
+	import UE from '../../../../common/components/UEditor.vue';
 	export default {
 		components: {UE},
 		data(){
 			return {
+				defaultMsg: 'UE',
+				config: { initialFrameWidth: null, initialFrameHeight: 300},
 				editFormLoading: false,
 				loading: false,
 				myFormTitle: '编辑',
@@ -188,7 +190,7 @@
 				this.imageUrl = response.filename;
 			},
 			getUEContent() {
-				let content = $this.$refs.ue.getUEContent();
+				let content = $this.$refs.myMarkdown.getUEContent();
 				$this.$notify({
 					title: '获取成功',
 					message: content,
@@ -311,7 +313,7 @@
 				});
 			},
 			compileMarkdown: function () {
-				this.markdownPreviews = this.marked(this.myForm.markdown);
+				this.markdownPreviews = this.editor.getContent();
 			},
 			setDomain: function () {
 				let location = window.location;
@@ -319,13 +321,14 @@
 			},
 			setMarkdown: function () {
 				let $_this = this;
-				this.localforage.getItem('myFormMarkdown').then(function (value) {
+				$_this.myForm.markdown = this.editor.getContent();
+				/*this.localforage.getItem('myFormMarkdown').then(function (value) {
 					if (value != '' && value != null) {
 						$_this.myForm.markdown = JSON.parse(value);
 					}
 				}).catch(function (error) {
 					console.log(error);
-				});
+				});*/
 			},
 			inlineAttachment: function (el) {
 				let $_this = this;
@@ -394,8 +397,8 @@
 		mounted() {
 			this.getCategorys();
 			this.setDomain();
-			this.setMarkdown();
-			this.inlineAttachment(this.$refs.myMarkdown.$el.firstElementChild);
+			//this.setMarkdown();
+			//this.inlineAttachment(this.$refs.myMarkdown.$el.firstElementChild);
 			this.hotkeys();
 		}
 	}
