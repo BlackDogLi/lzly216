@@ -42,6 +42,7 @@
         "vue-router": "^3.0.1"
     },
     "dependencies": {
+        "babel-plugin-transform-remove-strict-mode": "0.0.2",
         "simplemde": "^1.11.2",
         "vue-i18n": "^7.4.2",
         "vuedraggable": "^2.16.0"

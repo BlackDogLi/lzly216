@@ -26,10 +26,14 @@
 				</el-upload>
 			</el-form-item>
 			<el-form-item label="内容" prop="markdown">
-				<!--<el-input type="textarea" ref="myMarkdown" @change="textcomplete" :autosize="{ minRows: 12}" :rows="textareaRow" v-model="myForm.markdown"></el-input>-->
-				<div class="editor-container"  >
-					<UE :dafaultMsg=defaultMsg :config=config ref="myMarkdown" :v-model="myForm.markdown"></UE>
-				</div>
+				<!-- <el-input type="textarea" ref="myMarkdown" @change="textcomplete" :autosize="{ minRows: 12}" :rows="textareaRow" v-model="myForm.markdown"></el-input> -->
+				<!--<div class="editor-container">
+					<el-button @click="getUEContent2"></el-button>
+					<UE :defaultMsg=defaultMsg :config=config ref="myMarkdown" :v-model="myForm.markdown"></UE>
+				</div>-->
+				<el-input id="ue" type="textarea" v-model="myForm.markdown">
+
+				</el-input>
 			</el-form-item>
 			<el-form-item>
 				<el-button @click="closeForm('myForm')">取消</el-button>
@@ -55,10 +59,10 @@
 		//width: 60%;
 	}
 	.pit-common label {
-		width: 80px;
+		width: 60px;
 	}
 	.pit-common .el-form-item__content {
-		margin-left: 80px;
+		margin-left: 61px;
 	}
 	.pit-previews .markdown-previews {
 		border: 1px dashed #ccc;
@@ -89,12 +93,16 @@
 <script type="text/ecmascript-6">
 	import inlineAttachment from '../../lib/inline-attachment';
 	import hotkeys from '../../lib/hotkeys.min';
-	import UE from '../../../../common/components/UEditor.vue';
+	import '../../../../../../public/plug/UE/ueditor.config';
+	import '../../../../../../public/plug/UE/ueditor.all.min';
+	//import '../../../../../../public/plug/UE/ueditor.parse.min';
+	import '../../../../../../public/plug/UE/lang/zh-cn/zh-cn';
+	/*import UE from '../../../../common/components/UEditor.vue';*/
 	export default {
-		components: {UE},
+		//components: {UE},
 		data(){
 			return {
-				defaultMsg: 'UE',
+				defaultMsg: '',
 				config: { initialFrameWidth: null, initialFrameHeight: 300},
 				editFormLoading: false,
 				loading: false,
@@ -190,13 +198,16 @@
 				this.imageUrl = response.filename;
 			},
 			getUEContent() {
-				let content = $this.$refs.myMarkdown.getUEContent();
-				$this.$notify({
-					title: '获取成功',
-					message: content,
-					type: 'success'
-				});
-				console.log(content);
+				let content = this.editor.getContent();
+				if (content) {
+					this.myForm.markdown = content;
+					let markdown2json = JSON.stringify(content);
+					this.localforage.setItem('myFormMarkdown', markdown2json).then(function (value) {
+					}).catch(function (error) {
+						console.log(error);
+					});
+
+				}
 			},
 			/*emojies not do*/
 			textcomplete: function (markdown) {},
@@ -313,7 +324,8 @@
 				});
 			},
 			compileMarkdown: function () {
-				this.markdownPreviews = this.editor.getContent();
+				this.markdownPreviews = this.marked(this.myForm.markdown);
+				this.defaultMsg = this.myForm.markdown;
 			},
 			setDomain: function () {
 				let location = window.location;
@@ -321,14 +333,13 @@
 			},
 			setMarkdown: function () {
 				let $_this = this;
-				$_this.myForm.markdown = this.editor.getContent();
-				/*this.localforage.getItem('myFormMarkdown').then(function (value) {
+				this.localforage.getItem('myFormMarkdown').then(function (value) {
 					if (value != '' && value != null) {
 						$_this.myForm.markdown = JSON.parse(value);
 					}
 				}).catch(function (error) {
 					console.log(error);
-				});*/
+				});
 			},
 			inlineAttachment: function (el) {
 				let $_this = this;
@@ -363,7 +374,7 @@
 		},
 		computed: {
 			compiledMarkdown: function () {
-				return marked(this.input, { sanitize: true});
+				return marked(this.$refs.myMarkdown.getUEContent(), { sanitize: true});
 				let $_this = this;
 				$_this.compileMarkdown();
 				let markdown2json = JSON.stringify($_this.myForm.markdown);
@@ -395,9 +406,17 @@
 			}
 		},
 		mounted() {
+			let $_this = this;
+			this.editor = UE.getEditor('ue');
+			this.editor.addListener("ready", function() {
+				$_this.editor.setContent($_this.defaultMsg);
+			});
+			this.editor.addListener('contentChange',function () {
+				$_this.getUEContent();
+			});
 			this.getCategorys();
 			this.setDomain();
-			//this.setMarkdown();
+			this.setMarkdown();
 			//this.inlineAttachment(this.$refs.myMarkdown.$el.firstElementChild);
 			this.hotkeys();
 		}
