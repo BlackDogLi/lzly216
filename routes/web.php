@@ -48,6 +48,7 @@ Route::group(['prefix' => 'back', 'middleware' => 'auth.admin:admin', 'namespace
     Route::resource('/categorys', 'CategorysController');
     Route::resource('/navigations', 'NavigationController');
     Route::resource('/articles', 'ArticlesController');
+    Route::resource('/uploads', 'UploadsController');
     Route::resource('/tags', 'TagsController');
 });
 

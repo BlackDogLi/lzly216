@@ -17431,7 +17431,7 @@ exports.default = {
 			} else {
 				this.myForm.thumb = '';
 			}
-			this.imageUrl = response.filename;
+			this.imageUrl = response.url;
 		},
 		getUEContent: function getUEContent() {
 			var content = this.editor.getContent();
@@ -17655,7 +17655,6 @@ exports.default = {
 	}
 };
 //import '../../../../../../public/plug/UE/ueditor.parse.min';
-//
 //
 //
 //
@@ -80393,7 +80392,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.pit-common {\n\tmargin: 10px;\n\t//width: 60%;\n}\n.pit-common label {\n\twidth: 60px;\n}\n.pit-common .el-form-item__content {\n\tmargin-left: 61px;\n}\n.pit-previews .markdown-previews {\n\tborder: 1px dashed #ccc;\n\tmargin-left: 80px;\n\tbackground: #faf5eb;\n\tpadding: 10px;\n}\n.input-new-tag {\n\twidth: 50%;\n\tmargin-left: 10px;\n}\n.avatar-uploader .el-upload {\n\tborder: 1px dashed #ccc;\n\tborder-radius: 6px;\n\tcursor: pointer;\n\tposition: relative;\n\toverflow: hidden;\n}\n.avatar-uploader-icon {\n\tfont-size: 28px;\n\tcolor: #8c939d;\n\twidth: 250px;\n\theight: 110px;\n\tline-height: 100px;\n\ttext-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.pit-common {\n\tmargin: 10px;\n\t//width: 60%;\n}\n.pit-common label {\n\twidth: 60px;\n}\n.pit-common .el-form-item__content {\n\tmargin-left: 61px;\n}\n.pit-previews .markdown-previews {\n\tborder: 1px dashed #ccc;\n\tmargin-left: 60px;\n\tbackground: #faf5eb;\n\tpadding: 10px;\n}\n.input-new-tag {\n\twidth: 50%;\n\tmargin-left: 10px;\n}\n.avatar-uploader .el-upload {\n\tborder: 1px dashed #ccc;\n\tborder-radius: 6px;\n\tcursor: pointer;\n\tposition: relative;\n\toverflow: hidden;\n}\n.avatar-uploader-icon {\n\tfont-size: 28px;\n\tcolor: #8c939d;\n\twidth: 250px;\n\theight: 110px;\n\tline-height: 100px;\n\ttext-align: center;\n}\n", ""]);
 
 // exports
 
@@ -80981,7 +80980,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
      * 因此，UEditor提供了针对不同页面的编辑器可单独配置的根路径，具体来说，在需要实例化编辑器的页面最顶部写上如下代码即可。当然，需要令此处的URL等于对应的配置。
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
-    window.UEDITOR_HOME_URL = "plug/UE/";
+    window.UEDITOR_HOME_URL = "/plug/UE/";
     var URL = window.UEDITOR_HOME_URL || getUEBasePath();
 
     /**
@@ -89331,23 +89330,19 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c(
-            "el-form-item",
-            { attrs: { label: "内容", prop: "markdown" } },
-            [
-              _c("el-input", {
-                attrs: { id: "ue", type: "textarea" },
-                model: {
-                  value: _vm.myForm.markdown,
-                  callback: function($$v) {
-                    _vm.$set(_vm.myForm, "markdown", $$v)
-                  },
-                  expression: "myForm.markdown"
-                }
-              })
-            ],
-            1
-          ),
+          _c("el-form-item", { attrs: { label: "内容", prop: "markdown" } }, [
+            _c("div", {
+              staticClass: "editor-container",
+              attrs: { id: "ue" },
+              model: {
+                value: _vm.myForm.markdown,
+                callback: function($$v) {
+                  _vm.$set(_vm.myForm, "markdown", $$v)
+                },
+                expression: "myForm.markdown"
+              }
+            })
+          ]),
           _vm._v(" "),
           _c(
             "el-form-item",

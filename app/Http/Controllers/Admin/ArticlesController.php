@@ -41,8 +41,6 @@ class ArticlesController extends Controller implements FactoryInterface
 	//Store a article info
 	public function store (Request $request)
 	{
-		var_dump($request);
-		die;
 		$this->validate($request, [
 			'title' => 'required',
 			'flag' => 'required|flag',

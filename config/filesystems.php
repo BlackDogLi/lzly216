@@ -54,6 +54,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        //新建一个本地端uploads空间(目录)用于存储上传文件
+        'uploads' => [
+            'driver' => 'local',
+            //'root'  => storage_path('app/uploads')
+            'root' => public_path('uploads'),
+        ],
 
         's3' => [
             'driver' => 's3',

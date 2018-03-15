@@ -31,9 +31,8 @@
 					<el-button @click="getUEContent2"></el-button>
 					<UE :defaultMsg=defaultMsg :config=config ref="myMarkdown" :v-model="myForm.markdown"></UE>
 				</div>-->
-				<el-input id="ue" type="textarea" v-model="myForm.markdown">
-
-				</el-input>
+				<div id="ue"  v-model="myForm.markdown" class="editor-container">
+				</div>
 			</el-form-item>
 			<el-form-item>
 				<el-button @click="closeForm('myForm')">取消</el-button>
@@ -66,7 +65,7 @@
 	}
 	.pit-previews .markdown-previews {
 		border: 1px dashed #ccc;
-		margin-left: 80px;
+		margin-left: 60px;
 		background: #faf5eb;
 		padding: 10px;
 	}
@@ -195,7 +194,7 @@
 				} else {
 					this.myForm.thumb = '';
 				}
-				this.imageUrl = response.filename;
+				this.imageUrl = response.url;
 			},
 			getUEContent() {
 				let content = this.editor.getContent();
