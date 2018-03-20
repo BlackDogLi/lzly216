@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class UploadsController extends Controller
 {
@@ -18,7 +19,6 @@ class UploadsController extends Controller
 		if ($request->isMethod('post'))
 		{
 			$file = $request->file('file');
-
 
 			//文件是否上传成功
 			if ($file->isValid())
@@ -32,7 +32,12 @@ class UploadsController extends Controller
 				//上传文件
 				$filename = date('Y-m-d') . '-' . uniqid() . '.' . $ext;
 				//使用我们新建的uploads本地存错空间(目录)
+				$url1 = public_path('uploads/'.$filename);
 				$bool = Storage::disk('uploads')->put($filename, file_get_contents($realPath));
+				//裁剪图片
+				$img = Image::make($url1);
+				$img->resize(200,150);
+				$img->save();
 				//var_dump(storage_path('uploads'));
 				$url = '/uploads/' . $filename;
 				//$url = Storage::url($filename); //存储路径
