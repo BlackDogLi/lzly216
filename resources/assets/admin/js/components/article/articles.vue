@@ -35,7 +35,7 @@
 						<router-link :to="{ path: '/articles/edit/'+ scope.row.id}">
 							<el-button size="small" icon="el-icon-edit"></el-button>
 						</router-link>
-						<el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one', scope.row.id)"></el-button>
+						<el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one', scope.row)"></el-button>
 					</template>
 				</el-table-column>
 			</el-table>

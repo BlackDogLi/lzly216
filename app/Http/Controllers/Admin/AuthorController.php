@@ -24,8 +24,6 @@ Class AuthorController extends Controller{
         $post = $request -> input();
         if (Auth::attempt(['email' => $post['email'], 'password' => $post['password']])) {
             $user = Auth::user();
-            var_dump($user);
-
             $data = [
                 'status' => 200,
                 'info' => '登录成功',

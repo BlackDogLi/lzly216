@@ -10,15 +10,15 @@
 								<ul>
 									<li>
 										<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
-										文章:10篇
+										文章:{{statistical.posts}}篇
 									</li>
 									<li>
 										<i class="fa fa-trash-o" aria-hidden="true"></i>
-										删除文章：15篇
+										删除文章：{{statistical.post_trash}}篇
 									</li>
 									<li>
-										<li class="fa fa-comments-o" aria-hidden="true"></li>
-										评论：100条
+										<i class="fa fa-comments-o" aria-hidden="true"></i>
+										评论：{{statistical.comment}}条
 									</li>
 								</ul>
 							</div>
@@ -34,9 +34,9 @@
 							<div class="collapse-content" v-loading="recentLoading">
 								<div class="posts-list">
 									<ul>
-										<li>
-											<span class="posts-date">2018-1-11</span>
-											<router-link :to="{ path: '/'}">欢迎你!</router-link>
+										<li v-for="item in statistical.recent_posts">
+											<span class="posts-date">{{item.created_at}}</span>
+											<router-link :to="{ path: '/'}">{{item.title}}</router-link>
 										</li>
 									</ul>
 								</div>

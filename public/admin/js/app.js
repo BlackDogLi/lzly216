@@ -78916,7 +78916,9 @@ var render = function() {
                                   attrs: { "aria-hidden": "true" }
                                 }),
                                 _vm._v(
-                                  "\n\t\t\t\t\t\t\t\t\t文章:10篇\n\t\t\t\t\t\t\t\t"
+                                  "\n\t\t\t\t\t\t\t\t\t文章:" +
+                                    _vm._s(_vm.statistical.posts) +
+                                    "篇\n\t\t\t\t\t\t\t\t"
                                 )
                               ]),
                               _vm._v(" "),
@@ -78926,18 +78928,23 @@ var render = function() {
                                   attrs: { "aria-hidden": "true" }
                                 }),
                                 _vm._v(
-                                  "\n\t\t\t\t\t\t\t\t\t删除文章：15篇\n\t\t\t\t\t\t\t\t"
+                                  "\n\t\t\t\t\t\t\t\t\t删除文章：" +
+                                    _vm._s(_vm.statistical.post_trash) +
+                                    "篇\n\t\t\t\t\t\t\t\t"
                                 )
                               ]),
                               _vm._v(" "),
-                              _c("li"),
-                              _c("li", {
-                                staticClass: "fa fa-comments-o",
-                                attrs: { "aria-hidden": "true" }
-                              }),
-                              _vm._v(
-                                "\n\t\t\t\t\t\t\t\t\t评论：100条\n\t\t\t\t\t\t\t\t"
-                              )
+                              _c("li", [
+                                _c("i", {
+                                  staticClass: "fa fa-comments-o",
+                                  attrs: { "aria-hidden": "true" }
+                                }),
+                                _vm._v(
+                                  "\n\t\t\t\t\t\t\t\t\t评论：" +
+                                    _vm._s(_vm.statistical.comment) +
+                                    "条\n\t\t\t\t\t\t\t\t"
+                                )
+                              ])
                             ])
                           ]
                         )
@@ -78990,23 +78997,30 @@ var render = function() {
                           },
                           [
                             _c("div", { staticClass: "posts-list" }, [
-                              _c("ul", [
-                                _c(
-                                  "li",
-                                  [
-                                    _c("span", { staticClass: "posts-date" }, [
-                                      _vm._v("2018-1-11")
-                                    ]),
-                                    _vm._v(" "),
-                                    _c(
-                                      "router-link",
-                                      { attrs: { to: { path: "/" } } },
-                                      [_vm._v("欢迎你!")]
-                                    )
-                                  ],
-                                  1
-                                )
-                              ])
+                              _c(
+                                "ul",
+                                _vm._l(_vm.statistical.recent_posts, function(
+                                  item
+                                ) {
+                                  return _c(
+                                    "li",
+                                    [
+                                      _c(
+                                        "span",
+                                        { staticClass: "posts-date" },
+                                        [_vm._v(_vm._s(item.created_at))]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "router-link",
+                                        { attrs: { to: { path: "/" } } },
+                                        [_vm._v(_vm._s(item.title))]
+                                      )
+                                    ],
+                                    1
+                                  )
+                                })
+                              )
                             ])
                           ]
                         )
@@ -80254,7 +80268,7 @@ var render = function() {
                         },
                         on: {
                           click: function($event) {
-                            _vm.handleDistory("one", scope.row.id)
+                            _vm.handleDistory("one", scope.row)
                           }
                         }
                       })

@@ -28,12 +28,17 @@ class AdminController extends Controller
 
 	public function lately ()
 	{
+		$posts = Articles::count();
+		$post_trash = Articles::onlyTrashed()->count();
+		$comments = Articles::sum('comments');
+		$recent_posts = Articles::orderBy('created_at', 'desc')->take(5)->get(['id', 'title', 'created_at']);
+
 		$response = [
-			'posts' => 10,
-			'comments' => 11,
-			'post_trash' => 12,
-			'recent_posts' => 13
+				'posts' => $posts,
+				'comments' => $comments,
+				'post_trash' => $post_trash,
+				'recent_posts' => $recent_posts
 		];
-		return reponse()->json($response);
+		return response()->json($response);
 	}
 }
