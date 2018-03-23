@@ -1,6 +1,6 @@
 <!-- 后台登录 -->
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
     <meta name = "csrf-token" content = "{{csrf_token()}}}}">

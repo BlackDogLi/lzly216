@@ -42,7 +42,8 @@
 		  	"Middleware\\": "Http/middleware",
 		  	"Controllers\\": "Http/controller",
 		    "Factorymethod\\": "app/Factorymethod"
-        }
+        },
+	  	"files": ["app/Helper/function.php"]
     },
     "autoload-dev": {
         "psr-4": {

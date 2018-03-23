@@ -16,6 +16,8 @@ use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     public function index(){
-        return view('home.welcome');
+        return view('home.welcome')->with(compact('posts'));
     }
+
+    //Tags
 }
