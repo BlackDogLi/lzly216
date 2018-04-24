@@ -19,7 +19,7 @@ class AdminUsersTableSeeder extends Seeder {
 				'name' => 'Mr.li',
 				'email' => '634647919@qq.com',
 				'phone' => '18518757556',
-				'password' => '123',
+				'password' => '123456',
 			)
 		));
 	}

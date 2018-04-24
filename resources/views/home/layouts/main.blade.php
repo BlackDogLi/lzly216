@@ -23,19 +23,47 @@
 <body>
 <div id="app">
     <!-- header -->
-    <div id="header">
-        <!-- logo -->
-        <div id="logo"></div>
-        <!-- nav -->
-        <nav class="ui secondary  pointing menu">
-            <a class="item active">首页</a>
-            <a class="item">PHP</a>
-            <a class="item">Laravel</a>
-        </nav>
+    <div id="header" class="ui vertical  masthead center aligned segment">
+        <div class="ui borderless container">
+            <div class="ui borderless pointing menu">
+                <!-- logo -->
+                <div class="header item">
+                    <img class="logo" src="{{asset('home/image/logo.png')}}"/>
+                </div>
+                <!-- nav -->
+                <a class="item active">首页</a>
+                <a class="item">PHP</a>
+                <a class="item">Laravel</a>
+            </div>
+        </div>
     </div>
 
     <!-- content -->
-    <div id="content"></div>
+    <div id="content" class="ui vertical stripe segment">
+        <div class="ui two stackable grid container">
+            <div class="row">
+                <div class="ten wide column segment">
+                    <div class="ui text container">
+                        <h2 class="ui header">PHP浮点数的运算</h2>
+                        <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>
+                    </div>
+                </div>
+                <div class="six wide column segment">
+                    <div class="ui text content">
+                        <h4 class="ui top attached block header">最近发表</h4>
+                        <div class="ui bottom attached segment">
+                            <ul>
+                                <li><a>PHP浮点数的运算</a></li>
+                                <li><a>PHP精密计算函数</a></li>
+                            </ul>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- footer -->
     <div id="content"></div>
