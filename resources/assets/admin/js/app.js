@@ -21,7 +21,11 @@ import ElementUI from 'element-ui';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-
+//加载Ueditor
+import '../../../../public/plug/UE/ueditor.config';
+import '../../../../public/plug/UE/ueditor.all.min';
+import '../../../../public/plug/UE/ueditor.parse.min';
+import '../../../../public/plug/UE/lang/zh-cn/zh-cn';
 
 
 /* 加载 */

@@ -39,7 +39,6 @@ class NavigationController extends Controller implements FactoryInterface
 		return response()->json($listData);
 	}
 
-	//
 	public function update(Request $request)
 	{
 		$post = $request->all();

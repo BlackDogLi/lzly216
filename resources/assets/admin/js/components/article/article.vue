@@ -92,8 +92,8 @@
 <script type="text/ecmascript-6">
 	import inlineAttachment from '../../lib/inline-attachment';
 	import hotkeys from '../../lib/hotkeys.min';
-	import '../../../../../../public/plug/UE/ueditor.config';
-	import '../../../../../../public/plug/UE/ueditor.all.min';
+	//import '../../../../../../public/plug/UE/ueditor.config';
+	//import '../../../../../../public/plug/UE/ueditor.all.min';
 	//import '../../../../../../public/plug/UE/ueditor.parse.min';
 	import '../../../../../../public/plug/UE/lang/zh-cn/zh-cn';
 	/*import UE from '../../../../common/components/UEditor.vue';*/

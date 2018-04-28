@@ -1,0 +1,14 @@
+
+
+#app .alternate {
+    margin: 2em 0em 0em;
+    padding: 3em 0em;
+    background-color: #F2f3F5;
+}
+
+
+/*---footer---*/
+.ui.footer.segment {
+    margin: 3em 0em 0em;
+    padding: 3em 0em;
+}
