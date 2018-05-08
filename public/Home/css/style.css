@@ -1,5 +1,7 @@
-
-
+/*--- Common ---*/
+#app .ui.vertical.segment {
+    border-bottom: none;
+}
 #app .alternate {
     margin: 2em 0em 0em;
     padding: 3em 0em;

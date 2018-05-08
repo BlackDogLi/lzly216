@@ -35,58 +35,15 @@
                 <li class="item active"><a href="{{ url('/') }}">首页</a></li>
                 @include('home.common.nav')
                 @yield('nav')
-                <li class="item"><a href="#">PHP</a></li>
-                <li class="item"><a href="#">Laravel</a></li>
             </div>
         </div>
     </div>
 
     <!-- content -->
     <div id="content" class="ui vertical stripe segment">
-        @yield('content')
-
-        <div class="ui two stackable grid container">
-            <div class="row">
-                <div class="ten wide column segment">
-                    <div class="ui text container">
-                        <h2 class="ui header">PHP浮点数的运算</h2>
-                        <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>
-                    </div>
-                    @foreach ($article as $item)
-                        <div class="ui text container">
-                            <h2 class="ui header">{{$item['title']}}</h2>
-                            {!!str_limit($item['markdown'], 300, '... ...')!!}
-                        </div>
-                    @endforeach
-                </div>
-                <div class="six wide column segment">
-                    <div class="ui text content">
-                        <h4 class="ui top attached block header">最近发表</h4>
-                        <div class="ui bottom attached segment">
-                            <ul>
-                                <li><a>PHP浮点数的运算</a></li>
-                                <li><a>PHP精密计算函数</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="container">
+            @yield('content')
         </div>
-        <!-- AD -->
-        <div class="ui alternate vertical segment">
-            <div class="ui two center aligned stackable grid container">
-                <div class="row">
-                    <div class="column">
-                        <h1 class="ui header">采菊园</h1>
-                    </div>
-                    <div class="column">
-                        <h1 class="ui header">一路向西</h1>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
     </div>
 
     <!-- footer -->
