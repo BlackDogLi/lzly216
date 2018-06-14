@@ -26,13 +26,13 @@
 				</el-upload>
 			</el-form-item>
 			<el-form-item label="内容" prop="markdown">
-				<!-- <el-input type="textarea" ref="myMarkdown" @change="textcomplete" :autosize="{ minRows: 12}" :rows="textareaRow" v-model="myForm.markdown"></el-input> -->
+				<el-input type="textarea" ref="myMarkdown" @change="textcomplete" :autosize="{ minRows: 12}" :rows="textareaRow" v-model="myForm.markdown"></el-input>
 				<!--<div class="editor-container">
 					<el-button @click="getUEContent2"></el-button>
 					<UE :defaultMsg=defaultMsg :config=config ref="myMarkdown" :v-model="myForm.markdown"></UE>
 				</div>-->
-				<div id="ue"  v-model="myForm.markdown" class="editor-container">
-				</div>
+				<!--<div id="ue"  v-model="myForm.markdown" class="editor-container">
+				</div>-->
 			</el-form-item>
 			<el-form-item>
 				<el-button @click="closeForm('myForm')">取消</el-button>
@@ -92,11 +92,6 @@
 <script type="text/ecmascript-6">
 	import inlineAttachment from '../../lib/inline-attachment';
 	import hotkeys from '../../lib/hotkeys.min';
-	//import '../../../../../../public/plug/UE/ueditor.config';
-	//import '../../../../../../public/plug/UE/ueditor.all.min';
-	//import '../../../../../../public/plug/UE/ueditor.parse.min';
-	import '../../../../../../public/plug/UE/lang/zh-cn/zh-cn';
-	/*import UE from '../../../../common/components/UEditor.vue';*/
 	export default {
 		//components: {UE},
 		data(){
@@ -196,20 +191,30 @@
 				}
 				this.imageUrl = response.url;
 			},
-			getUEContent() {
-				let content = this.editor.getContent();
-				if (content) {
-					this.myForm.markdown = content;
-					let markdown2json = JSON.stringify(content);
-					this.localforage.setItem('myFormMarkdown', markdown2json).then(function (value) {
-					}).catch(function (error) {
-						console.log(error);
-					});
-
-				}
-			},
 			/*emojies not do*/
-			textcomplete: function (markdown) {},
+			textcomplete: function (markdown) {
+                /*
+                 let emojies = [];
+                 if (markdown.length <= 0) {
+                 return false;
+                 }
+                 let re = /(^|\b)(\w{1,})$/;
+                 let contentArr = re.exec(markdown);
+                 if (contentArr != null) {
+                 let str = contentArr[contentArr.length - 1];
+                 emojies = this.util.searchEmojies(str);
+                 this.emojiesData = emojies;
+                 this.showEmojies = true;
+                 this.emojiesStyle = {
+                 zIndex: PopupManager.nextZIndex(),
+                 };
+                 } else {
+                 this.emojiesData = [];
+                 this.showEmojies = false;
+                 }
+                 console.log(emojies);
+                 */
+			},
 			getPost: function (id) {
 				if (parseInt(id) <= 0) {
 					return false;
@@ -324,7 +329,7 @@
 			},
 			compileMarkdown: function () {
 				this.markdownPreviews = this.marked(this.myForm.markdown);
-				this.defaultMsg = this.myForm.markdown;
+				//this.defaultMsg = this.myForm.markdown;
 			},
 			setDomain: function () {
 				let location = window.location;
@@ -373,7 +378,7 @@
 		},
 		computed: {
 			compiledMarkdown: function () {
-				return marked(this.$refs.myMarkdown.getUEContent(), { sanitize: true});
+				return marked(this.input, { sanitize: true});
 				let $_this = this;
 				$_this.compileMarkdown();
 				let markdown2json = JSON.stringify($_this.myForm.markdown);
@@ -405,18 +410,18 @@
 			}
 		},
 		mounted() {
-			let $_this = this;
+			/*let $_this = this;
 			this.editor = UE.getEditor('ue');
 			this.editor.addListener("ready", function() {
 				$_this.editor.setContent($_this.defaultMsg);
 			});
 			this.editor.addListener('contentChange',function () {
 				$_this.getUEContent();
-			});
+			});*/
 			this.getCategorys();
 			this.setDomain();
 			this.setMarkdown();
-			//this.inlineAttachment(this.$refs.myMarkdown.$el.firstElementChild);
+			this.inlineAttachment(this.$refs.myMarkdown.$el.firstElementChild);
 			this.hotkeys();
 		}
 	}

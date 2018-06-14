@@ -13,7 +13,7 @@
 				<el-table-column label="操作">
 					<template scope="scope">
 						<el-button size="small" icon="el-icon-edit" @click="handleEdit(scope.row)"></el-button>
-						<el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one', row)"></el-button>
+						<el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one', scope.row)"></el-button>
 					</template>
 				</el-table-column>
 			</el-table>

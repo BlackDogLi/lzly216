@@ -6,4 +6,5 @@
     3)cp .env.example .env(linux命令)
     4)php artisan migrate(迁移数据表)
     5)php artisan sb:seed(填充数据)
+    6)php artisan key:generate(生成密钥)
 ####(3)修改.env文件中数据库连接为本地连接

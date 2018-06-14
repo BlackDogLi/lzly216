@@ -31,8 +31,6 @@ class HomeController extends Controller
         //导航
         $nav = Navications::where('isShow', '=', 1)->orderBy('sort', 'asc')->get();
         $articleDetail = Articles::select('id', 'title', 'flag', 'content')->where('flag', '=', $flag)->first();
-        $current = Route::current();
-        print_r($current);exit();
         return view('home.articledetail', ['nav' => $nav, 'articleDetail' => $articleDetail]);
     }
 
