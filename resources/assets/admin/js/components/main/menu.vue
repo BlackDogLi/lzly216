@@ -59,7 +59,7 @@
 		data () {
 			return {
 				currentPath: '/admin',
-				currentPathName: '仪表盘',
+				currentPathName: '数据中心',
 				currentPathNameParent: '首页',
 				sysUserName: '',
 				sysUserAvater: '',

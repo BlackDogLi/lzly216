@@ -81,7 +81,7 @@ const routes = [
 	{
 		path: '/',
 		component: Menu,
-		name: '仪表盘',
+		name: '',
 		iconCls: 'fa fa-home',
 		leaf: true,
 		children: [

@@ -9,9 +9,7 @@
 </head>
 <body>
 <div id="app">
-    <div class="pit-loading-box">
-        <img src="{{ asset('admin/image/fly.gif') }}" class="pit-loading-img" alt=""/>
-    </div>
+
 </div>
 <script>window.Laravel = {'csrfToken' : '{{csrf_token()}}' , 'apiUrl': '{{route('admin')}}' };</script>
 <script src="{{ mix('admin/js/app.js') }}"></script>

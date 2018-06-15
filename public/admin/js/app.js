@@ -16451,7 +16451,7 @@ exports.default = {
 	data: function data() {
 		return {
 			currentPath: '/admin',
-			currentPathName: '仪表盘',
+			currentPathName: '数据中心',
 			currentPathNameParent: '首页',
 			sysUserName: '',
 			sysUserAvater: '',
@@ -18786,7 +18786,7 @@ var routes = [{
 }, {
 	path: '/',
 	component: _menu2.default,
-	name: '仪表盘',
+	name: '',
 	iconCls: 'fa fa-home',
 	leaf: true,
 	children: [{ path: '/admin', component: _main2.default, name: '仪表盘' }]
