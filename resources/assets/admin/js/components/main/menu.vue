@@ -22,8 +22,8 @@
 		<!-- 主题内容 -->
 		<el-col :span="24" class="panel-center">
 			<!-- 左侧边栏 -->
-			<aside style="width: 230px;">
-				<el-menu :default-active="currentPath" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect" unique-opened router theme="dark">
+			<aside>
+				<el-menu :default-active="currentPath" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" unique-opened router>
 					<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
 						<el-submenu :index = "index + ''" v-if="!item.leaf">
 							<template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
@@ -151,6 +151,9 @@
 	bottom: 0px;
 	overflow: hidden;
 }
+.panel-center ul {
+	padding: 5px;
+}
 
 .panel-c-c {
 	background: #f1f2f7;
@@ -158,7 +161,7 @@
 	right: 0px;
 	top: 0px;
 	bottom: 0px;
-	left: 230px;
+	left: 300px;
 	overflow-y: scroll;
 	padding: 20px;
 }

@@ -1,6 +1,6 @@
 <template>
-	<div class="pit-post-form">
-		<el-form ref="myForm" :rules="myRules" :model="myForm" v-loading="editFormLoading" label-width="100px;" class="pit-common" >
+	<div class="main-content">
+		<el-form :label-position="labelPosition" :rules="myRules" :model="myForm" v-loading="editFormLoading" label-width="100px" class="form6" >
 			<el-form-item label="新密码" style="width:60%" prop="password">
 				<el-input type="password" v-model="myForm.password"></el-input>
 			</el-form-item>
@@ -20,6 +20,7 @@
 	export default {
 		data () {
 			return {
+			    labelPosition: 'left',
 				editFormLoading: false,
 				myForm: {
 					password: '',
