@@ -12,13 +12,13 @@
     <title>@if(current_is('tags'))标签"{{ $tags->tags_name or '' }}" 的文章 - @elseif(current_is('post')){{ $post->title or '' }} - @elseif(current_is('category'))分类 "{{ $category->category_name or '' }}" 的文章 - @endif {{ bloginfo('site_name') }}</title>
     <meta name="keywords" content="{{ bloginfo('keywords') }}"/>
     <meta name="description" content="{{ bloginfo('description') }}"/>
-    <link rel="stylesheet" href="{{ asset('/home/css/semantic.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('/home/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ '/Home/css/semantic.min.css' }}" />
+    <link rel="stylesheet" href="{{ '/Home/css/style.css' }}" />
     @yield('head')
     @if(!empty(bloginfo('google_plus')))
         <link rel="author" href="{{bloginfo('google_plus')}}"/>
     @endif
-    <script src="{{ asset('/home/js/semantic.min.js') }}"></script>
+    <script src="{{ asset('/Home/js/semantic.min.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
 </head>
 <body>
@@ -29,7 +29,7 @@
             <div class="ui borderless pointing menu">
                 <!-- logo -->
                 <div class="header item">
-                    <img class="logo" src="{{asset('home/image/logo.png')}}"/>
+                    <img class="logo" src="{{asset('Home/image/logo.png')}}"/>
                 </div>
                 <!-- nav -->
                 <li class="item active"><a href="{{ url('/') }}">首页</a></li>
