@@ -20,11 +20,6 @@
 </template>
 
 <style type = "text/css">
-    body {
-        background: #324057;
-        color: #fff;
-    }
-
     .login-form {
         width: 350px;
         margin: 10% auto 0 auto;

@@ -86,7 +86,7 @@ const routes = [
 		iconCls: 'fa fa-home',
 		leaf: true,
 		children: [
-			{ path: '/admin', component: Main, name: '仪表盘'}
+			{ path: '/admin', component: Main, name: '概况'}
 		]
 	},
 	{

@@ -1,3 +1,98 @@
 .main-content .form6 {
     width: 60%;
 }
+
+
+/******************* Manager *********************/
+
+body {
+    background-color: #f2f6f9;
+    color: #7a8599;
+}
+.text {
+    font-size: 14px;
+}
+.item {
+    padding-bottom: 1rem;
+}
+a {
+    text-decoration:none;
+}
+
+/****************** el-header ********************/
+.el-header {
+    margin: 1rem 0;
+    height: 5rem !important;
+    text-align: center;
+    overflow: hidden;
+
+}
+.el-header .el-row {
+    background-color: #ffffff;
+    color: #399ff4;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.2);
+}
+
+.el-header .el-dropdown{
+    line-height: 5rem;
+}
+
+
+/****************** el-aside ********************/
+.el-aside {
+    width: 16rem !important;
+    min-height: 33rem;
+    background-color: #fff;
+    text-align: center;
+    margin: 0 1rem;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.2);
+    border-radius: 6px;
+}
+.el-aside .el-menu {
+    border: none;
+    padding-top: 1.5rem;
+}
+.el-aside .el-submenu,.el-menu-item {
+    border-bottom: none !important;
+}
+.el-aside .el-menu-item.is-active {
+    border-left: 2px solid #399ff4;
+    background-color: #ebf5fe;
+}
+
+/****************** el-main ********************/
+.el-main .current {
+    padding: 24px;
+}
+.el-main .box-card {
+    min-height: 22rem;
+}
+.el-main .box-card .el-card__header {
+    font-weight: bold;
+    color: #399ff4;
+}
+.el-main .box-card .el-card__body {
+    color: #7a8599;
+}
+.el-main .box-card .el-card__body a {
+    color: #7a8599;
+}
+
+
+/***************** el-footer *****************/
+
+.el-footer {
+    text-align: center;
+}
+.el-footer .el-col {
+    background-color: #fff;
+    line-height: 60px;
+    height: 100%;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.2);
+    border-radius: 6px;
+}
+.el-footer span {
+    text-align: center;
+    padding-right: 30px;
+}

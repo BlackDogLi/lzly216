@@ -16317,11 +16317,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-//
-//
-//
-//
-//
 
 exports.default = {
 	data: function data() {
@@ -16446,6 +16441,25 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
 	data: function data() {
@@ -16509,45 +16523,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -18787,7 +18762,7 @@ var routes = [{
 	name: '',
 	iconCls: 'fa fa-home',
 	leaf: true,
-	children: [{ path: '/admin', component: _main2.default, name: '仪表盘' }]
+	children: [{ path: '/admin', component: _main2.default, name: '概况' }]
 }, {
 	path: '/',
 	component: _menu2.default,
@@ -79086,7 +79061,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\nbody {\n    background: #324057;\n    color: #fff;\n}\n.login-form {\n    width: 350px;\n    margin: 10% auto 0 auto;\n    padding: 50px 50px 50px 30px;\n    background: #FFF;\n    border-radius: 2px;\n}\n", ""]);
+exports.push([module.i, "\n.login-form {\n    width: 350px;\n    margin: 10% auto 0 auto;\n    padding: 50px 50px 50px 30px;\n    background: #FFF;\n    border-radius: 2px;\n}\n", ""]);
 
 // exports
 
@@ -79365,7 +79340,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active[data-v-3a9e8d4e],\r\n.fade-leave-active[data-v-3a9e8d4e] {\r\n\t-webkit-transition: opacity .5s;\r\n\ttransition: opacity .5s\n}\n.fade-enter[data-v-3a9e8d4e],\r\n.fade-leave-active[data-v-3a9e8d4e] {\r\n\topacity: 0\n}\n.panel[data-v-3a9e8d4e] {\r\n\tposition: absolute;\r\n\ttop: 0px;\r\n\tbottom: 0px;\r\n\twidth: 100%;\n}\n.panel-top[data-v-3a9e8d4e] {\r\n\theight: 60px;\r\n\tline-height: 60px;\r\n\tbackground: #1F2D3D;\r\n\tcolor: #c0ccda;\n}\n.panel-top .rightbar[data-v-3a9e8d4e] {\r\n\ttext-align: right;\r\n\tpadding-right: 35px;\n}\n.panel-top .rightbar .head[data-v-3a9e8d4e] {\r\n\twidth: 40px;\r\n\theight: 40px;\r\n\tborder-radius: 20px;\r\n\tmargin: 10px 0px 10px 10px;\r\n\tfloat: right;\n}\n.panel-center[data-v-3a9e8d4e] {\r\n\tbackground: #324057;\r\n\tposition: absolute;\r\n\ttop: 60px;\r\n\tbottom: 0px;\r\n\toverflow: hidden;\n}\n.panel-center ul[data-v-3a9e8d4e] {\r\n\tpadding: 5px;\n}\n.panel-c-c[data-v-3a9e8d4e] {\r\n\tbackground: #f1f2f7;\r\n\tposition: absolute;\r\n\tright: 0px;\r\n\ttop: 0px;\r\n\tbottom: 0px;\r\n\tleft: 300px;\r\n\toverflow-y: scroll;\r\n\tpadding: 20px;\n}\n.el-menu .fa[data-v-3a9e8d4e] {\r\n\tvertical-align: baseline;\r\n\tmargin-right: 10px;\r\n\tfont-size: 16px;\n}\n.logout[data-v-3a9e8d4e] {\r\n\t/*background: url(../assets/logout_36.png);*/\r\n\tbackground-size: contain;\r\n\twidth: 20px;\r\n\theight: 20px;\r\n\tfloat: left;\n}\n.logo[data-v-3a9e8d4e] {\r\n\twidth: 64px;\r\n\theight: 64px;\r\n\tfloat: left;\r\n\tmargin-left:10px;\n}\n.tip-logout[data-v-3a9e8d4e] {\r\n\tfloat: right;\r\n\tmargin-right: 20px;\r\n\tpadding-top: 5px;\n}\n.tip-logout i[data-v-3a9e8d4e] {\r\n\tcursor: pointer;\n}\n.admin[data-v-3a9e8d4e] {\r\n\tcolor: #c0ccda;\r\n\ttext-align: center;\n}\n.pit-main[data-v-3a9e8d4e] {\r\n\tbackground-color: #fff;\r\n\t-webkit-box-sizing: border-box;\r\n\t        box-sizing: border-box;\n}\n.pit-current-route[data-v-3a9e8d4e] {\r\n\twidth: 200px;\r\n\tfloat: left;\r\n\tcolor: #475669;\r\n\tfont-weight: bold;\n}\n.el-menu-item[data-v-3a9e8d4e],.el-submenu[data-v-3a9e8d4e] {\r\n\tborder-bottom: 1px #2a3952 solid;\n}\n.pit-username[data-v-3a9e8d4e] {\r\n\tcolor: #FFF;\r\n\tcursor: pointer;\n}\n.pit-user-dropdown[data-v-3a9e8d4e] {\r\n\tcolor: #0f0f0f;\r\n\tfont-size: 14px;\n}\r\n", ""]);
+exports.push([module.i, "\n.fade-enter-active[data-v-3a9e8d4e],\r\n.fade-leave-active[data-v-3a9e8d4e] {\r\n\t-webkit-transition: opacity .5s;\r\n\ttransition: opacity .5s\n}\n.fade-enter[data-v-3a9e8d4e],\r\n.fade-leave-active[data-v-3a9e8d4e] {\r\n\topacity: 0\n}\n.el-header .rightbar .head[data-v-3a9e8d4e] {\r\n\twidth: 40px;\r\n\theight: 40px;\r\n\tborder-radius: 20px;\r\n\tmargin: 10px 0px 10px 10px;\r\n\tfloat: right;\n}\n.panel-center[data-v-3a9e8d4e] {\r\n\tbackground: #324057;\r\n\tposition: absolute;\r\n\ttop: 60px;\r\n\tbottom: 0px;\r\n\toverflow: hidden;\n}\n.panel-center ul[data-v-3a9e8d4e] {\r\n\tpadding: 5px;\n}\n.panel-c-c[data-v-3a9e8d4e] {\r\n\tbackground: #f1f2f7;\r\n\tposition: absolute;\r\n\tright: 0px;\r\n\ttop: 0px;\r\n\tbottom: 0px;\r\n\tleft: 300px;\r\n\toverflow-y: scroll;\r\n\tpadding: 20px;\n}\n.el-menu .fa[data-v-3a9e8d4e] {\r\n\tvertical-align: baseline;\r\n\tmargin-right: 10px;\r\n\tfont-size: 16px;\n}\n.logout[data-v-3a9e8d4e] {\r\n\t/*background: url(../assets/logout_36.png);*/\r\n\tbackground-size: contain;\r\n\twidth: 20px;\r\n\theight: 20px;\r\n\tfloat: left;\n}\n.logo[data-v-3a9e8d4e] {\r\n\twidth: 64px;\r\n\theight: 64px;\r\n\tfloat: left;\r\n\tmargin-left:10px;\n}\n.tip-logout[data-v-3a9e8d4e] {\r\n\tfloat: right;\r\n\tmargin-right: 20px;\r\n\tpadding-top: 5px;\n}\n.tip-logout i[data-v-3a9e8d4e] {\r\n\tcursor: pointer;\n}\n.pit-current-route[data-v-3a9e8d4e] {\r\n\twidth: 200px;\r\n\tfloat: left;\r\n\tcolor: #475669;\r\n\tfont-weight: bold;\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -79382,77 +79357,83 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "el-row",
-    { staticClass: "panel" },
+    "el-container",
     [
       _c(
-        "el-col",
-        { staticClass: "panel-top", attrs: { span: 24 } },
+        "el-header",
         [
           _c(
-            "el-col",
-            { staticStyle: { "font-size": "26px" }, attrs: { span: 20 } },
+            "el-row",
+            {
+              attrs: {
+                span: 24,
+                gutter: 10,
+                type: "flex",
+                justify: "space-between"
+              }
+            },
             [
-              _c("span", [
-                _c("i", { staticStyle: { "font-style": "normal" } }, [
-                  _vm._v("Lzly216-nest")
-                ])
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "el-col",
-            { staticClass: "rightbar", attrs: { span: 4 } },
-            [
+              _c("el-col", { attrs: { span: 4 } }, [
+                _c("div", { staticClass: "grid-content" }),
+                _c("span", [_c("h1", [_vm._v("lzly-Blog")])])
+              ]),
+              _vm._v(" "),
+              _c("el-col", { attrs: { span: 16 } }),
+              _vm._v(" "),
               _c(
-                "el-dropdown",
-                { attrs: { trigger: "click" } },
+                "el-col",
+                { staticClass: "rightbar", attrs: { span: 4 } },
                 [
-                  _c("span", { staticClass: "el-dropdown-link pit-username" }, [
-                    _c("img", {
-                      staticClass: "head",
-                      attrs: {
-                        src: this.sysUserAvater,
-                        onerror: "javascript:this.src='/admin/image/logo.png'"
-                      }
-                    }),
-                    _vm._v(
-                      "\n\t\t\t\t\t" + _vm._s(_vm.sysUserName) + "\n\t\t\t\t"
-                    )
-                  ]),
-                  _vm._v(" "),
                   _c(
-                    "el-dropdown-menu",
-                    {
-                      staticClass: "pit-user-dropdown",
-                      attrs: { slot: "dropdown" },
-                      slot: "dropdown"
-                    },
+                    "el-dropdown",
+                    { attrs: { trigger: "click" } },
                     [
-                      _c(
-                        "el-dropdown-item",
-                        {
-                          nativeOn: {
-                            click: function($event) {
-                              _vm.gouser($event)
-                            }
+                      _c("span", { staticClass: "el-dropdown-link" }, [
+                        _c("img", {
+                          staticClass: "head",
+                          attrs: {
+                            src: this.sysUserAvater,
+                            onerror:
+                              "javascript:this.src='/admin/image/logo.png'"
                           }
-                        },
-                        [_vm._v("设置")]
-                      ),
+                        }),
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.sysUserName) +
+                            "\n                    "
+                        )
+                      ]),
                       _vm._v(" "),
                       _c(
-                        "el-dropdown-item",
-                        {
-                          attrs: { divided: "" },
-                          nativeOn: {
-                            click: function($event) {
-                              _vm.logout($event)
-                            }
-                          }
-                        },
-                        [_vm._v("退出登录")]
+                        "el-dropdown-menu",
+                        { attrs: { slot: "dropdown" }, slot: "dropdown" },
+                        [
+                          _c(
+                            "el-dropdown-item",
+                            {
+                              nativeOn: {
+                                click: function($event) {
+                                  _vm.gouser($event)
+                                }
+                              }
+                            },
+                            [_vm._v("设置")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-dropdown-item",
+                            {
+                              attrs: { divided: "" },
+                              nativeOn: {
+                                click: function($event) {
+                                  _vm.logout($event)
+                                }
+                              }
+                            },
+                            [_vm._v("退出登录")]
+                          )
+                        ],
+                        1
                       )
                     ],
                     1
@@ -79467,116 +79448,154 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("el-col", { staticClass: "panel-center", attrs: { span: 24 } }, [
-        _c(
-          "aside",
-          [
-            _c(
-              "el-menu",
-              {
-                staticClass: "el-menu-vertical-demo",
-                attrs: {
-                  "default-active": _vm.currentPath,
-                  "background-color": "#545c64",
-                  "text-color": "#fff",
-                  "active-text-color": "#ffd04b",
-                  "unique-opened": "",
-                  router: ""
-                },
-                on: {
-                  open: _vm.handleopen,
-                  close: _vm.handleclose,
-                  select: _vm.handleselect
-                }
-              },
-              [
-                _vm._l(_vm.$router.options.routes, function(item, index) {
-                  return !item.hidden
-                    ? [
-                        !item.leaf
-                          ? _c(
-                              "el-submenu",
-                              { attrs: { index: index + "" } },
-                              [
-                                _c("template", { slot: "title" }, [
-                                  _c("i", { class: item.iconCls }),
-                                  _vm._v(_vm._s(item.name))
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(item.children, function(child) {
-                                  return _c(
-                                    "el-menu-item",
-                                    { attrs: { index: child.path } },
-                                    [_vm._v(_vm._s(child.name))]
-                                  )
-                                })
-                              ],
-                              2
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        item.leaf && item.children.length > 0
-                          ? _c(
-                              "el-menu-item",
-                              { attrs: { index: item.children[0].path } },
-                              [
-                                _c("i", { class: item.iconCls }),
-                                _vm._v(
-                                  _vm._s(item.children[0].name) + "\n\t\t\t\t\t"
-                                )
-                              ]
-                            )
-                          : _vm._e()
-                      ]
-                    : _vm._e()
-                })
-              ],
-              2
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c("section", { staticClass: "panel-c-c" }, [
+      _c(
+        "el-container",
+        [
           _c(
-            "div",
-            { staticClass: "grid-content bg-purple-light" },
+            "el-aside",
+            [
+              _c("el-col", [
+                _c(
+                  "aside",
+                  [
+                    _c(
+                      "el-menu",
+                      {
+                        staticClass: "el-menu-vertical-demo",
+                        attrs: {
+                          "default-active": _vm.currentPath,
+                          "text-color": "#7a8599",
+                          "active-text-color": "#399ff4",
+                          "unique-opened": "",
+                          router: ""
+                        },
+                        on: {
+                          open: _vm.handleopen,
+                          close: _vm.handleclose,
+                          select: _vm.handleselect
+                        }
+                      },
+                      [
+                        _vm._l(_vm.$router.options.routes, function(
+                          item,
+                          index
+                        ) {
+                          return !item.hidden
+                            ? [
+                                !item.leaf
+                                  ? _c(
+                                      "el-submenu",
+                                      { attrs: { index: index + "" } },
+                                      [
+                                        _c("template", { slot: "title" }, [
+                                          _c("i", { class: item.iconCls }),
+                                          _vm._v(_vm._s(item.name))
+                                        ]),
+                                        _vm._v(" "),
+                                        _vm._l(item.children, function(child) {
+                                          return _c(
+                                            "el-menu-item",
+                                            { attrs: { index: child.path } },
+                                            [_vm._v(_vm._s(child.name))]
+                                          )
+                                        })
+                                      ],
+                                      2
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                item.leaf && item.children.length > 0
+                                  ? _c(
+                                      "el-menu-item",
+                                      {
+                                        attrs: { index: item.children[0].path }
+                                      },
+                                      [
+                                        _c("i", { class: item.iconCls }),
+                                        _c(
+                                          "span",
+                                          {
+                                            attrs: { slot: "title" },
+                                            slot: "title"
+                                          },
+                                          [
+                                            _vm._v(
+                                              _vm._s(item.children[0].name)
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e()
+                              ]
+                            : _vm._e()
+                        })
+                      ],
+                      2
+                    )
+                  ],
+                  1
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "el-container",
             [
               _c(
-                "el-col",
-                {
-                  staticStyle: { "margin-bottom": "15px" },
-                  attrs: { span: 24 }
-                },
+                "el-main",
                 [
-                  _c("span", { staticClass: "pit-current-route" }, [
-                    _vm._v(_vm._s(_vm.currentPathName))
-                  ]),
-                  _vm._v(" "),
                   _c(
-                    "el-breadcrumb",
-                    {
-                      staticStyle: { float: "right" },
-                      attrs: { separator: "/" }
-                    },
+                    "el-container",
+                    { attrs: { direction: "vertical" } },
                     [
                       _c(
-                        "el-breadcrumb-item",
-                        { attrs: { to: { path: "/admin" } } },
-                        [_vm._v("首页")]
+                        "el-col",
+                        { staticClass: "current", attrs: { span: 24 } },
+                        [
+                          _c("span", { staticClass: "pit-current-route" }, [
+                            _vm._v(_vm._s(_vm.currentPathName))
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "el-breadcrumb",
+                            {
+                              staticStyle: { float: "right" },
+                              attrs: { separator: "/" }
+                            },
+                            [
+                              _c(
+                                "el-breadcrumb-item",
+                                { attrs: { to: { path: "/admin" } } },
+                                [_vm._v("首页")]
+                              ),
+                              _vm._v(" "),
+                              _vm.currentPathNameParent != ""
+                                ? _c("el-breadcrumb-item", [
+                                    _vm._v(_vm._s(_vm.currentPathNameParent))
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.currentPathName != ""
+                                ? _c("el-breadcrumb-item", [
+                                    _vm._v(_vm._s(_vm.currentPathName))
+                                  ])
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        ],
+                        1
                       ),
                       _vm._v(" "),
-                      _vm.currentPathNameParent != ""
-                        ? _c("el-breadcrumb-item", [
-                            _vm._v(_vm._s(_vm.currentPathNameParent))
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
-                      _vm.currentPathName != ""
-                        ? _c("el-breadcrumb-item", [
-                            _vm._v(_vm._s(_vm.currentPathName))
-                          ])
-                        : _vm._e()
+                      _c(
+                        "el-col",
+                        { attrs: { span: 24 } },
+                        [_c("router-view")],
+                        1
+                      )
                     ],
                     1
                   )
@@ -79585,16 +79604,22 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "el-col",
-                { staticClass: "pit-main", attrs: { span: 24 } },
-                [_c("router-view")],
+                "el-footer",
+                [
+                  _c("el-col", { attrs: { span: 24 } }, [
+                    _c("span", [_vm._v("联系方式:lzly216@163.com")]),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("版权归@山人所有")])
+                  ])
+                ],
                 1
               )
             ],
             1
           )
-        ])
-      ])
+        ],
+        1
+      )
     ],
     1
   )
@@ -79621,10 +79646,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5e1ac0a8_hasScoped_false_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_main_vue__ = __webpack_require__(226);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(3);
 var disposed = false
-function injectStyle (context) {
-  if (disposed) return
-  __webpack_require__(224)
-}
 /* script */
 
 
@@ -79633,7 +79654,7 @@ function injectStyle (context) {
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = injectStyle
+var __vue_styles__ = null
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -79670,47 +79691,8 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 224 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(225);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var add = __webpack_require__(6).default
-var update = add("4edd49ee", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5e1ac0a8\",\"scoped\":false,\"sourceMap\":false}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./main.vue", function() {
-     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-5e1ac0a8\",\"scoped\":false,\"sourceMap\":false}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./main.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 225 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.dashboard {\n\tpadding: 1em;\n}\n.dashbooard ul {\n\tlist-style: none;\n\tpadding: 0;\n\tmargin: 0;\n}\n.collapse-content {\n\tdisplay: block;\n\toverflow: hidden;\n}\n.posts-list .posts-date {\n\tfloat: right;\n}\n.posts-list li a {\n\ttext-decoration: none;\n}\n.posts-list li {\n\tpadding: 5px 0;\n\tborder-bottom: 1px #eee dashed;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 224 */,
+/* 225 */,
 /* 226 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79722,175 +79704,101 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
-    { staticClass: "dashboard" },
+    "el-row",
+    { attrs: { span: 24, gutter: 30 } },
     [
       _c(
-        "el-row",
-        { attrs: { gutter: 20 } },
+        "el-col",
+        { attrs: { span: 12 } },
         [
-          _c("el-col", { attrs: { span: 12 } }, [
+          _c("el-card", { staticClass: "box-card" }, [
             _c(
               "div",
-              { staticClass: "grid-content bg-purple" },
-              [
-                _c(
-                  "el-collapse",
-                  {
-                    model: {
-                      value: _vm.statisticalNames,
-                      callback: function($$v) {
-                        _vm.statisticalNames = $$v
-                      },
-                      expression: "statisticalNames"
-                    }
-                  },
-                  [
-                    _c(
-                      "el-collapse-item",
-                      { attrs: { name: "1" } },
-                      [
-                        _c("template", { slot: "title" }, [_vm._v("源数据")]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            directives: [
-                              {
-                                name: "loading",
-                                rawName: "v-loading",
-                                value: _vm.statisticalLoading,
-                                expression: "statisticalLoading"
-                              }
-                            ],
-                            staticClass: "collapse-content"
-                          },
-                          [
-                            _c("ul", [
-                              _c("li", [
-                                _c("i", {
-                                  staticClass: "fa fa-calendar-check-o",
-                                  attrs: { "aria-hidden": "true" }
-                                }),
-                                _vm._v(
-                                  "\n\t\t\t\t\t\t\t\t\t文章:" +
-                                    _vm._s(_vm.statistical.posts) +
-                                    "篇\n\t\t\t\t\t\t\t\t"
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("i", {
-                                  staticClass: "fa fa-trash-o",
-                                  attrs: { "aria-hidden": "true" }
-                                }),
-                                _vm._v(
-                                  "\n\t\t\t\t\t\t\t\t\t删除文章：" +
-                                    _vm._s(_vm.statistical.post_trash) +
-                                    "篇\n\t\t\t\t\t\t\t\t"
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("li", [
-                                _c("i", {
-                                  staticClass: "fa fa-comments-o",
-                                  attrs: { "aria-hidden": "true" }
-                                }),
-                                _vm._v(
-                                  "\n\t\t\t\t\t\t\t\t\t评论：" +
-                                    _vm._s(_vm.statistical.comment) +
-                                    "条\n\t\t\t\t\t\t\t\t"
-                                )
-                              ])
-                            ])
-                          ]
-                        )
-                      ],
-                      2
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          ]),
-          _vm._v(" "),
-          _c("el-col", { attrs: { span: 12 } }, [
-            _c(
-              "div",
-              { staticClass: "grid-content bg-purple" },
-              [
-                _c(
-                  "el-collapse",
-                  {
-                    model: {
-                      value: _vm.recentNames,
-                      callback: function($$v) {
-                        _vm.recentNames = $$v
-                      },
-                      expression: "recentNames"
-                    }
-                  },
-                  [
-                    _c(
-                      "el-collapse-item",
-                      { attrs: { name: "1" } },
-                      [
-                        _c("template", { slot: "title" }, [_vm._v("最近发布")]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            directives: [
-                              {
-                                name: "loading",
-                                rawName: "v-loading",
-                                value: _vm.recentLoading,
-                                expression: "recentLoading"
-                              }
-                            ],
-                            staticClass: "collapse-content"
-                          },
-                          [
-                            _c("div", { staticClass: "posts-list" }, [
-                              _c(
-                                "ul",
-                                _vm._l(_vm.statistical.recent_posts, function(
-                                  item
-                                ) {
-                                  return _c(
-                                    "li",
-                                    [
-                                      _c(
-                                        "span",
-                                        { staticClass: "posts-date" },
-                                        [_vm._v(_vm._s(item.created_at))]
-                                      ),
-                                      _vm._v(" "),
-                                      _c(
-                                        "router-link",
-                                        { attrs: { to: { path: "/" } } },
-                                        [_vm._v(_vm._s(item.title))]
-                                      )
-                                    ],
-                                    1
-                                  )
-                                })
-                              )
-                            ])
-                          ]
-                        )
-                      ],
-                      2
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            )
+              {
+                staticClass: "clearfix",
+                attrs: { slot: "header" },
+                slot: "header"
+              },
+              [_c("span", [_vm._v("源数据")])]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "text item" }, [
+              _c("i", {
+                staticClass: "fa fa-calendar-check-o",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _vm._v(
+                "\n                    文章:" +
+                  _vm._s(_vm.statistical.posts) +
+                  "篇\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text item" }, [
+              _c("i", {
+                staticClass: "fa fa-trash-o",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _vm._v(
+                "\n                    删除文章：" +
+                  _vm._s(_vm.statistical.post_trash) +
+                  "篇\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text item" }, [
+              _c("i", {
+                staticClass: "fa fa-comments-o",
+                attrs: { "aria-hidden": "true" }
+              }),
+              _vm._v(
+                "\n                    评论：" +
+                  _vm._s(_vm.statistical.comment) +
+                  "条\n                "
+              )
+            ])
           ])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-col",
+        { attrs: { span: 12 } },
+        [
+          _c(
+            "el-card",
+            { staticClass: "box-card" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "clearfix",
+                  attrs: { slot: "header" },
+                  slot: "header"
+                },
+                [_c("span", [_vm._v("最近发布")])]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.statistical.recent_posts, function(item) {
+                return _c(
+                  "div",
+                  { staticClass: "text item" },
+                  [
+                    _c("router-link", { attrs: { to: { path: "/" } } }, [
+                      _vm._v(_vm._s(item.title))
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticStyle: { float: "right" } }, [
+                      _vm._v(_vm._s(item.created_at))
+                    ])
+                  ],
+                  1
+                )
+              })
+            ],
+            2
+          )
         ],
         1
       )

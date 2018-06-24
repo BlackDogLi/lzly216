@@ -19,6 +19,7 @@ use App\Factorymethod\Interfaces\FactoryInterface;
 class ArticlesFactory implements Product
 {
 	protected $_error = 'error';
+
 	public function create (FactoryInterface $observer, Request $request)
 	{
 		$articles = new Articles();

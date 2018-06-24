@@ -1,58 +1,77 @@
 <template>
-	<el-row class="panel">
-		<!-- 后台top -->
-		<el-col :span="24" class="panel-top">
-			<el-col :span="20" style="font-size:26px;">
-				<span><i style="font-style:normal;">Lzly216-nest</i></span>
-			</el-col>
-			<el-col :span="4" class="rightbar">
-				<el-dropdown trigger="click">
-					<span class="el-dropdown-link pit-username">
-						<img :src="this.sysUserAvater" class="head" onerror="javascript:this.src='/admin/image/logo.png'"/>
-						{{sysUserName}}
-					</span>
-					<el-dropdown-menu slot="dropdown" class="pit-user-dropdown">
-						<el-dropdown-item @click.native="gouser">设置</el-dropdown-item>
-						<el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
-					</el-dropdown-menu>
-				</el-dropdown>
-			</el-col>
-		</el-col>
+    <el-container>
 
-		<!-- 主题内容 -->
-		<el-col :span="24" class="panel-center">
-			<!-- 左侧边栏 -->
-			<aside>
-				<el-menu :default-active="currentPath" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" unique-opened router>
-					<template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
-						<el-submenu :index = "index + ''" v-if="!item.leaf">
-							<template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
-							<el-menu-item v-for = " child in item.children " :index = "child.path">{{child.name}}</el-menu-item>
-						</el-submenu>
-						<el-menu-item v-if = "item.leaf && item.children.length>0" :index = "item.children[0].path">
-							<i :class="item.iconCls"></i>{{item.children[0].name}}
-						</el-menu-item>
-					</template>
-				</el-menu>
-			</aside>
-			<!-- 右侧内容 -->
-			<section class="panel-c-c">
-				<div class="grid-content bg-purple-light">
-					<el-col :span="24" style="margin-bottom:15px;">
-						<span class="pit-current-route">{{currentPathName}}</span>
-						<el-breadcrumb separator="/" style="float:right;">
-							<el-breadcrumb-item :to="{ path : '/admin'}">首页</el-breadcrumb-item>
-							<el-breadcrumb-item v-if="currentPathNameParent!=''">{{currentPathNameParent}}</el-breadcrumb-item>
-							<el-breadcrumb-item v-if="currentPathName!=''">{{currentPathName}}</el-breadcrumb-item>
-						</el-breadcrumb>
-					</el-col>
-					<el-col :span="24" class="pit-main">
-						<router-view></router-view>
-					</el-col>
-				</div>
-			</section>
-		</el-col>
-	</el-row>
+        <!-- 头部Start -->
+        <el-header>
+            <el-row :span="24" :gutter="10" type="flex" justify="space-between">
+                <el-col :span="4">
+                    <div class="grid-content"></div><span><h1>lzly-Blog</h1></span>
+                </el-col>
+                <el-col :span="16"></el-col>
+                <el-col :span="4" class="rightbar">
+                    <el-dropdown trigger="click">
+                        <span class="el-dropdown-link">
+                            <img :src="this.sysUserAvater" class="head" onerror="javascript:this.src='/admin/image/logo.png'"/>
+                            {{sysUserName}}
+                        </span>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item @click.native="gouser">设置</el-dropdown-item>
+                            <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+                </el-col>
+            </el-row>
+        </el-header>
+        <el-container>
+
+            <!-- 左侧Start -->
+            <el-aside>
+                <el-col>
+                    <aside>
+                        <el-menu :default-active="currentPath" class="el-menu-vertical-demo" @open="handleopen" @close="handleclose" @select="handleselect" text-color="#7a8599" active-text-color="#399ff4" unique-opened router>
+                            <template v-for="(item,index) in $router.options.routes" v-if="!item.hidden">
+                                <el-submenu :index = "index + ''" v-if="!item.leaf">
+                                    <template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
+                                    <el-menu-item v-for = " child in item.children " :index = "child.path">{{child.name}}</el-menu-item>
+                                </el-submenu>
+                                <el-menu-item v-if = "item.leaf && item.children.length>0" :index = "item.children[0].path">
+                                    <i :class="item.iconCls"></i><span slot="title">{{item.children[0].name}}</span>
+                                </el-menu-item>
+                            </template>
+                        </el-menu>
+                    </aside>
+                </el-col>
+            </el-aside>
+
+            <el-container>
+
+                <!-- 右侧Start -->
+                <el-main>
+                    <el-container direction="vertical">
+                        <el-col :span="24" class="current">
+                            <span class="pit-current-route">{{currentPathName}}</span>
+                            <el-breadcrumb separator="/" style="float:right;">
+                                <el-breadcrumb-item :to="{ path : '/admin'}">首页</el-breadcrumb-item>
+                                <el-breadcrumb-item v-if="currentPathNameParent!=''">{{currentPathNameParent}}</el-breadcrumb-item>
+                                <el-breadcrumb-item v-if="currentPathName!=''">{{currentPathName}}</el-breadcrumb-item>
+                            </el-breadcrumb>
+                        </el-col>
+                        <el-col :span="24">
+                            <router-view></router-view>
+                        </el-col>
+                    </el-container>
+                </el-main>
+
+                <!-- 底部Start -->
+                <el-footer>
+                    <el-col :span="24">
+                        <span>联系方式:lzly216@163.com</span>
+                        <span>版权归@山人所有</span>
+                    </el-col>
+                </el-footer>
+            </el-container>
+        </el-container>
+    </el-container>
 </template>
 <script type="text/ecmascript-6">
 	export default {
@@ -117,26 +136,7 @@
 	opacity: 0
 }
 
-.panel {
-	position: absolute;
-	top: 0px;
-	bottom: 0px;
-	width: 100%;
-}
-
-.panel-top {
-	height: 60px;
-	line-height: 60px;
-	background: #1F2D3D;
-	color: #c0ccda;
-}
-
-.panel-top .rightbar {
-	text-align: right;
-	padding-right: 35px;
-}
-
-.panel-top .rightbar .head {
+.el-header .rightbar .head {
 	width: 40px;
 	height: 40px;
 	border-radius: 20px;
@@ -197,15 +197,6 @@
 	cursor: pointer;
 }
 
-.admin {
-	color: #c0ccda;
-	text-align: center;
-}
-
-.pit-main {
-	background-color: #fff;
-	box-sizing: border-box;
-}
 
 .pit-current-route {
 	width: 200px;
@@ -213,15 +204,5 @@
 	color: #475669;
 	font-weight: bold;
 }
-.el-menu-item,.el-submenu {
-	border-bottom: 1px #2a3952 solid;
-}
-.pit-username {
-	color: #FFF;
-	cursor: pointer;
-}
-.pit-user-dropdown {
-	color: #0f0f0f;
-	font-size: 14px;
-}
+
 </style>
