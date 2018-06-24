@@ -108,7 +108,35 @@
 			handleopen() {},
 			handleclose() {},
 			handleselect: function (a, b) {},
-			logout: function () {},
+			logout: function () {
+			    var $_this = this;
+			    var _duration = 2*1000;
+			    this.$confirm('确认退出么?', '提示',{
+
+                }).then(() => {
+                    $_this.axios.post('login/logout').then(function(response){
+                        let data = response.data;
+                        if (data.status == 200) {
+                            sessionStorage.removeItem('lzly');
+                            $_this.$message({
+                                message: data.info,
+                                type: 'success',
+                                duration: _duration
+                            });
+                            setTimeout(function () {
+                                $_this.$router.replace('/login');
+                            }, _duration);
+                        } else {
+                            $_this.$message.error("退出失败");
+                        }
+                    }).catch(function (error) {
+                        $_this.$message.error("退出失败");
+                    });
+                }).catch(function () {
+                    $_this.$message.error("退出失败");
+                    console.log(error);
+                });
+            },
 			gouser: function () {this.$router.push({path: 'user'});}
 		},
 		mounted() {
@@ -144,26 +172,8 @@
 	float: right;
 }
 
-.panel-center {
-	background: #324057;
-	position: absolute;
-	top: 60px;
-	bottom: 0px;
-	overflow: hidden;
-}
 .panel-center ul {
 	padding: 5px;
-}
-
-.panel-c-c {
-	background: #f1f2f7;
-	position: absolute;
-	right: 0px;
-	top: 0px;
-	bottom: 0px;
-	left: 300px;
-	overflow-y: scroll;
-	padding: 20px;
 }
 
 .el-menu .fa {

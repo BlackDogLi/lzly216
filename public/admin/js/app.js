@@ -16497,7 +16497,33 @@ exports.default = {
 		handleclose: function handleclose() {},
 
 		handleselect: function handleselect(a, b) {},
-		logout: function logout() {},
+		logout: function logout() {
+			var $_this = this;
+			var _duration = 2 * 1000;
+			this.$confirm('确认退出么?', '提示', {}).then(function () {
+				$_this.axios.post('login/logout').then(function (response) {
+					var data = response.data;
+					if (data.status == 200) {
+						sessionStorage.removeItem('lzly');
+						$_this.$message({
+							message: data.info,
+							type: 'success',
+							duration: _duration
+						});
+						setTimeout(function () {
+							$_this.$router.replace('/login');
+						}, _duration);
+					} else {
+						$_this.$message.error("退出失败");
+					}
+				}).catch(function (error) {
+					$_this.$message.error("退出失败");
+				});
+			}).catch(function () {
+				$_this.$message.error("退出失败");
+				console.log(error);
+			});
+		},
 		gouser: function gouser() {
 			this.$router.push({ path: 'user' });
 		}
@@ -79340,7 +79366,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active[data-v-3a9e8d4e],\r\n.fade-leave-active[data-v-3a9e8d4e] {\r\n\t-webkit-transition: opacity .5s;\r\n\ttransition: opacity .5s\n}\n.fade-enter[data-v-3a9e8d4e],\r\n.fade-leave-active[data-v-3a9e8d4e] {\r\n\topacity: 0\n}\n.el-header .rightbar .head[data-v-3a9e8d4e] {\r\n\twidth: 40px;\r\n\theight: 40px;\r\n\tborder-radius: 20px;\r\n\tmargin: 10px 0px 10px 10px;\r\n\tfloat: right;\n}\n.panel-center[data-v-3a9e8d4e] {\r\n\tbackground: #324057;\r\n\tposition: absolute;\r\n\ttop: 60px;\r\n\tbottom: 0px;\r\n\toverflow: hidden;\n}\n.panel-center ul[data-v-3a9e8d4e] {\r\n\tpadding: 5px;\n}\n.panel-c-c[data-v-3a9e8d4e] {\r\n\tbackground: #f1f2f7;\r\n\tposition: absolute;\r\n\tright: 0px;\r\n\ttop: 0px;\r\n\tbottom: 0px;\r\n\tleft: 300px;\r\n\toverflow-y: scroll;\r\n\tpadding: 20px;\n}\n.el-menu .fa[data-v-3a9e8d4e] {\r\n\tvertical-align: baseline;\r\n\tmargin-right: 10px;\r\n\tfont-size: 16px;\n}\n.logout[data-v-3a9e8d4e] {\r\n\t/*background: url(../assets/logout_36.png);*/\r\n\tbackground-size: contain;\r\n\twidth: 20px;\r\n\theight: 20px;\r\n\tfloat: left;\n}\n.logo[data-v-3a9e8d4e] {\r\n\twidth: 64px;\r\n\theight: 64px;\r\n\tfloat: left;\r\n\tmargin-left:10px;\n}\n.tip-logout[data-v-3a9e8d4e] {\r\n\tfloat: right;\r\n\tmargin-right: 20px;\r\n\tpadding-top: 5px;\n}\n.tip-logout i[data-v-3a9e8d4e] {\r\n\tcursor: pointer;\n}\n.pit-current-route[data-v-3a9e8d4e] {\r\n\twidth: 200px;\r\n\tfloat: left;\r\n\tcolor: #475669;\r\n\tfont-weight: bold;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.fade-enter-active[data-v-3a9e8d4e],\r\n.fade-leave-active[data-v-3a9e8d4e] {\r\n\t-webkit-transition: opacity .5s;\r\n\ttransition: opacity .5s\n}\n.fade-enter[data-v-3a9e8d4e],\r\n.fade-leave-active[data-v-3a9e8d4e] {\r\n\topacity: 0\n}\n.el-header .rightbar .head[data-v-3a9e8d4e] {\r\n\twidth: 40px;\r\n\theight: 40px;\r\n\tborder-radius: 20px;\r\n\tmargin: 10px 0px 10px 10px;\r\n\tfloat: right;\n}\n.panel-center ul[data-v-3a9e8d4e] {\r\n\tpadding: 5px;\n}\n.el-menu .fa[data-v-3a9e8d4e] {\r\n\tvertical-align: baseline;\r\n\tmargin-right: 10px;\r\n\tfont-size: 16px;\n}\n.logout[data-v-3a9e8d4e] {\r\n\t/*background: url(../assets/logout_36.png);*/\r\n\tbackground-size: contain;\r\n\twidth: 20px;\r\n\theight: 20px;\r\n\tfloat: left;\n}\n.logo[data-v-3a9e8d4e] {\r\n\twidth: 64px;\r\n\theight: 64px;\r\n\tfloat: left;\r\n\tmargin-left:10px;\n}\n.tip-logout[data-v-3a9e8d4e] {\r\n\tfloat: right;\r\n\tmargin-right: 20px;\r\n\tpadding-top: 5px;\n}\n.tip-logout i[data-v-3a9e8d4e] {\r\n\tcursor: pointer;\n}\n.pit-current-route[data-v-3a9e8d4e] {\r\n\twidth: 200px;\r\n\tfloat: left;\r\n\tcolor: #475669;\r\n\tfont-weight: bold;\n}\r\n\r\n", ""]);
 
 // exports
 
