@@ -62,12 +62,6 @@
 		</el-dialog>
 	</div>
 </template>
-<style type = "text/css">
-	.dialog-footer {
-		text-align: center;
-	}
-
-</style>
 <script type = "text/ecmascript-6">
 	export default {
 		data () {

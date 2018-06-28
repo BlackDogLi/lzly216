@@ -1,93 +1,64 @@
 <template>
-	<div class="main-content">
-		<el-form ref="myForm" :model="myForm" :rules="myRules" v-loading="editFormLoading" class="pit-common">
-			<el-form-item label="标题" prop="title">
-				<el-input v-model="myForm.title" @blur="titleBlur"></el-input>
-			</el-form-item>
-			<el-form-item label="别名" prop="flag">
-				<el-input placeholder="请输入内容" v-model="myForm.flag">
-					<template slot="prepend">{{domain}}</template>
-				</el-input>
-			</el-form-item>
-			<el-form-item label="标签">
-				<el-tag v-for="tag in myForm.tags" type="primary" :closeable="true" :close-transition="false" @close="closeTags(tag)">{{tag}}</el-tag>
-				<el-input class="input-new-tag" v-if="inputVisible" v-model="inputValue" ref="saveTagInput" size="mini" @keyup.enter.native="hanleInputConfirm" @blur="handleInputConfirm"></el-input>
-				<el-button v-else class="button-new-tag" size="small" @click="showTagsInput">+标签</el-button>
-			</el-form-item>
-			<el-form-item label="分类" prop="category_id">
-				<el-select v-model="myForm.category_id" placeholder="请选择分类">
-					<el-option v-for="item in categorys" :label="item.category_name" :value="item.id"></el-option>
-				</el-select>
-			</el-form-item>
-			<el-form-item label="封面图">
-				<el-upload class="avatar-uploader" :action="uploadsApi" :headers="headers" :show-file-list="false" :on-success="coverUploadSuccess">
-					<img v-if="imageUrl" :src="imageUrl" class="post-cover">
-					<i v-else class="el-icon-plus avatar-uploader-icon"></i>
-				</el-upload>
-			</el-form-item>
-			<el-form-item label="内容" prop="markdown">
-				<el-input type="textarea" ref="myMarkdown" @change="textcomplete" :autosize="{ minRows: 12}" :rows="textareaRow" v-model="myForm.markdown"></el-input>
-				<!--<div class="editor-container">
-					<el-button @click="getUEContent2"></el-button>
-					<UE :defaultMsg=defaultMsg :config=config ref="myMarkdown" :v-model="myForm.markdown"></UE>
-				</div>-->
-				<!--<div id="ue"  v-model="myForm.markdown" class="editor-container">
-				</div>-->
-			</el-form-item>
-			<el-form-item>
-				<el-button @click="closeForm('myForm')">取消</el-button>
-				<el-button @click="clearCache()">清缓存</el-button>
-				<el-button type="primary" @click="submitMyForm('myForm')">确 定</el-button>
-			</el-form-item>
-		</el-form>
-		<div class="pit-previews pit-common">
-			<article class="markdown-previews markdown-body" v-html="markdownPreviews"></article>
-		</div>
-		<el-dialog title="图片预览" v-model="previewVisible" size="large">
-			<div class="showPreview">
-				<div v-html="showPreview"></div>
-			</div>
-			<span slot="footer" class="dialog-footer"></span>
-			<el-button type="primary" @click="previewVisible = false">关 闭</el-button>
-		</el-dialog>
-	</div>
+	<el-container>
+        <el-row :span="24" style="width: 100%">
+            <el-col class="shadow">
+                <el-form ref="myForm" :model="myForm" :rules="myRules" label-width="80px" v-loading="editFormLoading">
+                    <el-form-item label="标题" prop="title">
+                        <el-input v-model="myForm.title" @blur="titleBlur"></el-input>
+                    </el-form-item>
+                    <el-form-item label="别名" prop="flag">
+                        <el-input placeholder="请输入内容" v-model="myForm.flag">
+                            <template slot="prepend">{{domain}}</template>
+                        </el-input>
+                    </el-form-item>
+                    <el-form-item label="标签">
+                        <el-tag v-for="tag in myForm.tags" type="primary" :closeable="true" :close-transition="false" @close="closeTags(tag)">{{tag}}</el-tag>
+                        <el-input v-if="inputVisible" v-model="inputValue" ref="saveTagInput" size="mini" @keyup.enter.native="hanleInputConfirm" @blur="handleInputConfirm"></el-input>
+                        <el-button v-else class="button-new-tag" size="small" @click="showTagsInput">+标签</el-button>
+                    </el-form-item>
+                    <el-form-item label="分类" prop="category_id">
+                        <el-select v-model="myForm.category_id" placeholder="请选择分类">
+                            <el-option v-for="item in categorys" :label="item.category_name" :value="item.id"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="封面图">
+                        <el-upload class="avatar-uploader" :action="uploadsApi" :headers="headers" :show-file-list="false" :on-success="coverUploadSuccess">
+                            <img v-if="imageUrl" :src="imageUrl" class="post-cover">
+                            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                        </el-upload>
+                    </el-form-item>
+                    <el-form-item label="内容" prop="markdown">
+                        <el-input type="textarea" ref="myMarkdown" @change="textcomplete" :autosize="{ minRows: 12}" :rows="textareaRow" v-model="myForm.markdown"></el-input>
+                        <!--<div class="editor-container">
+                            <el-button @click="getUEContent2"></el-button>
+                            <UE :defaultMsg=defaultMsg :config=config ref="myMarkdown" :v-model="myForm.markdown"></UE>
+                        </div>-->
+                        <!--<div id="ue"  v-model="myForm.markdown" class="editor-container">
+                        </div>-->
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button @click="closeForm('myForm')">取消</el-button>
+                        <el-button @click="clearCache()">清缓存</el-button>
+                        <el-button type="primary" @click="submitMyForm('myForm')">确 定</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-col>
+            <el-col>
+                <article class="markdown-previews markdown-body" v-html="markdownPreviews"></article>
+            </el-col>
+            <el-col>
+                <el-dialog title="图片预览" v-model="previewVisible" size="large">
+                    <div class="showPreview">
+                        <div v-html="showPreview"></div>
+                    </div>
+                    <span slot="footer" class="dialog-footer"></span>
+                    <el-button type="primary" @click="previewVisible = false">关 闭</el-button>
+                </el-dialog>
+            </el-col>
+        </el-row>
+    </el-container>
 </template>
 <style type="text/css">
-	.pit-common {
-		margin: 10px;
-		//width: 60%;
-	}
-	.pit-common label {
-		width: 60px;
-	}
-	.pit-common .el-form-item__content {
-		margin-left: 61px;
-	}
-	.pit-previews .markdown-previews {
-		border: 1px dashed #ccc;
-		margin-left: 60px;
-		background: #faf5eb;
-		padding: 10px;
-	}
-	.input-new-tag {
-		width: 50%;
-		margin-left: 10px;
-	}
-	.avatar-uploader .el-upload {
-		border: 1px dashed #ccc;
-		border-radius: 6px;
-		cursor: pointer;
-		position: relative;
-		overflow: hidden;
-	}
-	.avatar-uploader-icon {
-		font-size: 28px;
-		color: #8c939d;
-		width: 250px;
-		height: 110px;
-		line-height: 100px;
-		text-align: center;
-	}
 </style>
 <script type="text/ecmascript-6">
 	import inlineAttachment from '../../lib/inline-attachment';

@@ -1,62 +1,71 @@
 <template>
-	<div class="main-content">
-		<div class="main-action-btn">
-			<router-link to="/articles/add">
-				<el-button type="primary" icon="el-icon-plus">新增</el-button>
-			</router-link>
-			<el-button type="primary" @click="handleDistory('multi', {})" icon="el-icon-delete">删除</el-button>
-			<el-select v-model="category_id" clearable @change="filterCategory" placeholder="请选择">
-				<el-option v-for="item in categorys" :label="item.category_name" :value="item.id">
-				</el-option>
-			</el-select>
-			<el-input v-model="q" placeholder="请输入内容" icon="el-icon-search" style="width:200px" :on-icon-click="searchBtn"></el-input>
-		</div>
-		<template>
-			<el-table :data="listData" v-loading="listLoading" header-cell-class-name="tableheader" style="text-align: center; width:100%" @selection-change="handleSelectionChange">
-				<el-table-column type="selection" width="55"></el-table-column>
-				<el-table-column sortable label="标题" min-width="250">
-					<template scope="scope">
-						<router-link :to="{path: '/articles/edit/'+ scope.row.id}" class="links">{{scope.row.title}}</router-link>
-					</template>
-				</el-table-column>
-				<el-table-column label="分类" width="150">
-					<template scope="scope">
-						<span v-if="scope.row.categories">{{scope.row.categories.category_name}}</span>
-					</template>
-				</el-table-column>
-				<el-table-column sortable label="标签" width="200">
-					<template scope="scope">
-						<el-tag v-for="tag in scope.row.tags" type="primary">{{tag.tags_name}}</el-tag>
-					</template>
-				</el-table-column>
-				<el-table-column prop="created_at" :formatter="formatterDate" sortable label="日期" width="100"></el-table-column>
-				<el-table-column  label="操作" width="150">
-					<template scope="scope">
-						<router-link :to="{ path: '/articles/edit/'+ scope.row.id}">
-							<el-button size="small" icon="el-icon-edit"></el-button>
-						</router-link>
-						<el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one', scope.row)"></el-button>
-					</template>
-				</el-table-column>
-			</el-table>
-		</template>
-		<el-pagination
-			@size-change="handleSizeChange"
-			@current-change="handleCurrentChange"
-			:current-page="currentPage"
-			:page-sizes="[20, 50, 80, 100, 200]"
-			:page-size="pageSize"
-			layout="sizes, prev, pager, next"
-			:total="total">
-		</el-pagination>
-	</div>
+	<el-container style="width: 96rem;">
+        <el-row :span="24">
+            <el-col :span="24">
+                <router-link to="/articles/add">
+                    <el-button type="primary" icon="el-icon-plus">新增</el-button>
+                </router-link>
+                <el-button type="primary" @click="handleDistory('multi', {})" icon="el-icon-delete">删除</el-button>
+                <el-select v-model="category_id" clearable @change="filterCategory" placeholder="请选择">
+                    <el-option v-for="item in categorys" :label="item.category_name" :value="item.id">
+                    </el-option>
+                </el-select>
+                <el-input v-model="q" placeholder="请输入内容" icon="el-icon-search" style="width:200px" :on-icon-click="searchBtn"></el-input>
+            </el-col>
+            <el-col>
+                <el-table :data="listData" v-loading="listLoading" style="width: 100%" @selection-change="handleSelectionChange">
+                    <el-table-column type="selection" width="55"></el-table-column>
+                    <el-table-column prop="created_at"  :formatter="formatterDate" sortable label="日期" width="200">
+                    </el-table-column>
+
+                    <el-table-column sortable label="标题" width="350">
+                        <template scope="scope">
+                            <router-link :to="{path: '/articles/edit/'+ scope.row.id}" class="links">{{scope.row.title}}</router-link>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="分类" width="250">
+                        <template scope="scope">
+                            <span v-if="scope.row.categories">{{scope.row.categories.category_name}}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column sortable label="标签" width="300">
+                        <template scope="scope">
+                            <el-tag v-for="tag in scope.row.tags" type="primary">{{tag.tags_name}}</el-tag>
+                        </template>
+                    </el-table-column>
+
+                    <el-table-column  label="操作" width="250">
+                        <template scope="scope">
+                            <router-link :to="{ path: '/articles/edit/'+ scope.row.id}">
+                                <el-button size="small" icon="el-icon-edit"></el-button>
+                            </router-link>
+                            <el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one', scope.row)"></el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </el-col>
+            <el-col>
+                <el-pagination
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :page-size="20"
+                        :pager-count="pageSize"
+                        layout="prev, pager, next"
+                        :total="total" class="pull-right">
+                </el-pagination>
+                <!--<el-pagination
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :current-page="currentPage"
+                        :page-sizes="[20, 50, 80, 100, 200]"
+                        :page-size="pageSize"
+                        layout="sizes, prev, pager, next"
+                        :total="total" class="pull-right">
+                </el-pagination>-->
+            </el-col>
+        </el-row>
+	</el-container>
 </template>
-<style type="text/css">
-	.links {
-		text-decoration: none;
-		color: #1f2d3d;
-	}
-</style>
 
 <script type="text/ecmascript-6">
 	export default {

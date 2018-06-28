@@ -62,8 +62,17 @@ a {
 }
 
 /****************** el-main ********************/
+.el-main .el-col {
+    padding: 1rem 0;
+}
+.el-main .el-col .shadow {
+    padding: 0 1rem;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.2);
+}
 .el-main .current {
-    padding: 24px;
+    padding: 1.5rem;
 }
 .el-main .box-card {
     min-height: 22rem;
@@ -77,6 +86,51 @@ a {
 }
 .el-main .box-card .el-card__body a {
     color: #7a8599;
+}
+.el-main .el-button,
+         .el-input,
+         .el-select {
+    margin-right: 2rem;
+}
+.el-main .el-input {
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.2);
+    border-radius: 6px;
+}
+.el-main .el-table {
+    padding: 1rem;
+    min-height: 26rem;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.2);
+    border-radius: 6px;
+}
+.el-main .el-table .cell,.cell > .links {
+    color: #7a8599;
+}
+.el-main .el-pagination .el-pager li{
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+}
+.el-main .el-form {
+    margin-top: 2rem;
+}
+.el-main .el-form .el-form-item__content {
+    margin-left: 6rem !important;
+}
+.el-main .el-form .el-form-item__content > .el-input {
+    width: 25rem;
+}
+.el-main .el-form .el-form-item__content > .el-textarea {
+    width: 48rem;
+}
+.el-main .el-col .markdown-previews {
+    color: #7a8599;
+    border: 1px dashed #ccc;
+    background-color: #ebf5fe;
+    padding: 0.5rem 2rem;
+}
+.el-main .el-col .el-dialog__header {
+    border-bottom: 1px solid #eee;
+}
+.el-main .el-col .el-dialog__title {
+    color: #409EFF;
 }
 
 

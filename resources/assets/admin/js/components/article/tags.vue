@@ -1,60 +1,58 @@
 <template>
-    <div class="main-content">
-        <div class="main-action-btn">
-            <el-button type="primary" @click="handleCreate" icon="el-icon-plus">新增</el-button>
-            <el-button type="primary" @click="handleDistory('multi',{})" icon="el-icon-delete">删除</el-button>
-        </div>
-
-        <template>
-            <el-table :data="listData" v-loading="listLoading" header-cell-class-name="tableheader" style="text-align: center; width: 100%" @selection-change="handleSelectionChange">
-                <el-table-column type="selection" width="55"></el-table-column>
-                <el-table-column prop="tags_name" sortable label="标签名称" width="200"></el-table-column>
-                <el-table-column prop="tags_flag" sortable :formatter="formatterFlag" label="标签别名" width="200"></el-table-column>
-                <el-table-column prop="created_at" sortable :formatter="formatterDate" label="日期" width="200"></el-table-column>
-                <el-table-column label="操作">
-                    <template scope="scope">
-                        <el-button size="small" icon="el-icon-edit" @click="handleEdit(scope.row)"></el-button>
-                        <el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one',scope.row)"></el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-        </template>
-
-        <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
-                :current-page="currentPage"
-                :page-sizes="[20, 50, 80, 100, 200]"
-                :page-size="pageSize"
-                layout="sizes, prev, pager, next"
-                :total="total">
-        </el-pagination>
-
-        <el-dialog :title="myFormTitle" v-model="editFormVisible" :visible.sync="editFormVisible">
-            <div v-loading="editFormLoading">
-                <el-form ref="myForm" :rules="myRules" class="myForm" label-width="80px" :model="myForm">
-                    <el-form-item label="标签名称" prop="tags_name">
-                        <el-input v-model="myForm.tags_name" auto-complete="off"></el-input>
-                    </el-form-item>
-                    <el-form-item label="标签别名" prop="tags_flag">
-                        <el-input v-model="myForm.tags_flag" auto-complete="off"></el-input>
-                    </el-form-item>
-                    <el-form-item v-if="myForm.id">
-                        <el-input v-model="myForm.id" style="display: none;"></el-input>
-                    </el-form-item>
-                </el-form>
-                <div slot="footer" class="dialog-footer">
-                    <el-button @click="closeForm('myForm')">取 消</el-button>
-                    <el-button type="primary" @click="submitMyForm('myForm')">确 定</el-button>
-                </div>
-            </div>
-        </el-dialog>
-
-    </div>
+    <el-container>
+        <el-row>
+            <el-col>
+                <el-button type="primary" @click="handleCreate" icon="el-icon-plus">新增</el-button>
+                <el-button type="primary" @click="handleDistory('multi',{})" icon="el-icon-delete">删除</el-button>
+            </el-col>
+            <el-col>
+                <el-table :data="listData" v-loading="listLoading"  @selection-change="handleSelectionChange">
+                    <el-table-column type="selection" width="55"></el-table-column>
+                    <el-table-column prop="tags_name" sortable label="标签名称" width="350"></el-table-column>
+                    <el-table-column prop="tags_flag" sortable :formatter="formatterFlag" label="标签别名" width="350"></el-table-column>
+                    <el-table-column prop="created_at" sortable :formatter="formatterDate" label="日期" width="350"></el-table-column>
+                    <el-table-column label="操作" width="350">
+                        <template scope="scope" >
+                            <el-button size="small" icon="el-icon-edit" @click="handleEdit(scope.row)"></el-button>
+                            <el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one',scope.row)"></el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </el-col>
+            <el-col>
+                <el-pagination
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :current-page="currentPage"
+                        :page-size="pageSize"
+                        layout="prev, pager, next"
+                        :total="total" class="pull-right">
+                </el-pagination>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col>
+                <el-dialog :title="myFormTitle" v-model="editFormVisible" :visible.sync="editFormVisible">
+                    <el-form ref="myForm" :rules="myRules" class="myForm" label-width="80px" :model="myForm">
+                        <el-form-item label="标签名称" prop="tags_name">
+                            <el-input v-model="myForm.tags_name" auto-complete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item label="标签别名" prop="tags_flag">
+                            <el-input v-model="myForm.tags_flag" auto-complete="off"></el-input>
+                        </el-form-item>
+                        <el-form-item v-if="myForm.id">
+                            <el-input v-model="myForm.id" style="display: none;"></el-input>
+                        </el-form-item>
+                    </el-form>
+                    <div slot="footer" class="dialog-footer">
+                        <el-button @click="closeForm('myForm')">取 消</el-button>
+                        <el-button type="primary" @click="submitMyForm('myForm')">确 定</el-button>
+                    </div>
+                </el-dialog>
+            </el-col>
+        </el-row>
+    </el-container>
 </template>
-<style type="text/css">
-
-</style>
 <script type="text/ecmascript-6">
     export default{
         data(){

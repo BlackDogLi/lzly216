@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.39 on 2018-03-16 08:19:01.
+ * Generated for Laravel 5.5.40 on 2018-06-28 15:42:19.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -7917,7 +7917,7 @@ namespace Illuminate\Support\Facades {
          * Gets the mime type associated with the format.
          *
          * @param string $format The format
-         * @return string The associated mime type (null if not found)
+         * @return string|null The associated mime type (null if not found)
          * @static 
          */ 
         public static function getMimeType($format)
@@ -12318,49 +12318,6 @@ namespace Illuminate\Support\Facades {
  
 }
 
-namespace TomLingham\Searchy\Facades { 
-
-    class Searchy {
-        
-        /**
-         * 
-         *
-         * @param $searchable
-         * @return $this 
-         * @static 
-         */ 
-        public static function search($searchable)
-        {
-            return \TomLingham\Searchy\SearchBuilder::search($searchable);
-        }
-        
-        /**
-         * 
-         *
-         * @return \TomLingham\Searchy\FuzzySearchDriver 
-         * @static 
-         */ 
-        public static function fields()
-        {
-            return \TomLingham\Searchy\SearchBuilder::fields();
-        }
-        
-        /**
-         * 
-         *
-         * @param $driverName
-         * @return $this 
-         * @static 
-         */ 
-        public static function driver($driverName)
-        {
-            return \TomLingham\Searchy\SearchBuilder::driver($driverName);
-        }
-         
-    }
- 
-}
-
 namespace Intervention\Image\Facades { 
 
     class Image {
@@ -12369,6 +12326,7 @@ namespace Intervention\Image\Facades {
          * Overrides configuration settings
          *
          * @param array $config
+         * @return self 
          * @static 
          */ 
         public static function configure($config = array())
@@ -12391,8 +12349,8 @@ namespace Intervention\Image\Facades {
         /**
          * Creates an empty image canvas
          *
-         * @param integer $width
-         * @param integer $height
+         * @param int $width
+         * @param int $height
          * @param mixed $background
          * @return \Intervention\Image\Image 
          * @static 
@@ -12407,7 +12365,7 @@ namespace Intervention\Image\Facades {
          * (requires additional package intervention/imagecache)
          *
          * @param \Closure $callback
-         * @param integer $lifetime
+         * @param int $lifetime
          * @param boolean $returnObj
          * @return \Image 
          * @static 
@@ -12505,6 +12463,49 @@ namespace Appstract\LushHttp {
         public static function request($method)
         {
             return \Appstract\LushHttp\Lush::request($method);
+        }
+         
+    }
+ 
+}
+
+namespace TomLingham\Searchy\Facades { 
+
+    class Searchy {
+        
+        /**
+         * 
+         *
+         * @param $searchable
+         * @return $this 
+         * @static 
+         */ 
+        public static function search($searchable)
+        {
+            return \TomLingham\Searchy\SearchBuilder::search($searchable);
+        }
+        
+        /**
+         * 
+         *
+         * @return \TomLingham\Searchy\FuzzySearchDriver 
+         * @static 
+         */ 
+        public static function fields()
+        {
+            return \TomLingham\Searchy\SearchBuilder::fields();
+        }
+        
+        /**
+         * 
+         *
+         * @param $driverName
+         * @return $this 
+         * @static 
+         */ 
+        public static function driver($driverName)
+        {
+            return \TomLingham\Searchy\SearchBuilder::driver($driverName);
         }
          
     }
@@ -14811,11 +14812,11 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
-    class Searchy extends \TomLingham\Searchy\Facades\Searchy {}
-
     class Image extends \Intervention\Image\Facades\Image {}
 
     class Lush extends \Appstract\LushHttp\LushFacade {}
+
+    class Searchy extends \TomLingham\Searchy\Facades\Searchy {}
 
     class Iseed extends \Orangehill\Iseed\Facades\Iseed {}
  
