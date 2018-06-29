@@ -1,71 +1,77 @@
 <template>
-	<div class="navigation" v-loading="listLoading">
+	<!--<el-container>
+        <el-row :gutter="20">
+
+        </el-row>
+    </el-container>-->
+	<el-container>
 		<el-row :gutter="20">
-			<el-col :span="8">
-				<div class="grid-content bg-purple">
-					<el-collapse v-model="activeMenuAddCollapse">
-						<el-collapse-item title="添加导航" name="1" style="padding-left:10px; padding-right:15px;">
-							<el-form ref="myForm" :rules="myRules" :model="myForm">
-								<el-form-item label="菜单名称" prop="name">
-									<el-input size="small" v-model="myForm.name"></el-input>
-								</el-form-item>
-								<el-form-item label="菜单地址" prop="url">
-									<el-input size="small" v-model="myForm.url"></el-input>
-								</el-form-item>
-								<el-form-item label="排序">
-									<el-input size="small" v-model="myForm.sorting"></el-input>
-								</el-form-item>
-								<el-form-item>
-									<el-button type="primary" @click="onSubmit('myForm')">确定</el-button>
-									<el-button @click="onReset('myForm')">取消</el-button>
-								</el-form-item>
-							</el-form>
-						</el-collapse-item>
-					</el-collapse>
-				</div>
+			<el-col :span="9">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>添加名称</span>
+                    </div>
+                    <el-form ref="myForm" :rules="myRules" :model="myForm">
+                        <el-form-item label="菜单名称" prop="name">
+                            <el-input v-model="myForm.name"></el-input>
+                        </el-form-item>
+                        <el-form-item label="菜单地址" prop="url">
+                            <el-input v-model="myForm.url"></el-input>
+                        </el-form-item>
+                        <el-form-item label="排序">
+                            <el-input v-model="myForm.sorting"></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="onSubmit('myForm')">确定</el-button>
+                            <el-button @click="onReset('myForm')">取消</el-button>
+                        </el-form-item>
+                    </el-form>
+                </el-card>
+                <!--<el-collapse v-model="activeMenuAddCollapse">
+                    <el-collapse-item title="添加导航" name="1" style="padding-left:10px; padding-right:15px;">
+                        <el-form ref="myForm" :rules="myRules" :model="myForm">
+                            <el-form-item label="菜单名称" prop="name">
+                                <el-input size="small" v-model="myForm.name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="菜单地址" prop="url">
+                                <el-input size="small" v-model="myForm.url"></el-input>
+                            </el-form-item>
+                            <el-form-item label="排序">
+                                <el-input size="small" v-model="myForm.sorting"></el-input>
+                            </el-form-item>
+                            <el-form-item>
+                                <el-button type="primary" @click="onSubmit('myForm')">确定</el-button>
+                                <el-button @click="onReset('myForm')">取消</el-button>
+                            </el-form-item>
+                        </el-form>
+                    </el-collapse-item>
+                </el-collapse>-->
 			</el-col>
-			<el-col :span="16">
-				<div class="grid-content bg-purple-light" v-loading="editLoading">
-					<el-card class="box-card">
-						<div slot="header" class="clearfix">
-							<span class="pit-header-title">菜单列表</span>
-							<el-button icon="edit" @click="updateMenu" size="small" type="primary" style="float:right;margin-top:5px;">保存</el-button>
-						</div>
-						<el-table :data="navigations" border style="width:100%" :default-sort="{prop: 'sorting', order: 'descending'}">
-							<el-table-column label="排序" width="50">
-								<template scope="scope">
-									<el-input size="mini" v-model="sortList[scope.row.name]" @change="inputSort" placeholder="请输入内容" style="50px;"></el-input>
-								</template>
-							</el-table-column>
-							<el-table-column prop="name" label="菜单名称" min-width="150"></el-table-column>
-							<el-table-column prop="url" label="地址" min-width="150"></el-table-column>
-							<el-table-column label="操作">
-								<template scope="scope">
-									<el-button type="danger" size="small" icon="el-icon-delete" @click="removeItem(row)"></el-button>
-								</template>
-							</el-table-column>
-						</el-table>
-					</el-card>
-				</div>
+			<el-col :span="15">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>菜单列表</span>
+                        <el-button icon="el-icon-edit" @click="updateMenu" size="small" type="primary pull-right">保存</el-button>
+                    </div>
+                    <el-table :data="navigations" :default-sort="{prop: 'sorting', order: 'descending'}">
+                        <el-table-column label="排序" width="80">
+                            <template scope="scope">
+                                <el-input size="mini" v-model="sortList[scope.row.name]" @change="inputSort" placeholder="请输入内容"></el-input>
+                            </template>
+                        </el-table-column>
+                        <el-table-column prop="name" label="菜单名称" min-width="150"></el-table-column>
+                        <el-table-column prop="url" label="地址" min-width="150"></el-table-column>
+                        <el-table-column label="操作">
+                            <template scope="scope">
+                                <el-button type="danger" size="small" icon="el-icon-delete" @click="removeItem(row)"></el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </el-card>
 			</el-col>
 		</el-row>
-	</div>
+    </el-container>
 </template>
-<style type="text/css">
-	.navigation {
-		padding: 2rem;
-	}
-	.navigation .el-collapse {
-		border: 1px solid #ebeef5;
-	}
-
-	.navigation label {
-		width: 100px;
-	}
-	.navigation  .el-form-item__content {
-		margin-left: 100px;
-	}
-</style>
 <script type="text/ecmascript-6">
 	export default {
 		data () {
@@ -154,7 +160,7 @@
 				for (let key in this.sortList) {
 					for (let index in this.navigations){
 						if (this.navigations[index].name == key) {
-							$this.navigations[index]['sorting'] = parseInt(this.sortList[key]);
+							this.navigations[index]['sorting'] = parseInt(this.sortList[key]);
 						}
 					}
 				}

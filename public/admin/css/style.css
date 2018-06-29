@@ -105,6 +105,11 @@ a {
 .el-main .el-table .cell,.cell > .links {
     color: #7a8599;
 }
+.el-main .el-card__body > .el-table {
+    padding:0;
+    box-shadow: none;
+    border-radius: unset;
+}
 .el-main .el-pagination .el-pager li{
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
 }
