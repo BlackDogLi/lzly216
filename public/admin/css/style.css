@@ -18,6 +18,14 @@ body {
 a {
     text-decoration:none;
 }
+.el-container .login-form {
+    width: 26rem;
+    margin: 10% auto 0 auto;
+    padding: 50px 50px 50px 30px;
+    background: #FFF;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.2);
+    border-radius: 6px;
+}
 
 /****************** el-header ********************/
 .el-header {

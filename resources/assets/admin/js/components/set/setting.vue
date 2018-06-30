@@ -1,22 +1,20 @@
 <template>
-	<div class="main-content">
-		<el-form ref="myForm" :model="myForm" v-loading="editFormLoading" label-width="100px">
-			<el-form-item v-for="set in sets" :label="set.set_title">
-				<el-input :type="set.data_type" v-model="myForm[set.set_name]"></el-input>
-			</el-form-item>
-			<el-form-item>
-				<el-button @click="closeForm('myForm')">取 消</el-button>
-				<el-button type="primary" @click="submitMyForm('myForm')">确 定</el-button>
-			</el-form-item>
-		</el-form>
-	</div>
+	<el-container>
+		<el-row style="width: 100%">
+			<el-col class="shadow">
+				<el-form ref="myForm" :model="myForm" v-loading="editFormLoading" label-width="100px">
+					<el-form-item v-for="set in sets" :label="set.set_title" :key="set.id">
+						<el-input :type="set.data_type" v-model="myForm[set.set_name]"></el-input>
+					</el-form-item>
+					<el-form-item>
+						<el-button @click="closeForm('myForm')">取 消</el-button>
+						<el-button type="primary" @click="submitMyForm('myForm')">确 定</el-button>
+					</el-form-item>
+				</el-form>
+			</el-col>
+		</el-row>
+	</el-container>
 </template>
-<style type="text/css">
-	.set-post-form .el-form {
-		width: 35rem;
-		margin: 1rem auto;
-	}
-</style>
 <script type="text/ecmascript-6">
 	export default {
 		data () {

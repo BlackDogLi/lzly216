@@ -11,7 +11,7 @@
 					<el-table-column prop="category_name" sortable label="分类名称" width="350"></el-table-column>
 					<el-table-column prop="category_flag" sortable label="分类别名" width="350"></el-table-column>
 					<el-table-column label="操作" width="350">
-						<template scope="scope">
+						<template slot-scope="scope">
 							<el-button size="small" icon="el-icon-edit" @click="handleEdit(scope.row)"></el-button>
 							<el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one', scope.row)"></el-button>
 						</template>
@@ -42,7 +42,7 @@
 						</el-form-item>
 						<el-form-item label="父分类">
 							<el-select v-model="myForm.category_parent" placeholder="请选择父分类">
-								<el-option v-for="item in categorys" :label="item.category_name" :value="item.id"></el-option>
+								<el-option v-for="item in categorys" :key="item.id" :label="item.category_name" :value="item.id"></el-option>
 							</el-select>
 						</el-form-item>
 						<el-form-item v-if="myForm.id">

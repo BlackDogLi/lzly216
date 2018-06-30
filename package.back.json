@@ -1,0 +1,51 @@
+{
+    "private": true,
+    "scripts": {
+        "clear": "rm -rf build&& mkdir build",
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch-poll": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "hot": "corss-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "//": "项目所需模块",
+    "devDependencies": {
+        "axios": "^0.18.0",
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
+        "babel-eslint": "^8.2.5",
+        "babel-helper-vue-jsx-merge-props": "^2.0.3",
+        "babel-loader": "^7.1.4",
+        "babel-plugin-syntax-jsx": "^6.18.0",
+        "babel-plugin-transform-vue-jsx": "^3.7.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-es2015": "^6.24.1",
+        "babel-preset-stage-2": "^6.22.0",
+        "bootstrap-sass": "^3.3.7",
+        "cross-env": "^5.2.0",
+        "element-ui": "^2.4.2",
+        "font-awesome": "^4.7",
+        "hotkeys-js": "^3.3.5",
+        "jquery": "^3.3.1",
+        "laravel-mix": "^2.1.11",
+        "localforage": "^1.7.2",
+        "lodash": "^4.17.10",
+        "marked": "^0.4.0",
+        "prismjs": "^1.15.0",
+        "vue": "^2.5.16",
+        "vue-axios": "^2.1.1",
+        "vue-cookie": "^1.1.3",
+        "vue-loader": "^15.2.4",
+        "vue-router": "^3.0.1"
+    },
+    "dependencies": {
+        "ajv": "^6.5.1",
+        "babel-plugin-transform-remove-strict-mode": "0.0.2",
+        "semantic-ui": "^2.3.2",
+        "simplemde": "^1.11.2",
+        "vue-i18n": "^8.0.0",
+        "vuedraggable": "^2.16.0"
+    }
+}

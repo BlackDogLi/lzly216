@@ -1,6 +1,6 @@
 <template>
-    <div class = "login-form" v-loading = "loading">
-        <el-row>
+    <el-container v-loading="loading">
+        <el-row class="login-form">
             <el-col :span = "24">
                 <el-form ref="myForm" :model="myForm" :rules ="myRules" label-width = "100px;">
                     <el-form-item label = "用户名：" prop = "email">
@@ -16,18 +16,8 @@
                 </el-form>
             </el-col>
         </el-row>
-    </div>
+    </el-container>
 </template>
-
-<style type = "text/css">
-    .login-form {
-        width: 350px;
-        margin: 10% auto 0 auto;
-        padding: 50px 50px 50px 30px;
-        background: #FFF;
-        border-radius: 2px;
-    }
-</style>
 <script type = "text/ecmascript-6">
 		export default {
 			data() {

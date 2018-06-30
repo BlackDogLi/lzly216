@@ -7,7 +7,7 @@
                 </router-link>
                 <el-button type="primary" @click="handleDistory('multi', {})" icon="el-icon-delete">删除</el-button>
                 <el-select v-model="category_id" clearable @change="filterCategory" placeholder="请选择">
-                    <el-option v-for="item in categorys" :label="item.category_name" :value="item.id">
+                    <el-option v-for="item in categorys" :label="item.category_name" :value="item.id" :key="item.id">
                     </el-option>
                 </el-select>
                 <el-input v-model="q" placeholder="请输入内容" icon="el-icon-search" style="width:200px" :on-icon-click="searchBtn"></el-input>
@@ -19,23 +19,23 @@
                     </el-table-column>
 
                     <el-table-column sortable label="标题" width="350">
-                        <template scope="scope">
+                        <template slot-scope="scope">
                             <router-link :to="{path: '/articles/edit/'+ scope.row.id}" class="links">{{scope.row.title}}</router-link>
                         </template>
                     </el-table-column>
                     <el-table-column label="分类" width="250">
-                        <template scope="scope">
+                        <template slot-scope="scope">
                             <span v-if="scope.row.categories">{{scope.row.categories.category_name}}</span>
                         </template>
                     </el-table-column>
                     <el-table-column sortable label="标签" width="300">
-                        <template scope="scope">
-                            <el-tag v-for="tag in scope.row.tags" type="primary">{{tag.tags_name}}</el-tag>
+                        <template slot-scope="scope">
+                            <el-tag v-for="tag in scope.row.tags" type="primary" :key="tag.id">{{tag.tags_name}}</el-tag>
                         </template>
                     </el-table-column>
 
                     <el-table-column  label="操作" width="250">
-                        <template scope="scope">
+                        <template slot-scope="scope">
                             <router-link :to="{ path: '/articles/edit/'+ scope.row.id}">
                                 <el-button size="small" icon="el-icon-edit"></el-button>
                             </router-link>

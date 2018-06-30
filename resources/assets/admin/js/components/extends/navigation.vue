@@ -55,14 +55,14 @@
                     </div>
                     <el-table :data="navigations" :default-sort="{prop: 'sorting', order: 'descending'}">
                         <el-table-column label="排序" width="80">
-                            <template scope="scope">
+                            <template slot-scope="scope">
                                 <el-input size="mini" v-model="sortList[scope.row.name]" @change="inputSort" placeholder="请输入内容"></el-input>
                             </template>
                         </el-table-column>
                         <el-table-column prop="name" label="菜单名称" min-width="150"></el-table-column>
                         <el-table-column prop="url" label="地址" min-width="150"></el-table-column>
                         <el-table-column label="操作">
-                            <template scope="scope">
+                            <template slot-scope="scope">
                                 <el-button type="danger" size="small" icon="el-icon-delete" @click="removeItem(row)"></el-button>
                             </template>
                         </el-table-column>

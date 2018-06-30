@@ -12,7 +12,7 @@
                     <el-table-column prop="tags_flag" sortable :formatter="formatterFlag" label="标签别名" width="350"></el-table-column>
                     <el-table-column prop="created_at" sortable :formatter="formatterDate" label="日期" width="350"></el-table-column>
                     <el-table-column label="操作" width="350">
-                        <template scope="scope" >
+                        <template slot-scope="scope" >
                             <el-button size="small" icon="el-icon-edit" @click="handleEdit(scope.row)"></el-button>
                             <el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one',scope.row)"></el-button>
                         </template>

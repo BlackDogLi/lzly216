@@ -12,13 +12,13 @@
                         </el-input>
                     </el-form-item>
                     <el-form-item label="标签">
-                        <el-tag v-for="tag in myForm.tags" type="primary" :closeable="true" :close-transition="false" @close="closeTags(tag)">{{tag}}</el-tag>
+                        <el-tag v-for="tag in myForm.tags" :key="tag.id" type="primary" :closeable="true" :close-transition="false" @close="closeTags(tag)">{{tag}}</el-tag>
                         <el-input v-if="inputVisible" v-model="inputValue" ref="saveTagInput" size="mini" @keyup.enter.native="hanleInputConfirm" @blur="handleInputConfirm"></el-input>
                         <el-button v-else class="button-new-tag" size="small" @click="showTagsInput">+标签</el-button>
                     </el-form-item>
                     <el-form-item label="分类" prop="category_id">
                         <el-select v-model="myForm.category_id" placeholder="请选择分类">
-                            <el-option v-for="item in categorys" :label="item.category_name" :value="item.id"></el-option>
+                            <el-option v-for="item in categorys" :key="item.id" :label="item.category_name" :value="item.id"></el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="封面图">

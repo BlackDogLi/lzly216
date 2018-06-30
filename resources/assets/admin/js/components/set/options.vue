@@ -1,66 +1,68 @@
 <template>
-	<div class="main-content">
-		<div class="main-action-btn">
-			<el-button type="primary" @click="handleCreate" icon="el-icon-plus">新增</el-button>
-			<el-button type="primary" @click="handleDistory('multi',{})" icon="el-icon-delete" >删除</el-button>
-		</div>
+	<el-container>
+		<el-row>
+			<el-col>
+				<el-button type="primary" @click="handleCreate" icon="el-icon-plus">新增</el-button>
+				<el-button type="primary" @click="handleDistory('multi',{})" icon="el-icon-delete" >删除</el-button>
+			</el-col>
+			<el-col>
+				<el-table :data="listData" v-loading="listLoading"  @selection-change="handleSelectionChange">
+					<el-table-column type="selection" width="50"></el-table-column>
+					<el-table-column prop="set_title" width="250" sortable label="配置项说明"></el-table-column>
+					<el-table-column prop="set_name" sortable width="250" sortable label="配置项名称" ></el-table-column>
+					<el-table-column prop="set_group" sortable width="200" sortable label="配置分组"></el-table-column>
+					<el-table-column prop="set_remark" sortable width="200" label="配置项备注"></el-table-column>
+					<el-table-column prop="created_at" sortable :formatter = "formatterDate" label="日期" width="200"></el-table-column>
+					<el-table-column label="操作" width="250">
+						<template slot-scope="scope">
+							<el-button size="small" icon="el-icon-edit" @click="handleEdit(scope.row)"></el-button>
+							<el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one', row)"></el-button>
+						</template>
+					</el-table-column>
+				</el-table>
+			</el-col>
+			<el-col>
+				<el-pagination
+						@size-change = "handleSizeChange"
+						@current-change = "handleCurrentChange"
+						:page-size = "pageSize"
+						layout = "prev, pager, next"
+						:total = "total" class="pull-right">
+				</el-pagination>
+			</el-col>
+		</el-row>
+		<el-row>
+			<el-col>
+				<el-dialog :title="myFormTitle"  v-model="editFormVisible" :visible.sync="editFormVisible">
+					<el-form ref = "myForm" :rules = "myRules" class = "myForm" label-width = "100px" :model="myForm" style="width: 80%;">
+						<el-form-item label="配置项说明" prop="set_title">
+							<el-input v-model="myForm.set_title" auto-complete="off"></el-input>
+						</el-form-item>
+						<el-form-item label="配置项名称" prop="set_name">
+							<el-input v-model="myForm.set_name" auto-complete="off"></el-input>
+						</el-form-item>
+						<el-form-item label="配置项值">
+							<el-input :type="myForm.data_type" :autosize="myForm.data_type == 'textarea'" v-model="myForm.set_value" auto-complete="off"></el-input>
+						</el-form-item>
+						<el-form-item label="配置分组">
+							<el-input v-model="myForm.set_group" auto-complete="off"></el-input>
+						</el-form-item>
+						<el-form-item label="配置项备注">
+							<el-input type="textarea" :autosize="{ minRows: 3, maxRows: 5}" v-model="myForm.set_remark" auto-complete="off"></el-input>
+						</el-form-item>
+						<el-form-item v-if="myForm.id">
+							<el-input v-model="myForm.id" style="display: none;"></el-input>
+						</el-form-item>
+					</el-form>
 
-		<template>
-			<el-table :data="listData" v-loading="listLoading" header-cell-class-name="tableheader" border style="width:100%; text-align:center;" @selection-change="handleSelectionChange">
-				<el-table-column type="selection" width="50"></el-table-column>
-				<el-table-column prop="set_title" min-width="150" sortable label="配置项说明"></el-table-column>
-				<el-table-column prop="set_name" sortable min-width="150" sortable label="配置项名称" ></el-table-column>
-				<el-table-column prop="set_group" sortable min-width="100" sortable label="配置分组"></el-table-column>
-				<el-table-column prop="set_remark" sortable min-width="200" label="配置项备注"></el-table-column>
-				<el-table-column prop="created_at" sortable :formatter = "formatterDate" label="日期" width="100"></el-table-column>
-				<el-table-column label="操作" width="150">
-					<template scope="scope">
-						<el-button size="small" icon="el-icon-edit" @click="handleEdit(scope.row)"></el-button>
-						<el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one', row)"></el-button>
-					</template>
-				</el-table-column>
-			</el-table>
-		</template>
-
-		<el-pagination
-			@size-change = "handleSizeChange"
-			@current-change = "handleCurrentChange"
-			:page-sizes = "[20, 50, 80, 100, 200]"
-			:page-size = "pageSize"
-			layout = "sizes, prev, pager, next"
-			:total = "total">
-		</el-pagination>
-
-		<el-dialog :title="myFormTitle"  v-model="editFormVisible" :visible.sync="editFormVisible">
-			<div class="pit-dialog-edit-form" v-loading="editFormLoading">
-				<el-form ref = "myForm" :rules = "myRules" class = "myForm" label-width = "100px" :model="myForm" style="width: 80%;">
-					<el-form-item label="配置项说明" prop="set_title">
-						<el-input v-model="myForm.set_title" auto-complete="off"></el-input>
-					</el-form-item>
-					<el-form-item label="配置项名称" prop="set_name">
-						<el-input v-model="myForm.set_name" auto-complete="off"></el-input>
-					</el-form-item>
-					<el-form-item label="配置项值">
-						<el-input :type="myForm.data_type" :autosize="myForm.data_type == 'textarea'" v-model="myForm.set_value" auto-complete="off"></el-input>
-					</el-form-item>
-					<el-form-item label="配置分组">
-						<el-input v-model="myForm.set_group" auto-complete="off"></el-input>
-					</el-form-item>
-					<el-form-item label="配置项备注">
-						<el-input type="textarea" :autosize="{ minRows: 3, maxRows: 5}" v-model="myForm.set_remark" auto-complete="off"></el-input>
-					</el-form-item>
-					<el-form-item v-if="myForm.id">
-						<el-input v-model="myForm.id" style="display: none;"></el-input>
-					</el-form-item>
-				</el-form>
-
-				<div slot="footer" class="dialog-footer">
-					<el-button @click="closeForm('myForm')">取消</el-button>
-					<el-button type="primary" @click="submitMyForm('myForm')">确定</el-button>
-				</div>
-			</div>
-		</el-dialog>
-	</div>
+					<div slot="footer" class="dialog-footer">
+						<el-button @click="closeForm('myForm')">取消</el-button>
+						<el-button type="primary" @click="submitMyForm('myForm')">确定</el-button>
+					</div>
+				</el-dialog>
+			</el-col>
+		</el-row>
+	</el-container>
 </template>
 <script type = "text/ecmascript-6">
 	export default {
@@ -89,7 +91,7 @@
 				},
 				editFormVisible: false,
 				editFormLoading: false,
-				listLoading: false,
+				listLoading: true,
 				myFormTitle: '编辑',
 				checkedAll: []
 			}
