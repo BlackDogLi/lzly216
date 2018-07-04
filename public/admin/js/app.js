@@ -81622,7 +81622,6 @@ var render = function() {
                     {
                       ref: "myForm",
                       staticClass: "myForm",
-                      staticStyle: { width: "80%" },
                       attrs: {
                         rules: _vm.myRules,
                         "label-width": "100px",

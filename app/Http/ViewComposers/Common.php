@@ -12,7 +12,7 @@ use App\Models\Navications;
 
 class Common
 {
-    private $navigation;
+    //private $navigation;
 
     public function __construct ()
     {
@@ -21,6 +21,6 @@ class Common
     public function compose (View $view)
     {
         $navigation = Navications::where('isShow', '=', 1)->orderBy('sort', 'asc')->get();
-        $view->with(compact('nav', $navigation));
+        $view->with( 'nav', $navigation);
     }
 }

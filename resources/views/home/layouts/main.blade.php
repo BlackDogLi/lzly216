@@ -13,6 +13,7 @@
     <meta name="keywords" content="{{ bloginfo('keywords') }}"/>
     <meta name="description" content="{{ bloginfo('description') }}"/>
     <link rel="stylesheet" href="{{ '/Home/css/semantic.min.css' }}" />
+    <link rel="stylesheet" href="{{ '/Home/css/markdown.css' }}">
     <link rel="stylesheet" href="{{ '/Home/css/style.css' }}" />
     @yield('head')
     @if(!empty(bloginfo('google_plus')))
@@ -67,6 +68,7 @@
                 <div class="seven wide column">
                     <h4 class="ui header">关于我</h4>
                     <p>版权归@山人所有</p>
+                    <p>备案号:{{ bloginfo('icp') }}</p>
                 </div>
             </div>
         </div>

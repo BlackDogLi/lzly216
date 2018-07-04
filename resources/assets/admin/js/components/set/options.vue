@@ -34,7 +34,7 @@
 		<el-row>
 			<el-col>
 				<el-dialog :title="myFormTitle"  v-model="editFormVisible" :visible.sync="editFormVisible">
-					<el-form ref = "myForm" :rules = "myRules" class = "myForm" label-width = "100px" :model="myForm" style="width: 80%;">
+					<el-form ref = "myForm" :rules = "myRules" class = "myForm" label-width = "100px" :model="myForm">
 						<el-form-item label="配置项说明" prop="set_title">
 							<el-input v-model="myForm.set_title" auto-complete="off"></el-input>
 						</el-form-item>

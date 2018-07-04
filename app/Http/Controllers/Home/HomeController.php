@@ -19,19 +19,23 @@ class HomeController extends Controller
 {
     public function index()
     {
-        //导航
-        $nav = Navications::where('isShow', '=', 1)->orderBy('sort', 'asc')->get();
         //文章
         $article = Articles::orderBy('created_at', 'Desc')->select('id', 'title','flag', 'content', 'markdown')->limit(5)->get();
         //$article['markdown'] = htmlspecialchars($article['markdown']);
-        return view('home.welcome', ['nav' => $nav, 'article' => $article] );
+
+        return view('home.welcome', [ 'article' => $article] );
     }
+
+    /**
+     * @Desc: 文章详情
+     * @param $flag
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function articleDetail ($flag)
     {
-        //导航
-        $nav = Navications::where('isShow', '=', 1)->orderBy('sort', 'asc')->get();
+
         $articleDetail = Articles::select('id', 'title', 'flag', 'content')->where('flag', '=', $flag)->first();
-        return view('home.articledetail', ['nav' => $nav, 'articleDetail' => $articleDetail]);
+        return view('home.articledetail', ['articleDetail' => $articleDetail]);
     }
 
 }

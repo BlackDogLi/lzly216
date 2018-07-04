@@ -24,6 +24,7 @@ if (!function_exists("bloginfo"))
 {
 	function bloginfo ($name, $clear = false)
 	{
+
 		$options = cache('options');
 		if (empty($options) || $clear)
 		{
@@ -33,6 +34,7 @@ if (!function_exists("bloginfo"))
 			foreach ($optionsList as $key => $option) {
 				$options[strtolower($option['set_name'])] = $option['set_value'];
 			}
+
 			cache(['options' => $options], $expiresAt);
 		}
 		return isset($options[$name]) ? $options[$name] : '';
