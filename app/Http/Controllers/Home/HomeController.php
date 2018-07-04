@@ -21,9 +21,16 @@ class HomeController extends Controller
     {
         //文章
         $article = Articles::orderBy('created_at', 'Desc')->select('id', 'title','flag', 'content', 'markdown')->limit(5)->get();
-        //$article['markdown'] = htmlspecialchars($article['markdown']);
 
-        return view('home.welcome', [ 'article' => $article] );
+        //PHP文章分类
+        $phpArticle = Articles::orderBy('created_at', 'Desc')->where('category_id',  2)->select('id', 'title', 'flag', 'content', 'markdown')->limit(5)->get();
+
+        //server文章分类
+        $serverArticle = Articles::orderBy('created_at', 'Desc')->where('category_id',  3)->select('id', 'title', 'flag', 'content', 'markdown')->limit(5)->get();
+
+        //data文章分类
+        $dataArticle = Articles::orderBy('created_at', 'Desc')->where('category_id',  4)->select('id', 'title', 'flag', 'content', 'markdown')->limit(5)->get();
+        return view('home.welcome', ['phpArticle' => $phpArticle, 'article' => $article, 'serverArticle' => $serverArticle, 'dataArticle' => $dataArticle]  );
     }
 
     /**

@@ -32,10 +32,8 @@
                 <div class="ui text content">
                     <h4 class="ui top attached block header">最近发表</h4>
                     <div class="ui bottom attached segment">
-                        <ul>
-                            <li><a>PHP浮点数的运算</a></li>
-                            <li><a>PHP精密计算函数</a></li>
-                        </ul>
+                        <div><a>PHP浮点数的运算</a></div>
+                        <div><a>PHP精密计算函数</a></div>
                     </div>
                 </div>
             </div>
@@ -56,19 +54,31 @@
         <div class="column">
             <div class="ui text content">
                 <h4 class="ui top attached block header">PHP</h4>
-                <div class="ui bottom attached segment"></div>
+                <div class="ui bottom attached segment">
+                    @foreach($phpArticle as $item)
+                        <div><a href="{{ route('article', [$item->flag]) }}" >{{ $item['title'] }}</a></div>
+                    @endforeach
+                </div>
             </div>
         </div>
         <div class="column">
             <div class="ui text content">
-                <h4 class="ui top attached block header">Laravel</h4>
-                <div class="ui bottom attached segment"></div>
+                <h4 class="ui top attached block header">SERVER</h4>
+                <div class="ui bottom attached segment">
+                    @foreach($serverArticle as $item)
+                        <div><a href="{{ route('article', [$item->flag]) }}" >{{ $item['title'] }}</a></div>
+                    @endforeach
+                </div>
             </div>
         </div>
         <div class="column">
             <div class="ui text content">
-                <h4 class="ui top attached block header">Nginx</h4>
-                <div class="ui bottom attached segment"></div>
+                <h4 class="ui top attached block header">DATA</h4>
+                <div class="ui bottom attached segment">
+                    @foreach($dataArticle as $item)
+                        <div><a href="{{ route('article', [$item->flag]) }}" >{{ $item['title'] }}</a></div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
