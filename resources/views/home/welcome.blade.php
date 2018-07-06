@@ -30,10 +30,15 @@
             </div>
             <div class="six wide column segment">
                 <div class="ui text content">
-                    <h4 class="ui top attached block header">最近发表</h4>
+                    <h4 class="ui top attached block header">热点文章</h4>
                     <div class="ui bottom attached segment">
-                        <div><a>PHP浮点数的运算</a></div>
-                        <div><a>PHP精密计算函数</a></div>
+                        <div class="ui items">
+                            @foreach ($hotArticle as $item)
+                                <div class="item">
+                                    <a href="{{ route('article', [$item->flag]) }}">{{ $item['title'] }}</a>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,9 +60,11 @@
             <div class="ui text content">
                 <h4 class="ui top attached block header">PHP</h4>
                 <div class="ui bottom attached segment">
-                    @foreach($phpArticle as $item)
-                        <div><a href="{{ route('article', [$item->flag]) }}" >{{ $item['title'] }}</a></div>
-                    @endforeach
+                    <div class="ui items">
+                        @foreach($phpArticle as $item)
+                            <div class="item"><a href="{{ route('article', [$item->flag]) }}" >{{ $item['title'] }}</a></div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -65,9 +72,11 @@
             <div class="ui text content">
                 <h4 class="ui top attached block header">SERVER</h4>
                 <div class="ui bottom attached segment">
-                    @foreach($serverArticle as $item)
-                        <div><a href="{{ route('article', [$item->flag]) }}" >{{ $item['title'] }}</a></div>
-                    @endforeach
+                    <div class="ui items">
+                        @foreach($serverArticle as $item)
+                            <div class="item"><a href="{{ route('article', [$item->flag]) }}" >{{ $item['title'] }}</a></div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,9 +84,11 @@
             <div class="ui text content">
                 <h4 class="ui top attached block header">DATA</h4>
                 <div class="ui bottom attached segment">
-                    @foreach($dataArticle as $item)
-                        <div><a href="{{ route('article', [$item->flag]) }}" >{{ $item['title'] }}</a></div>
-                    @endforeach
+                    <div class="ui items">
+                        @foreach($dataArticle as $item)
+                            <div class="item"><a href="{{ route('article', [$item->flag]) }}" >{{ $item['title'] }}</a></div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
