@@ -68,7 +68,7 @@
                 <div class="seven wide column">
                     <h4 class="ui header">关于我</h4>
                     <p>版权归@山人所有</p>
-                    <p>备案号:{{ bloginfo('icp') }}</p>
+                    <a href="http://www.miitbeian.gov.cn/">备案号:{{ bloginfo('icp') }}</a>
                 </div>
             </div>
         </div>
