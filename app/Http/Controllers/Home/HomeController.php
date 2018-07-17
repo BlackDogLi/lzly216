@@ -13,6 +13,8 @@ use App\Models\Articles;
 use App\Models\Navications;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Event;
+use App\Events\ArticleView;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
@@ -45,6 +47,7 @@ class HomeController extends Controller
     {
 
         $articleDetail = Articles::select('id', 'title', 'flag', 'content')->where('flag', '=', $flag)->first();
+        Event::fire(new ArticleView($articleDetail));
         return view('home.articledetail', ['articleDetail' => $articleDetail]);
     }
 

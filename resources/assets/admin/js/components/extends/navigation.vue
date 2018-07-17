@@ -63,6 +63,7 @@
                         <el-table-column prop="url" label="地址" min-width="150"></el-table-column>
                         <el-table-column label="操作">
                             <template slot-scope="scope">
+                                <el-button ></el-button>
                                 <el-button type="danger" size="small" icon="el-icon-delete" @click="removeItem(row)"></el-button>
                             </template>
                         </el-table-column>
