@@ -46,7 +46,7 @@ class HomeController extends Controller
     public function articleDetail ($flag)
     {
 
-        $articleDetail = Articles::select('id', 'title', 'flag', 'content')->where('flag', '=', $flag)->first();
+        $articleDetail = Articles::select('id', 'title', 'flag', 'content', 'views')->where('flag', '=', $flag)->first();
         Event::fire(new ArticleView($articleDetail));
         return view('home.articledetail', ['articleDetail' => $articleDetail]);
     }

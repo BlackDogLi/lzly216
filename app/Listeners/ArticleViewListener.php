@@ -29,6 +29,7 @@ class ArticleViewListener
     public function handle(ArticleView $event)
     {
         $article = $event->article;
+
         if (!$this->hasViewedArticle ($article)) {
             //保存到数据库
             $article->views = $article->views + 1;
