@@ -19,7 +19,6 @@
     @if(!empty(bloginfo('google_plus')))
         <link rel="author" href="{{bloginfo('google_plus')}}"/>
     @endif
-    <script src="{{ asset('/Home/js/semantic.min.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
 </head>
 <body>
@@ -75,4 +74,6 @@
     </div>
 </div>
 </body>
+<script src="{{ asset('/Home/js/jquery.js') }}"></script>
+<script src="{{ asset('/Home/js/semantic.min.js') }}"></script>
 </html>

@@ -5,16 +5,6 @@
         <div class="row">
             <div class="ten wide column segment">
                 <div class="ui text container">
-                    <div class="ui items">
-                        <div class="item">
-                            <div class="content">
-                                <a class="header">PHP浮点数的运算</a>
-                                <div class="description">
-                                    <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     @foreach ($article as $item)
                         <div class="ui items">
                             <div class="item">
@@ -26,7 +16,6 @@
                         </div>
                     @endforeach
                 </div>
-
             </div>
             <div class="six wide column segment">
                 <div class="ui text content">
