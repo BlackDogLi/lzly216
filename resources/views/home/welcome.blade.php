@@ -17,7 +17,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="six wide column segment">
+            <div class="six wide column segment" style="padding: 0 4rem;">
                 <div class="ui text content">
                     <h4 class="ui top attached block header">热点文章</h4>
                     <div class="ui bottom attached segment">

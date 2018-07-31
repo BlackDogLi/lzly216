@@ -9,7 +9,7 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta name="format-detection" content="address=no"/>
     <meta name="format-detection" content="email=no"/>
-    <title>@if(current_is('tags'))标签"{{ $tags->tags_name or '' }}" 的文章 - @elseif(current_is('post')){{ $post->title or '' }} - @elseif(current_is('category'))分类 "{{ $category->category_name or '' }}" 的文章 - @endif {{ bloginfo('site_name') }}</title>
+    <title>@if(current_is('tags'))标签"{{ $tags->tags_name or '' }}" 的文章 - @elseif(current_is('post')){{ $post->title or '' }} - @elseif(current_is('category'))分类 "{{ $category->category_name or '' }}" 的文章 - @endif {{ bloginfo('sitename') }}</title>
     <meta name="keywords" content="{{ bloginfo('keywords') }}"/>
     <meta name="description" content="{{ bloginfo('description') }}"/>
     <link rel="stylesheet" href="{{ '/Home/css/semantic.min.css' }}" />
