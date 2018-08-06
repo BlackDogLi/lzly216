@@ -41,7 +41,8 @@
 		  	"Models\\": "models/",
 		  	"Middleware\\": "Http/middleware",
 		  	"Controllers\\": "Http/controller",
-		    "Factorymethod\\": "app/Factorymethod"
+		    "Factorymethod\\": "app/Factorymethod",
+            "ThirdService\\": "app/Thirdservice"
         },
 	  	"files": ["app/Helper/function.php"]
     },

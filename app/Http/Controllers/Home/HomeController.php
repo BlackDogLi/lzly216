@@ -12,16 +12,17 @@ namespace App\Http\Controllers\Home;
 use App\Models\Articles;
 use App\Models\Categorys;
 use App\Models\Navications;
+use App\Thirdservice\BaiduPush;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
 use App\Events\ArticleView;
 use App\Http\Controllers\Controller;
-
 class HomeController extends Controller
 {
     public function index()
     {
+
         //文章
         $article = Cache::remember('articleT', 10, function() {
            return Articles::select('id', 'title','flag', 'content', 'markdown')->limit(5)->orderBy('created_at', 'Desc')->get();
@@ -57,9 +58,15 @@ class HomeController extends Controller
      */
     public function articleDetail ($flag)
     {
-        $articleDetail = Cache::remember('ArticleDetail-' . $flag, 10, function () {
-            Articles::select('id', 'title', 'flag', 'content', 'views')->where('flag', '=', $flag)->first();
-        });
+        $key = 'ArticleDetail-' . $flag;    //存取key
+
+        //获取文章详情
+        if(Cache::has($key)) {
+            $articleDetail = Cache::get($key);
+        } else {
+            $articleDetail = Articles::select('id', 'title', 'flag', 'content', 'views')->where('flag', '=', $flag)->first();
+            Cache::put($key, $articleDetail, 10);
+        }
         Event::fire(new ArticleView($articleDetail));
         return view('home.articledetail', ['articleDetail' => $articleDetail]);
     }
