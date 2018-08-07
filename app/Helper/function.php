@@ -4,8 +4,12 @@
  * Date: 2018/3/23
  * Time: 15:23
  */
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+
+
 // 判断路由
-if (!function_exists("current_is"))
+if (!function_exists('current_is'))
 {
 	function current_is ($name)
 	{
@@ -20,7 +24,7 @@ if (!function_exists("current_is"))
 }
 
 //读取动态配置
-if (!function_exists("bloginfo"))
+if (!function_exists('bloginfo'))
 {
 	function bloginfo ($name, $clear = false)
 	{
@@ -39,4 +43,19 @@ if (!function_exists("bloginfo"))
 		}
 		return isset($options[$name]) ? $options[$name] : '';
 	}
+}
+
+//记录日志到指定文件
+if (!function_exists('recordLog'))
+{
+    function recordLog ($name = '', $path = '', $content = '')
+    {
+        $name = empty($name) ? 'log' : $name;
+        $logPath = date('Y-m-d', time()).'-log.txt';
+        $path = empty($path) ? storage_path('logs/'. $logPath) : $path;
+        $log = new Logger($name);
+        $log->pushHandler(new StreamHandler($path, Logger::INFO));
+        $log->info($content);
+
+    }
 }

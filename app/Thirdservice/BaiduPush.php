@@ -8,7 +8,7 @@
 
 namespace App\Thirdservice;
 
-use Illuminate\Support\Facades\Log;
+
 class BaiduPush
 {
     private $api = 'http://data.zz.baidu.com/urls?site=www.lzly216.com&token=reQlpWpQpQcY5z3D';
@@ -28,16 +28,18 @@ class BaiduPush
 
     /**
      * 推送链接
-     * TODO:记录请求日志
      */
     public function pushUrl ()
     {
-        //(new \Log(base_path().'/logs/Baidu.log'))->info('发起推送',$this->options);
+        //记录请求日志
+        recordLog('baiduPush推送',storage_path('logs/baiduPush.log'), json_encode($this->options));
 
         $ch = curl_init();
         curl_setopt_array($ch, $this->options);
         $this->result = json_decode(curl_exec($ch));
-        //Log::useFiles(base_path().'/logs/Baidu.log')->info('发起推送',$this->result);
+
+        //记录请求结果日志
+        recordLog('baiduPush结果',storage_path('logs/baiduPush.log'), json_encode($this->result));
         return $this->result;
     }
 
@@ -54,5 +56,4 @@ class BaiduPush
            CURLOPT_HTTPHEADER       => array('Content-Type: text/plain'),
        );
     }
-
 }

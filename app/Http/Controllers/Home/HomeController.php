@@ -59,7 +59,8 @@ class HomeController extends Controller
     public function articleDetail ($flag)
     {
         $key = 'ArticleDetail-' . $flag;    //存取key
-
+        (new BaiduPush('http://lzly216.com'))->pushUrl();
+        exit();
         //获取文章详情
         if(Cache::has($key)) {
             $articleDetail = Cache::get($key);

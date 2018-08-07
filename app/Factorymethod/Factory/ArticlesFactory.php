@@ -7,6 +7,7 @@
  */
 namespace App\Factorymethod\Factory;
 
+use App\Thirdservice\BaiduPush;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Models\Articles;
@@ -29,7 +30,10 @@ class ArticlesFactory implements Product
 		}
 		//添加标签
 		Tags::createArticlesTags($articles->id, $request->tags);
+
 		//百度推送
+        (new BaiduPush(route('article',[$articles->flag])))->pushUrl();
+
 		$observer->creatorSuccess($articles);
 	}
 
