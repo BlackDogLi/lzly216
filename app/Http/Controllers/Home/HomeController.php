@@ -12,7 +12,6 @@ namespace App\Http\Controllers\Home;
 use App\Models\Articles;
 use App\Models\Categorys;
 use App\Models\Navications;
-use App\Thirdservice\BaiduPush;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
@@ -59,8 +58,6 @@ class HomeController extends Controller
     public function articleDetail ($flag)
     {
         $key = 'ArticleDetail-' . $flag;    //存取key
-        (new BaiduPush('http://lzly216.com'))->pushUrl();
-        exit();
         //获取文章详情
         if(Cache::has($key)) {
             $articleDetail = Cache::get($key);
