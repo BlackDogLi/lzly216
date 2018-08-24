@@ -33,7 +33,7 @@ class ArticlesController extends Controller implements FactoryInterface
 	{
 
 		$rows = intval($request->rows) > 0 ? $request->rows : 20;
-		$listData = Articles::OfCategory($request->category_id)->OfTitle($request->q)->paginate($rows);
+		$listData = Articles::OfCategory($request->category_id)->OfTitle($request->q)->orderBy('created_at','Desc')->paginate($rows);
 		$listData = $this->transform($listData);
 		return response()->json($listData);
 	}

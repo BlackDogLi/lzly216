@@ -26,11 +26,17 @@ class Articles extends Model
 	 * 注入分类查询的条件
 	 * @param   $query
 	 * @param   $category_id
+	 * @param   $status 是否查询该分类下的子类
 	 * @return  mixed
 	 */
-	public function scopeOfCategory ($query, $category_id) {
+	public function scopeOfCategory ($query, $category_id, $status = false) {
 		if (intval($category_id) > 0) {
-			return $query->where('category_id', $category_id);
+		    if ($status) {
+		       return $query->where('id', 2)->orwhere('category_parent', 2);
+            } else {
+                return $query->where('category_id', $category_id);
+            }
+
 		}
 		return $query;
 	}

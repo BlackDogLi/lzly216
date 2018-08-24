@@ -18,4 +18,12 @@ class Categorys extends Model
 	{
 		return $this->hasMany(Articles::class, 'category_id');
 	}
+
+	public function childCategory() {
+        return $this->hasMany(Categorys::class, 'category_parent','id');
+    }
+
+    public function allChildrenCategorys() {
+	    return $this->childCategory()->with('allChildrenCategorys');
+    }
 }

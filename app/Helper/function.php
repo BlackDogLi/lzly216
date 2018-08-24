@@ -56,6 +56,22 @@ if (!function_exists('recordLog'))
         $log = new Logger($name);
         $log->pushHandler(new StreamHandler($path, Logger::INFO));
         $log->info($content);
+    }
+}
 
+//获取文章分类树
+if (!function_exists('categoryTree'))
+{
+    function categoryTree ($parentId = 0)
+    {
+        $result = array();
+        $rows = \App\Models\Categorys::where('category_parent', '=', $parentId)->orderBy('id', 'asc')->get();
+        if (sizeof($rows) != 0) {
+            foreach ($rows as $value) {
+                $value['children'] = categoryTree($value['id']);
+                $result[] = $value;
+            }
+        }
+        return $result;
     }
 }

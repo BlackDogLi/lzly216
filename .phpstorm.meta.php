@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-08-07 17:11:33.
+    * Generated on 2018-08-21 21:56:36.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -41,8 +41,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
-        'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'GrahamCampbell\Exceptions\ExceptionIdentifier' => \GrahamCampbell\Exceptions\ExceptionIdentifier::class,
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
@@ -187,8 +185,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
-        'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'GrahamCampbell\Exceptions\ExceptionIdentifier' => \GrahamCampbell\Exceptions\ExceptionIdentifier::class,
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
@@ -333,8 +329,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
-        'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'GrahamCampbell\Exceptions\ExceptionIdentifier' => \GrahamCampbell\Exceptions\ExceptionIdentifier::class,
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
@@ -479,8 +473,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
-        'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'GrahamCampbell\Exceptions\ExceptionIdentifier' => \GrahamCampbell\Exceptions\ExceptionIdentifier::class,
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
@@ -625,8 +617,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
-        'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'GrahamCampbell\Exceptions\ExceptionIdentifier' => \GrahamCampbell\Exceptions\ExceptionIdentifier::class,
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
@@ -771,8 +761,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
-        'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'GrahamCampbell\Exceptions\ExceptionIdentifier' => \GrahamCampbell\Exceptions\ExceptionIdentifier::class,
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,
@@ -917,8 +905,6 @@ namespace PHPSTORM_META {
         'view' => \Illuminate\View\Factory::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
-        'Barryvdh\Debugbar\LaravelDebugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'GrahamCampbell\Exceptions\ExceptionIdentifier' => \GrahamCampbell\Exceptions\ExceptionIdentifier::class,
         'GrahamCampbell\Exceptions\ExceptionInfoInterface' => \GrahamCampbell\Exceptions\ExceptionInfo::class,
         'GrahamCampbell\Exceptions\Displayers\HtmlDisplayer' => \GrahamCampbell\Exceptions\Displayers\HtmlDisplayer::class,

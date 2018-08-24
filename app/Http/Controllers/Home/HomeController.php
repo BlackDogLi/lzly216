@@ -10,18 +10,12 @@
 namespace App\Http\Controllers\Home;
 
 use App\Models\Articles;
-use App\Models\Categorys;
-use App\Models\Navications;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Event;
-use App\Events\ArticleView;
 use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     public function index()
     {
-
         //文章
         $article = Cache::remember('articleT', 10, function() {
            return Articles::select('id', 'title','flag', 'content', 'markdown')->limit(5)->orderBy('created_at', 'Desc')->get();
@@ -29,7 +23,7 @@ class HomeController extends Controller
 
         //PHP文章分类
         $phpArticle = Cache::remember('PhpArticle', 10, function () {
-            return Articles::select('id', 'title', 'flag' )->with(['categories' => function($query){$query->where('id', 2)->orwhere('category_parent', 2);}])->limit(10)->orderBy('created_at', 'Desc')->get();
+            return Articles::select('id', 'title', 'flag' )->OfCategory('', 2, true)->limit(10)->orderBy('created_at', 'Desc')->get();
         });
 
         //server文章分类
@@ -49,24 +43,4 @@ class HomeController extends Controller
 
         return view('home.welcome', ['phpArticle' => $phpArticle, 'article' => $article, 'serverArticle' => $serverArticle, 'dataArticle' => $dataArticle, 'hotArticle' => $hotArticle]  );
     }
-
-    /**
-     * @Desc: 文章详情
-     * @param $flag
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function articleDetail ($flag)
-    {
-        $key = 'ArticleDetail-' . $flag;    //存取key
-        //获取文章详情
-        if(Cache::has($key)) {
-            $articleDetail = Cache::get($key);
-        } else {
-            $articleDetail = Articles::select('id', 'title', 'flag', 'content', 'views')->where('flag', '=', $flag)->first();
-            Cache::put($key, $articleDetail, 10);
-        }
-        Event::fire(new ArticleView($articleDetail));
-        return view('home.articledetail', ['articleDetail' => $articleDetail]);
-    }
-
 }

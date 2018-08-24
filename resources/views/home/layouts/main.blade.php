@@ -12,9 +12,12 @@
     <title>@if(current_is('tags'))标签"{{ $tags->tags_name or '' }}" 的文章 - @elseif(current_is('post')){{ $post->title or '' }} - @elseif(current_is('category'))分类 "{{ $category->category_name or '' }}" 的文章 - @endif {{ bloginfo('sitename') }}</title>
     <meta name="keywords" content="{{ bloginfo('keywords') }}"/>
     <meta name="description" content="{{ bloginfo('description') }}"/>
-    <link rel="stylesheet" href="{{ '/Home/css/semantic.min.css' }}" />
-    <link rel="stylesheet" href="{{ '/Home/css/markdown.css' }}">
-    <link rel="stylesheet" href="{{ '/Home/css/style.css' }}" />
+    <link rel="stylesheet" href="{{ asset('/Home/css/semantic.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/Home/css/markdown.css') }}">
+    <link rel="stylesheet" href="{{ asset('/Home/css/style.css') }}" />
+    <script src="{{ asset('/Home/js/jquery.js') }}"></script>
+    <script src="{{ asset('/Home/js/semantic.min.js') }}"></script>
+
     @yield('head')
     @if(!empty(bloginfo('google_plus')))
         <link rel="author" href="{{bloginfo('google_plus')}}"/>
@@ -32,7 +35,7 @@
                     <img class="logo" src="{{asset('Home/image/logo.png')}}"/>
                 </div>
                 <!-- nav -->
-                <li class="item active"><a href="{{ url('/') }}">首页</a></li>
+                <div class="item active"><a href="{{ url('/') }}">首页</a></div>
                 @include('home.common.nav')
                 @yield('nav')
             </div>
@@ -74,6 +77,9 @@
     </div>
 </div>
 </body>
-<script src="{{ asset('/Home/js/jquery.js') }}"></script>
-<script src="{{ asset('/Home/js/semantic.min.js') }}"></script>
+<script>
+    $('.ui .menu .ui.dropdown').dropdown({
+        on: 'hover'
+    });
+</script>
 </html>

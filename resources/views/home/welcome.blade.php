@@ -9,8 +9,12 @@
                         <div class="ui items">
                             <div class="item">
                                 <div class="content">
-                                    <a class="header"href="{{ route('article', [$item->flag]) }}">{{$item['title']}}</a>
-                                    <div class="description">{!!str_limit($item['markdown'], 300, '...')!!}</div>
+                                    <a class="header"href="{{ route('article', [$item->flag]) }}">
+                                        <i class="pointing right icon"></i>
+                                        {{$item['title']}}
+                                    </a>
+                                    <div class="ui inverted divider"></div>
+                                    <div class="description">{!! str_limit($item['markdown'], 300, '......') !!}</div>
                                 </div>
                             </div>
                         </div>

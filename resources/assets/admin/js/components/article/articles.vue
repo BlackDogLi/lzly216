@@ -48,8 +48,8 @@
                 <el-pagination
                         @size-change="handleSizeChange"
                         @current-change="handleCurrentChange"
-                        :page-size="20"
-                        :pager-count="pageSize"
+                        :current-page="currentPage"
+                        :page-size="pageSize"
                         layout="prev, pager, next"
                         :total="total" class="pull-right">
                 </el-pagination>
