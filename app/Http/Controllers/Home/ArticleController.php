@@ -54,7 +54,7 @@ class ArticleController extends Controller
             Cache::put($key, $articleDetail, 10);
         }
         Event::fire(new ArticleView($articleDetail));
-        return view('home.articledetail', ['articleDetail' => $articleDetail]);
+        return view('home.article.articledetail', ['articleDetail' => $articleDetail]);
     }
     /**
      * 根据分类ID获取文章列表
