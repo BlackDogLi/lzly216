@@ -59,19 +59,41 @@ if (!function_exists('recordLog'))
     }
 }
 
-//获取文章分类树
-if (!function_exists('categoryTree'))
+//生成分类树
+if (!function_exists('getTree'))
 {
-    function categoryTree ($parentId = 0)
-    {
-        $result = array();
-        $rows = \App\Models\Categorys::where('category_parent', '=', $parentId)->orderBy('id', 'asc')->get();
-        if (sizeof($rows) != 0) {
-            foreach ($rows as $value) {
-                $value['children'] = categoryTree($value['id']);
-                $result[] = $value;
+    function getTree($data, $parentId = 0) {
+        $res = array();
+        foreach ($data as $value) {
+            if ($value['category_parent'] == $parentId) {
+                $value['children'] = getTree($data, $value['id']);
+                if (empty($value['children'])) unset($value['children']);
+                $res[] = $value;
             }
         }
-        return $result;
+        return $res;
+    }
+
+}
+
+/**
+ * 查询父类
+ */
+if (!function_exists('parentIds'))
+{
+    function parentIds ($id)
+    {
+        $result = array();
+        $parentId = '';
+        $rows = \App\Models\Categorys::where('id','=',$id)->first();
+
+        if ($rows) {
+            $parentId .= $rows['category_parent'];
+            $result = parentIds($rows['category_parent']);
+            if ($result) {
+                $parentId .= ','.$result;
+            }
+        }
+        return $parentId;
     }
 }

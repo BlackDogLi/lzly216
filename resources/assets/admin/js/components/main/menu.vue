@@ -47,7 +47,7 @@
 
                 <!-- 右侧Start -->
                 <el-main>
-                    <el-container direction="vertical">
+                    <el-row>
                         <el-col :span="24" class="current">
                             <span class="pit-current-route">{{currentPathName}}</span>
                             <el-breadcrumb separator="/" style="float:right;">
@@ -56,10 +56,13 @@
                                 <el-breadcrumb-item v-if="currentPathName!=''">{{currentPathName}}</el-breadcrumb-item>
                             </el-breadcrumb>
                         </el-col>
+                    </el-row>
+
+
                         <el-col :span="24">
                             <router-view></router-view>
                         </el-col>
-                    </el-container>
+
                 </el-main>
 
                 <!-- 底部Start -->

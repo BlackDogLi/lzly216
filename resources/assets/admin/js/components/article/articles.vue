@@ -1,6 +1,6 @@
 <template>
-	<el-container style="width: 96rem;">
-        <el-row :span="24">
+	<el-container>
+        <el-row>
             <el-col :span="24">
                 <router-link to="/articles/add">
                     <el-button type="primary" icon="el-icon-plus">新增</el-button>

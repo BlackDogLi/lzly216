@@ -26,13 +26,15 @@ class CategorysController extends Controller implements FactoryInterface
 	{
 		$this->_response = ['status' => 'success', 'info' => '操作成功'];
 	}
-	//首页
+
+	//Category List
 	public function index (Request $request)
 	{
-		$rows = intval($request->rows) >0 ? $request->rows : 20;
-		$listData = Categorys::paginate($rows);
-		return response()->json($listData);
+		$categorys = Categorys::select('id' ,'category_name', 'category_parent', 'category_flag','category_description')->get();
+		$data = getTree($categorys);
+		return response()->json($data);
 	}
+
 	//Store a data
 	public function store (Request $request)
 	{
@@ -54,16 +56,28 @@ class CategorysController extends Controller implements FactoryInterface
 	//Show a Category info
 	public function show ($id)
 	{
-		$data = Categorys::find($id);
+		$data = Categorys::find($id)->toArray();
+
+		//$parentIds = parentIds($id);
+
+		$category_ids = explode(',',substr($data['category_ids'],2));
+        foreach ($category_ids as $value) {
+            $parentIds[] = (int)$value;
+        }
+		$data['parents'] = $parentIds;
+
 		return response()->json($data);
 	}
 
 	//Delete a category form storage
 	public function destroy (Request $request)
 	{
-		if (empty($request->ids)) {
+		if (empty($request->id)) {
 			return response()->json(['status' => 'error', 'info' => 'ID不能为空']);
 		}
+		$where = [['category_ids', 'like', '%,'.$request->id.',%']];
+        $data = Categorys::where($where)->get()->toArray();
+        dd($data);
 		$result = Categorys::whereIn('id', $request->ids)->delete();
 		return response()->json(['status' => !$result ? 'error' : 'success']);
 	}

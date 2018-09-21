@@ -1,7 +1,7 @@
 <template>
 	<el-container>
-        <el-row :span="24" style="width: 100%">
-            <el-col class="shadow">
+        <el-row style="width:100%;">
+            <el-col :span=24 class="shadow">
                 <el-form ref="myForm" :model="myForm" :rules="myRules" label-width="80px" v-loading="editFormLoading">
                     <el-form-item label="标题" prop="title">
                         <el-input v-model="myForm.title" @blur="titleBlur"></el-input>

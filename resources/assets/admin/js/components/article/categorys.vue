@@ -1,33 +1,21 @@
 <template>
-	<el-container >
-		<el-row :span="24">
+	<el-container>
+		<el-row style="width:100%">
 			<el-col :span="24">
 				<el-button type="primary" @click="handleCreate" icon="el-icon-plus">新增</el-button>
-				<el-button type="primary" @click="handleDistory('multi', {})" icon="el-icon-delete">删除</el-button>
 			</el-col>
-			<el-col :span="24" >
-				<el-table :data="listData" v-loading="listLoading" @selection-change="handleSelectionChange" style="width: 100%;">
-					<el-table-column type="selection" width="55"></el-table-column>
-					<el-table-column prop="category_name" sortable label="分类名称" width="350"></el-table-column>
-					<el-table-column prop="category_flag" sortable label="分类别名" width="350"></el-table-column>
-					<el-table-column label="操作" width="350">
-						<template slot-scope="scope">
-							<el-button size="small" icon="el-icon-edit" @click="handleEdit(scope.row)"></el-button>
-							<el-button type="danger" size="small" icon="el-icon-delete" @click="handleDistory('one', scope.row)"></el-button>
-						</template>
-					</el-table-column>
-				</el-table>
-			</el-col>
+
 			<el-col :span="24">
-				<el-pagination
-						@size-change="handleSizeChange"
-						@current-change="handleCurrentChange"
-						:current-page="currentPage"
-						:page-size="pageSize"
-						layout="prev, pager, next"
-						:total="total" class="pull-right">
-				</el-pagination>
+				<tree-table
+						:columns="columns"
+						:tree-structure="true"
+						:data-source="tableData"
+						:props="defaultProps"
+						@edit="handleEdit"
+						@delete="handleDistory">
+				</tree-table>
 			</el-col>
+
 			<el-col :span="24">
 				<el-dialog :title="myFormTitle" v-model="editFormVisible" :visible.sync="editFormVisible">
 					<el-form ref="myForm" :rules="myRules" label-width="80px;" :model="myForm">
@@ -41,9 +29,12 @@
 							<el-input type="textarea" v-model="myForm.category_description"></el-input>
 						</el-form-item>
 						<el-form-item label="父分类">
-							<el-select v-model="myForm.category_parent" placeholder="请选择父分类">
+							<!--<el-select v-model="myForm.category_parent" placeholder="请选择父分类">
 								<el-option v-for="item in categorys" :key="item.id" :label="item.category_name" :value="item.id"></el-option>
-							</el-select>
+							</el-select>-->
+							<el-cascader expand-trigger="hover" :options="categorys" :props="props1" v-model="parentids" change-on-select>
+
+							</el-cascader>
 						</el-form-item>
 						<el-form-item v-if="myForm.id">
 							<el-input v-model="myForm.id" style="display: none;"></el-input>
@@ -59,14 +50,35 @@
 	</el-container>
 </template>
 <script type="text/ecmascript-6">
+	import treeTable from '../../../../common/components/tableTree';
 	export default {
 		data() {
 			return {
-				listData: [],
+                props1:{
+			        'value': "id",
+                    'label': 'category_name',
+				},
+                parentids:[],
+				tableData: [],
+				columns: [
+					{
+					    text: '分类名称',
+						dataIndex: 'category_name'
+					},
+					{
+					    text: '分类别名',
+						dataIndex: 'category_flag'
+					},
+                    {
+                        text: '分类描述',
+                        dataIndex: 'category_description'
+                    },
+				],
+				defaultProps: {
+			        children: 'children',
+					label:  'category_name'
+				},
 				categorys: [],
-				currentPage: 1,
-				total: 0,
-				pageSize: 20,
 				myForm: {
 					id: 0,
 					category_name: '',
@@ -87,97 +99,106 @@
 				editFormLoading: false,
 				listLoading: false,
 				myFormTitle: '编辑',
-				checkedAll: []
 			}
 		},
 		methods: {
 			getData: function () {
-				var $_this = this;
-				$_this.listLoading = true;
-				$_this.axios.get('/categorys', {
-					params: {row: $_this.pageSize}
-				}).then(function (response) {
-					let res = response.data;
-					if (res != false) {
-						$_this.listData = res.data;
-						$_this.total = res.total;
-						$_this.currentPage = res.curren_page;
-						$_this.listLoading = false;
-					} else {
-						$_this.$message({
-							message: '数据获取失败',
-							type: 'error',
-							duration: 3*1000
-						});
-					}
-				}).catch(function (error) {
-					console.log(error);
-				});
-			},
-			handleSizeChange (val) {
-				$this.pageSize = val;
-				$this.getData();
-			},
-			handleCurrentChange (val) {
-				$this.currentPage = val;
+                this.listLoading = true;
+                this.axios.get('/categorys').then( (response) => {
+                    let res = response.data;
+                    if (res != false) {
+                        this.tableData = res;
+                        this.listLoading = false;
+                    } else {
+                        this.$message({
+                            message: '数据获取失败',
+                            type: 'error',
+                            duration: 3*1000
+                        });
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                    this.listLoading = false;
+                });
 			},
 			handleCreate: function () {
-				var $_this = this;
-				$_this.myFormTitle = '新增';
-				$_this.myForm.id = 0;
-				$_this.editFormVisible = true;
-				$_this.setTopCategorys();
+				this.myFormTitle = '新增';
+                this.myForm.id = 0;
+                this.editFormVisible = true;
+                this.setTopCategorys();
 			},
 			handleEdit: function (row) {
-				var $_this = this;
-				$_this.setTopCategorys();
-				$_this.editFormLoading = true;
-				$_this.myFormTitle = '编辑';
-				$_this.editFormVisible = true;
-				$_this.axios.get('/categorys/' + row.id).then(function (response) {
-					let res = response.data;
-					if (res != false) {
-						$_this.myForm = res;
-					} else {
-						$_this.$message({
+			    this.setTopCategorys();
+			    this.editFormLoading = true;
+			    this.myFormTitle = '编辑';
+			    this.editFormVisible = true;
+			    this.axios.get('/categorys/' + row.id).then( (response) => {
+			        let res = response.data;
+			        if (!res) {
+			            this.$message({
 							message: '数据获取失败',
-							type: 'error',
+							type: 'error'
 						});
+					} else {
+			            this.myForm = res;
+			            this.parentids = res.parents;
 					}
-					$_this.editFormLoading = false;
+			        this.myForm = res;
+			        this.editFormLoading = false;
 				}).catch(function (error) {
-					console.log(error);
-					$_this.editFormLoading = false;
+				    console.log(error);
+                    this.editFormLoading = false;
 				});
 			},
-			handleDistory: function (type, row) {
-				var $_this = this, idsParam = {};
-				switch (type) {
-					case 'one':
-						if (parseInt(row.id) <= 0) {
-							$_this.$message({
-								message: '请选择要删除的数据',
-								type: 'warning'
+			handleDistory: function (row) {
+			    //if (row.children && row.children.length > 0) {
+
+			        this.$confirm('确认要删除分类么!','提示',{}).then( ()=> {
+			            this.$message({
+							type: 'success',
+							message: '删除成功'
+						});
+					}).catch( ()=> {
+					    this.$message({
+							type: 'info',
+							message: '取消'
+						});
+
+					});
+
+			        /*this.$confirm('确认要删除该分类下所有分类么?', '提示', {}).then( ()=> {
+			            this.axios.get('/categorys/destory', {data: row.id}).then( (response) => {
+			                this.listLoading = false;
+			                let res = response.data;
+			                this.$message({
+								message: res.msg,
+								type: res.status
 							});
-							return false;
-						}
-						idsParam = {ids: [row.id]};
-						break;
-					case 'multi':
-						var ids = $_this.util.getIdByArr($_this.checkedAll);
-						if (ids.length <= 0) {
-							$_this.$message({
-								message: '请选择要删除的数据',
-								type: 'warning'
-							});
-							return false;
-						}
-						idsParam = {ids: ids};
-						break;
-					default:
-						break;
-				}
-				$_this.$confirm('确认删除该记录么?', '提示', {}).then(() => {
+						}).catch(function (error) {
+						    console.log(error);
+						});
+					}).catch(function (error) {
+					    console.log(error);
+					});*/
+				/*} else {
+                    this.$confirm('确认要删除该分类么?', '提示', {}).then( ()=> {
+                        this.axios.get('/categorys/destory', {data: row.id}).then( (response) => {
+                            this.listLoading = false;
+                            let res = response.data;
+                            this.$message({
+                                message: res.msg,
+                                type: res.status
+                            });
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+
+				}*/
+
+				/*$_this.$confirm('确认删除该记录么?', '提示', {}).then(() => {
 					$_this.listLoading = true;
 					$_this.axios.get('/categorys/destroy', {data: idsParam}).then(function (response) {
 						$_this.listLoading = false;
@@ -198,7 +219,7 @@
 					});
 				}).catch(() => {
 					$_this.listLoading = false;
-				});
+				});*/
 			},
 			submitMyForm: function (myForm) {
 				var $_this = this;
@@ -261,15 +282,22 @@
 				};
 				console.log('closeForm');
 			},
-			handleSelectionChange (val) {
-				this.checkedAll = val;
-			},
 			setTopCategorys: function () {
-				var categorys = this.listData.concat();
+				var categorys = this.tableData.concat();
 				categorys.splice(0, 0, {id: 0, category_name: '顶级分类', hidden: true, category_parent: 0});
+				/*categorys.forEach(opt=> {
+				    opt.value = parseValueToInt(opt.value);
+				    if(opt.children && opt.children.length > 0) {
+				        parseValueToInt(opt.children);
+					}
+				});*/
 				this.categorys = categorys;
 			}
 		},
+		components: {
+            treeTable,
+		},
 		mounted() {this.getData();}
 	}
+
 </script>
