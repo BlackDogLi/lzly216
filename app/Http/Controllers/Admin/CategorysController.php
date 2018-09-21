@@ -56,7 +56,7 @@ class CategorysController extends Controller implements FactoryInterface
 	//Show a Category info
 	public function show ($id)
 	{
-		$data = Categorys::find($id)->toArray();
+		$data = Categorys::find($id);
 
 		//$parentIds = parentIds($id);
 
@@ -72,13 +72,17 @@ class CategorysController extends Controller implements FactoryInterface
 	//Delete a category form storage
 	public function destroy (Request $request)
 	{
+
 		if (empty($request->id)) {
 			return response()->json(['status' => 'error', 'info' => 'ID不能为空']);
 		}
-		$where = [['category_ids', 'like', '%,'.$request->id.',%']];
-        $data = Categorys::where($where)->get()->toArray();
-        dd($data);
-		$result = Categorys::whereIn('id', $request->ids)->delete();
-		return response()->json(['status' => !$result ? 'error' : 'success']);
+
+        $result = Categorys::where('id', '=', $request->id)->delete();
+		if (!$result) {
+		    $data = array('status' => 'error' , 'msg' => '删除失败');
+        } else {
+            $data = array('status' => 'error' , 'msg' => '删除成功');
+        }
+		return response()->json($data);
 	}
 }

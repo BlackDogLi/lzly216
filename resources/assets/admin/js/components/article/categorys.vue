@@ -1,53 +1,51 @@
 <template>
-	<el-container>
-		<el-row style="width:100%">
-			<el-col :span="24">
-				<el-button type="primary" @click="handleCreate" icon="el-icon-plus">新增</el-button>
-			</el-col>
+	<el-row style="width:100%">
+		<el-col :span="24">
+			<el-button type="primary" @click="handleCreate" icon="el-icon-plus">新增</el-button>
+		</el-col>
 
-			<el-col :span="24">
-				<tree-table
-						:columns="columns"
-						:tree-structure="true"
-						:data-source="tableData"
-						:props="defaultProps"
-						@edit="handleEdit"
-						@delete="handleDistory">
-				</tree-table>
-			</el-col>
+		<el-col :span="24">
+			<tree-table
+					:columns="columns"
+					:tree-structure="true"
+					:data-source="tableData"
+					:props="defaultProps"
+					@edit="handleEdit"
+					@delete="handleDistory">
+			</tree-table>
+		</el-col>
 
-			<el-col :span="24">
-				<el-dialog :title="myFormTitle" v-model="editFormVisible" :visible.sync="editFormVisible">
-					<el-form ref="myForm" :rules="myRules" label-width="80px;" :model="myForm">
-						<el-form-item label="分类名称" prop="category_name">
-							<el-input v-model="myForm.category_name" auto-complete="off"></el-input>
-						</el-form-item>
-						<el-form-item label="分类别名" prop="category_flag">
-							<el-input v-model="myForm.category_flag" auto-complete="off"></el-input>
-						</el-form-item>
-						<el-form-item label="分类描述">
-							<el-input type="textarea" v-model="myForm.category_description"></el-input>
-						</el-form-item>
-						<el-form-item label="父分类">
-							<!--<el-select v-model="myForm.category_parent" placeholder="请选择父分类">
-								<el-option v-for="item in categorys" :key="item.id" :label="item.category_name" :value="item.id"></el-option>
-							</el-select>-->
-							<el-cascader expand-trigger="hover" :options="categorys" :props="props1" v-model="parentids" change-on-select>
+		<el-col :span="24">
+			<el-dialog :title="myFormTitle" v-model="editFormVisible" :visible.sync="editFormVisible">
+				<el-form ref="myForm" :rules="myRules" label-width="80px;" :model="myForm">
+					<el-form-item label="分类名称" prop="category_name">
+						<el-input v-model="myForm.category_name" auto-complete="off"></el-input>
+					</el-form-item>
+					<el-form-item label="分类别名" prop="category_flag">
+						<el-input v-model="myForm.category_flag" auto-complete="off"></el-input>
+					</el-form-item>
+					<el-form-item label="分类描述">
+						<el-input type="textarea" v-model="myForm.category_description"></el-input>
+					</el-form-item>
+					<el-form-item label="父分类">
+						<!--<el-select v-model="myForm.category_parent" placeholder="请选择父分类">
+							<el-option v-for="item in categorys" :key="item.id" :label="item.category_name" :value="item.id"></el-option>
+						</el-select>-->
+						<el-cascader expand-trigger="hover" :options="categorys" :props="props1" v-model="parentids" change-on-select>
 
-							</el-cascader>
-						</el-form-item>
-						<el-form-item v-if="myForm.id">
-							<el-input v-model="myForm.id" style="display: none;"></el-input>
-						</el-form-item>
-					</el-form>
-					<div slot="footer" class="dialog-footer">
-						<el-button @click="closeForm('myForm')">取消</el-button>
-						<el-button type="primary" @click="submitMyForm('myForm')">确定</el-button>
-					</div>
-				</el-dialog>
-			</el-col>
-		</el-row>
-	</el-container>
+						</el-cascader>
+					</el-form-item>
+					<el-form-item v-if="myForm.id">
+						<el-input v-model="myForm.id" style="display: none;"></el-input>
+					</el-form-item>
+				</el-form>
+				<div slot="footer" class="dialog-footer">
+					<el-button @click="closeForm('myForm')">取消</el-button>
+					<el-button type="primary" @click="submitMyForm('myForm')">确定</el-button>
+				</div>
+			</el-dialog>
+		</el-col>
+	</el-row>
 </template>
 <script type="text/ecmascript-6">
 	import treeTable from '../../../../common/components/tableTree';
@@ -151,75 +149,19 @@
 				});
 			},
 			handleDistory: function (row) {
-			    //if (row.children && row.children.length > 0) {
-
-			        this.$confirm('确认要删除分类么!','提示',{}).then( ()=> {
-			            this.$message({
-							type: 'success',
-							message: '删除成功'
-						});
-					}).catch( ()=> {
-					    this.$message({
-							type: 'info',
-							message: '取消'
-						});
-
-					});
-
-			        /*this.$confirm('确认要删除该分类下所有分类么?', '提示', {}).then( ()=> {
-			            this.axios.get('/categorys/destory', {data: row.id}).then( (response) => {
-			                this.listLoading = false;
-			                let res = response.data;
-			                this.$message({
-								message: res.msg,
-								type: res.status
-							});
-						}).catch(function (error) {
-						    console.log(error);
-						});
-					}).catch(function (error) {
-					    console.log(error);
-					});*/
-				/*} else {
-                    this.$confirm('确认要删除该分类么?', '提示', {}).then( ()=> {
-                        this.axios.get('/categorys/destory', {data: row.id}).then( (response) => {
-                            this.listLoading = false;
-                            let res = response.data;
-                            this.$message({
-                                message: res.msg,
-                                type: res.status
-                            });
-                        }).catch(function (error) {
-                            console.log(error);
-                        });
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
-
-				}*/
-
-				/*$_this.$confirm('确认删除该记录么?', '提示', {}).then(() => {
-					$_this.listLoading = true;
-					$_this.axios.get('/categorys/destroy', {data: idsParam}).then(function (response) {
-						$_this.listLoading = false;
+				this.$confirm('确认要删除该分类么?', '提示', {}).then( ()=> {
+					this.axios.delete('/categorys/destory', {data: {id: row.id}}).then( (response) => {
 						let res = response.data;
-						$_this.$message({
-							message: res.status == 'success' ? '删除成功' : '删除失败',
+						this.$message({
+							message: res.msg,
 							type: res.status
 						});
-						if (type == 'one') {
-							$_this.util.removeByValue($_this.listData, row.id);
-						} else {
-							for (var index in $_this.checkedAll) {
-								$_this.util.removeByValue($_this.listData, $_this.checkedAll[index].id);
-							}
-						}
 					}).catch(function (error) {
 						console.log(error);
 					});
-				}).catch(() => {
-					$_this.listLoading = false;
-				});*/
+				}).catch(function (error) {
+					console.log(error);
+				});
 			},
 			submitMyForm: function (myForm) {
 				var $_this = this;

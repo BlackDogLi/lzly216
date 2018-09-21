@@ -57,12 +57,10 @@
                             </el-breadcrumb>
                         </el-col>
                     </el-row>
-
-
-                        <el-col :span="24">
-                            <router-view></router-view>
-                        </el-col>
-
+                
+                    <el-row>
+                        <router-view></router-view>
+                    </el-row>
                 </el-main>
 
                 <!-- 底部Start -->
