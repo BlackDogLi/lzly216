@@ -94,5 +94,14 @@
     $('.ui .menu .ui.dropdown').dropdown({
         on: 'hover'
     });
+    //百度统计代码
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?42aefae2e116b17fc588a5a6dc7f74a7";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+
 </script>
 </html>
