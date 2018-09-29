@@ -30,9 +30,9 @@ class CategorysController extends Controller implements FactoryInterface
 	//Category List
 	public function index (Request $request)
 	{
-		$categorys = Categorys::select('id' ,'category_name', 'category_parent', 'category_flag','category_description')->get();
-		$data = getTree($categorys);
-		return response()->json($data);
+		$list = Categorys::select('id' ,'category_name', 'category_parent', 'category_flag','category_description')->get();
+		$tree = getTree($list);
+		return response()->json(array('list' => $list, 'tree' => $tree));
 	}
 
 	//Store a data
@@ -58,7 +58,6 @@ class CategorysController extends Controller implements FactoryInterface
 	{
 		$data = Categorys::find($id);
 
-		//$parentIds = parentIds($id);
         //分类树
 		$category_ids = explode(',',substr($data['category_ids'],2));
         foreach ($category_ids as $value) {

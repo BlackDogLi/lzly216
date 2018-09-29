@@ -29,34 +29,34 @@
 		},
 		methods: {
 			getData: function () {
-				let $_this = this;
-				$_this.editFormLoading = true;
-				$_this.axios.get('/setting').then(function (response) {
+				let _self = this;
+				_self.editFormLoading = true;
+				_self.axios.get('/setting').then(function (response) {
 					let res = response.data;
 					if (res != false) {
 						if (res.length > 0) {
 							for (var index in res ) {
-								$_this.myForm[res[index].set_name] = res[index].set_value;
+								_self.myForm[res[index].set_name] = res[index].set_value;
 							}
-							$_this.sets = res;
+							_self.sets = res;
 						}
 					} else {
-						$_this.$message({
+						_self.$message({
 							message: '数据获取失败',
 							type: 'error'
 						});
 					}
-					$_this.editFormLoading = false;
+					_self.editFormLoading = false;
 				}).catch(function (error) {
 					console.log(error);
-					$_this.editFormLoading = false;
+					_self.editFormLoading = false;
 				});
 			},
 			submitMyForm: function (myForm) {
-				let $_this = this;
-				$_this.axios.put('/setting/update', $_this.myForm).then(function (response) {
+				let _self = this;
+				_self.axios.put('/setting/update', _self.myForm).then(function (response) {
 					let res = response.data;
-					$_this.$message({
+					_self.$message({
 						message: res.status == 'success' ? '更新成功' : '更新失败',
 						type: res.status
 					});

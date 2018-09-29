@@ -20,19 +20,18 @@
         "cross-env": "^5.1",
         "element-ui": "^2.4.2",
         "font-awesome": "^4.7.0",
-        "hotkeys-js": "^2.0.1",
+        "hotkeys-js": "^3.3.8",
         "jquery": "^3.2",
         "laravel-mix": "^2.1.11",
         "localforage": "^1.7.2",
         "lodash": "^4.17.10",
         "popper.js": "^1.12",
         "vue": "^2.5.7",
-        "marked": "^0.4.0",
+        "marked": "^0.5.1",
         "vue-axios": "^2.1.1",
         "vue-router": "^3.0.1"
     },
     "dependencies": {
-        "babel-plugin-transform-remove-strict-mode": "0.0.2",
-        "semantic-ui": "^2.3.3"
+        "babel-plugin-transform-remove-strict-mode": "0.0.2"
     }
 }

@@ -110,31 +110,31 @@
 			handleclose() {},
 			handleselect: function (a, b) {},
 			logout: function () {
-			    var $_this = this;
+			    var _self = this;
 			    var _duration = 2*1000;
 			    this.$confirm('确认退出么?', '提示',{
 
                 }).then(() => {
-                    $_this.axios.post('login/logout').then(function(response){
+                    _self.axios.post('login/logout').then(function(response){
                         let data = response.data;
                         if (data.status == 200) {
                             sessionStorage.removeItem('lzly');
-                            $_this.$message({
+                            _self.$message({
                                 message: data.info,
                                 type: 'success',
                                 duration: _duration
                             });
                             setTimeout(function () {
-                                $_this.$router.replace('/login');
+                                _self.$router.replace('/login');
                             }, _duration);
                         } else {
-                            $_this.$message.error("退出失败");
+                            _self.$message.error("退出失败");
                         }
                     }).catch(function (error) {
-                        $_this.$message.error("退出失败");
+                        _self.$message.error("退出失败");
                     });
                 }).catch(function () {
-                    $_this.$message.error("退出失败");
+                    _self.$message.error("退出失败");
                     console.log(error);
                 });
             },

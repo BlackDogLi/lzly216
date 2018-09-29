@@ -104,21 +104,21 @@
 				return this.util.formatDate(row.updated_at);
 			},
 			getData: function () {
-				var $_this = this;
-				$_this.listLoading = true;
-				$_this.axios.get('/options', {
+				var _self = this;
+				_self.listLoading = true;
+				_self.axios.get('/options', {
 					params: {
 						rows: this.pageSize
 					}
 				}).then (function (response) {
 					let res = response.data;
 					if (res != false) {
-						$_this.listData = res.data;
-						$_this.total = res.total;
-						$_this.currentPage = res.current_page;
-						$_this.listLoading = false;
+						_self.listData = res.data;
+						_self.total = res.total;
+						_self.currentPage = res.current_page;
+						_self.listLoading = false;
 					} else {
-						$_this.$message ({
+						_self.$message ({
 							message: '数据获取失败',
 							type: 'error',
 							duration: 3*1000
@@ -136,38 +136,38 @@
 				this.currentPage = val;
 			},
 			handleCreate: function () {
-				var $_this = this;
-				$_this.myFormTitle =  '新增';
-				$_this.myForm.id = 0;
-				$_this.editFormVisible = true;
+				var _self = this;
+				_self.myFormTitle =  '新增';
+				_self.myForm.id = 0;
+				_self.editFormVisible = true;
 			},
 			handleEdit: function (row) {
-				var $_this = this;
-				$_this.editFormLoading = true;
-				$_this.myFormTitle = '编辑';
-				$_this.editFormVisible = true;
-				$_this.axios.get('/options/' + row.id).then(function (response) {
+				var _self = this;
+				_self.editFormLoading = true;
+				_self.myFormTitle = '编辑';
+				_self.editFormVisible = true;
+				_self.axios.get('/options/' + row.id).then(function (response) {
 					let res = response.data;
 					if (res != false) {
-						$_this.myForm = res;
+						_self.myForm = res;
 					} else {
-						$_this.$message({
+						_self.$message({
 							message: '数据获取失败',
 							type: 'error'
 						});
 					}
-					$_this.editFormLoading = false;
+					_self.editFormLoading = false;
 				}).catch (function (error) {
 					console.log(error);
-					$_this.editFormLoading = false;
+					_self.editFormLoading = false;
 				});
 			},
 			handleDistory: function (type, row) {
-				var $_this = this, idsParam = {};
+				var _self = this, idsParam = {};
 				switch (type) {
 					case 'noe':
 						if (parseInt (row.id) <= 0) {
-							$_this.$message({
+							_self.$message({
 								message: '请选择要删除的数据',
 								type: 'warning'
 							});
@@ -176,9 +176,9 @@
 						idsParam = {ids: [row.id]};
 						break;
 					case 'multi':
-						var ids = $_this.util.getIdByArr($_this.checkedAll);
+						var ids = _self.util.getIdByArr(_self.checkedAll);
 						if (ids.length <= 0) {
-							$_this.$message({
+							_self.$message({
 								message: '请选择需要删除的数据',
 								type: 'warning'
 							});
@@ -190,60 +190,60 @@
 						break;
 				}
 
-				$_this.$confirm ('确认删除该记录吗?', '提示', {
+				_self.$confirm ('确认删除该记录吗?', '提示', {
 				}).then(() => {
-					$_this.listLoading = true;
-					$_this.axios.delete('/options/destory', {data: idsParam}).then(function (response) {
-						$_this.listLoading = false;
+					_self.listLoading = true;
+					_self.axios.delete('/options/destory', {data: idsParam}).then(function (response) {
+						_self.listLoading = false;
 						let res = response.data;
-						$_this.$message({
+						_self.$message({
 							message: res.status == 'success' ? '删除成功' : '删除失败',
 							type: res.status
 						});
 						if (type == 'one') {
-							$_this.util.removeByValue($_this.listData, row.id);
+							_self.util.removeByValue(_self.listData, row.id);
 						} else {
-							for (var index in $_this.checkedAll) {
-								$_this.util.removeByValue($_this.listData, $_this.checkedAll[index].id);
+							for (var index in _self.checkedAll) {
+								_self.util.removeByValue(_self.listData, _self.checkedAll[index].id);
 							}
 						}
 					}).catch(function (error) {
 						console.log(error);
 					});
 				}).catch(() => {
-					$_this.listLoading = false;
+					_self.listLoading = false;
 				});
 			},
 			submitMyForm: function (myForm) {
-				var $_this = this;
-				$_this.$refs[myForm].validate((valid) => {
+				var _self = this;
+				_self.$refs[myForm].validate((valid) => {
 					if (!valid) {
 						console.log('myForm valid error.');
 						return false;
 					}
 
-					if ($_this.myForm.id > 0) {
-						$_this.axios.put('/options/update', $_this.myForm).then(function (response) {
+					if (_self.myForm.id > 0) {
+						_self.axios.put('/options/update', _self.myForm).then(function (response) {
 							let res = response.data;
-							$_this.$message({
+							_self.$message({
 								message: res.status == 'success' ? '编辑成功' : '编辑失败',
 								type: res.status
 							});
 							if (res.status == 'success') {
-								$_this.closeForm('myForm');
-								$_this.getData();
+								_self.closeForm('myForm');
+								_self.getData();
 							}
 						}).catch(function (error) {
 							console.log(error);
 						});
 					} else {
-						$_this.axios.post('/options', $_this.myForm).then(function (response) {
+						_self.axios.post('/options', _self.myForm).then(function (response) {
 							let res = response.data;
 							if (res.status == 'success') {
-								$_this.closeForm('myForm');
-								$_this.getData();
+								_self.closeForm('myForm');
+								_self.getData();
 							}
-							$_this.$message({
+							_self.$message({
 								message: res.status == 'success' ? '新增成功' : '新增失败',
 								type: res.status
 							});
@@ -251,7 +251,7 @@
 							if (error.response) {
 								if (error.response.status == 422) {
 									for (var index in error.response.data) {
-										$_this.$notify({
+										_self.$notify({
 											title: '警告',
 											message: error.response.data[index][0],
 											type: 'warning'

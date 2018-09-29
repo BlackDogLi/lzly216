@@ -53,22 +53,22 @@ export default {
 	},
 	methods: {
 		getMeta: function () {
-			let $_this = this;
-			$_this.statisticalLoading = true;
-			$_this.axios.get('/admin/lately').then(function (response) {
+			let _self = this;
+			_self.statisticalLoading = true;
+			_self.axios.get('/admin/lately').then(function (response) {
 				let res = response.data;
 				if (res != false) {
-					$_this.statistical = res;
+					_self.statistical = res;
 				} else {
-					$_this.$message({
+					_self.$message({
 						message: '数据获取失败',
 						type: 'error'
 					});
 				}
-				$_this.statisticalLoading = false;
+				_self.statisticalLoading = false;
 			}).catch(function (error) {
 				console.log(error);
-				$_this.statisticalLoading = false;
+				_self.statisticalLoading = false;
 			});
 		},
 	},

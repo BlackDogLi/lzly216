@@ -100,7 +100,7 @@
                 _self.axios.get('/categorys').then( function (response) {
                     let res = response.data;
                     if (res != false) {
-                        _self.tableData = res;
+                        _self.tableData = res.tree;
                         _self.listLoading = false;
                     } else {
                         _self.$message({

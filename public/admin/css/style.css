@@ -73,7 +73,7 @@ a {
 .el-main .el-col {
     padding: 1rem 0;
 }
-.el-main .el-col .shadow {
+.el-main .el-row .shadow {
     padding: 0 1rem;
     background-color: #fff;
     border-radius: 6px;
@@ -146,6 +146,10 @@ a {
     color: #409EFF;
 }
 
+/************* el-dialog-message **************/
+.el-message-box .el-message-box__header,.el-message-box__content {
+    position: static;
+}
 
 /***************** el-footer *****************/
 

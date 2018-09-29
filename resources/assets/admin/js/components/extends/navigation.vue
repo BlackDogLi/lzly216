@@ -102,14 +102,14 @@
 		},
 		methods: {
 			onSubmit: function (myForm) {
-				var $_this = this;
-				$_this.$refs[myForm].validate((valid) => {
+				var _self = this;
+				_self.$refs[myForm].validate((valid) => {
 					if (!valid) {
 						console.log('myForm valid error.');
 						return false;
 					}
-					$_this.navigations.splice(-1, 0, this.myForm);
-					$_this.myForm = {
+					_self.navigations.splice(-1, 0, this.myForm);
+					_self.myForm = {
 						name: '',
 						url: '',
 						sorting: 0
@@ -124,37 +124,37 @@
 				};
 			},
 			getData: function () {
-				let $_this = this;
-				$_this.listLoading = true;
-				$_this.axios.get('/navigations').then(function (response) {
+				let _self = this;
+				_self.listLoading = true;
+				_self.axios.get('/navigations').then(function (response) {
 					let res = response.data;
 					if (res != false) {
 						res.sort(function (x, y) {
 							return x.sorting > y.sorting ? 1 : -1;
 						});
-						$_this.navigations = res;
+						_self.navigations = res;
 						//获取排序值
-						if ($_this.navigations.length > 0) {
-							for (let index in $_this.navigations) {
-								$_this.sortList[$_this.navigations[index]['name']] = $_this.navigations[index]['sorting'];
+						if (_self.navigations.length > 0) {
+							for (let index in _self.navigations) {
+								_self.sortList[_self.navigations[index]['name']] = _self.navigations[index]['sorting'];
 							}
 						}
 					} else {
 						console.log('数据获取失败或者数据为空');
 					}
-					$_this.listLoading = false;
+					_self.listLoading = false;
 				}).catch(function (error) {
-					$_this.listLoading = false;
+					_self.listLoading = false;
 				});
 			},
 			removeItem: function (item) {
-				var $_this = this;
-				$_this.$confirm('确认删除该记录吗?', '提示').then(() => {
-					for (let index in $_this.navigations) {
-						$_this.navigations.splice(index, 1);
+				var _self = this;
+				_self.$confirm('确认删除该记录吗?', '提示').then(() => {
+					for (let index in _self.navigations) {
+						_self.navigations.splice(index, 1);
 					}
 				}).catch(() => {
-					$_this.listLoading = false;
+					_self.listLoading = false;
 				});
 			},
 			inputSort: function (value) {
@@ -178,27 +178,27 @@
 				console.log(this.navigations);
 			},
 			updateMenu: function () {
-				let $_this =this;
-				$_this.editLoading = true;
-				$_this.axios.put('/navigations/update', $_this.navigations).then(function (response) {
+				let _self =this;
+				_self.editLoading = true;
+				_self.axios.put('/navigations/update', _self.navigations).then(function (response) {
 					let res = response.data;
 					if (res != false) {
-						$_this.$mesaage({
+						_self.$mesaage({
 							message: '更新成功',
 							type: 'success',
 							duration: 3 * 1000
 						});
 					} else {
-						$_this.$message({
+						_self.$message({
 							message: '更新失败',
 							type: 'error',
 							duration: 3 * 1000
 						});
 					}
-					$_this.editLoading = false;
+					_self.editLoading = false;
 				}).catch(function (error) {
 					console.log(error);
-					$_this.editLoading = false;
+					_self.editLoading = false;
 				});
 			},
 			orderBy: function (name) {

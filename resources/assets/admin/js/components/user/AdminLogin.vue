@@ -40,29 +40,29 @@
 			},
 			methods: {
 				loginSubmit: function (myForm) {
-					var $_this = this;
+					var _self = this;
 					var $_duration = 2 * 1000;
-					$_this.$refs[myForm].validate((valid) => {
+					_self.$refs[myForm].validate((valid) => {
 						if (valid) {
-							$_this.loading = true;
-							$_this.axios.post('/login/login', $_this.myForm).then(function (response) {
+							_self.loading = true;
+							_self.axios.post('/login/login', _self.myForm).then(function (response) {
 								let data = response.data;
 								if (data.status == 200) {
 									sessionStorage.setItem('lzly', JSON.stringify(data.user));
-									$_this.$message ({
+									_self.$message ({
 										message: data.info,
 										type: 'success',
 										duration: $_duration
 									});
 									setTimeout (function () {
-										$_this.$router.push({path: '/admin'})
+										_self.$router.push({path: '/admin'})
 									}, $_duration);
 								} else {
-									$_this.$message.error(data.info);
-									$_this.loading = false;
+									_self.$message.error(data.info);
+									_self.loading = false;
 								}
 							}).catch( function (error) {
-								$_this.loading = false;
+								_self.loading = false;
 								console.log(error);
 							});
 						} else {

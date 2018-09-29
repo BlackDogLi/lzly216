@@ -37,30 +37,30 @@
 		create () {},
 		methods: {
 			submitMyForm: function (myForm) {
-				let $_this = this;
-				$_this.$refs[myForm].validate((valid) => {
+				let _self = this;
+				_self.$refs[myForm].validate((valid) => {
 					if (!valid) {
 						console.log('myForm valid error.');
 						return false;
 					}
-					$_this.axios.post('/user/resetPassword', $_this.myForm).then(function (response) {
+					_self.axios.post('/user/resetPassword', _self.myForm).then(function (response) {
 						let res = response.data;
-						$_this.$message({
+						_self.$message({
 							message: res.status == 'success' ? '更新成功' : '信息更新失败',
 							type: res.status
 						});
 						if (res.status == 'success') {
-							$_this.closeForm('myForm');
+							_self.closeForm('myForm');
 						}
 						setTimeout (function () {
 							sessionStorage.removeItem ('lzly');
-							$_this.$router.push({path: '/login'});
+							_self.$router.push({path: '/login'});
 						}, 2*1000);
 					}).catch(function () {
 						if (error.response) {
 							if (error.response.status == 422){
 								for ( var index in error.response.data) {
-									$_this.$notify({
+									_self.$notify({
 										title: '警告',
 										message: error.response.data[index][0],
 										type: 'warning'
