@@ -22,7 +22,9 @@ class Common
     public function compose (View $view)
     {
         $navigation = Navications::where('isShow', '=', 1)->orderBy('sort', 'asc')->get();
-        $cates = categoryTree();
+        $categorys = Categorys::select('id' ,'category_name', 'category_parent', 'category_flag','category_description')->get();
+        $cates = getTree($categorys);
+        //$cates = categoryTree();
 
         //获取下拉菜单
         foreach ($navigation as $key => $value) {

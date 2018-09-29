@@ -10,6 +10,7 @@
 					:tree-structure="true"
 					:data-source="tableData"
 					:props="defaultProps"
+					:defaultExpandAll="true"
 					@edit="handleEdit"
 					@delete="handleDistory">
 			</tree-table>
@@ -28,11 +29,7 @@
 						<el-input type="textarea" v-model="myForm.category_description"></el-input>
 					</el-form-item>
 					<el-form-item label="父分类">
-						<!--<el-select v-model="myForm.category_parent" placeholder="请选择父分类">
-							<el-option v-for="item in categorys" :key="item.id" :label="item.category_name" :value="item.id"></el-option>
-						</el-select>-->
-						<el-cascader expand-trigger="hover" :options="categorys" :props="props1" v-model="parentids" change-on-select>
-
+						<el-cascader expand-trigger="hover" :options="categorys" :props="props1" v-model="myForm.category_parent" change-on-select>
 						</el-cascader>
 					</el-form-item>
 					<el-form-item v-if="myForm.id">
@@ -56,7 +53,6 @@
 			        'value': "id",
                     'label': 'category_name',
 				},
-                parentids:[],
 				tableData: [],
 				columns: [
 					{
@@ -82,7 +78,7 @@
 					category_name: '',
 					category_flag: '',
 					category_description: '',
-					category_parent: 0,
+					category_parent: [],
 				},
 				myRules: {
 					category_name: [
@@ -95,20 +91,19 @@
 				},
 				editFormVisible: false,
 				editFormLoading: false,
-				listLoading: false,
 				myFormTitle: '编辑',
 			}
 		},
 		methods: {
 			getData: function () {
-                this.listLoading = true;
-                this.axios.get('/categorys').then( (response) => {
+			    var _self = this;
+                _self.axios.get('/categorys').then( function (response) {
                     let res = response.data;
                     if (res != false) {
-                        this.tableData = res;
-                        this.listLoading = false;
+                        _self.tableData = res;
+                        _self.listLoading = false;
                     } else {
-                        this.$message({
+                        _self.$message({
                             message: '数据获取失败',
                             type: 'error',
                             duration: 3*1000
@@ -116,7 +111,7 @@
                     }
                 }).catch(function (error) {
                     console.log(error);
-                    this.listLoading = false;
+
                 });
 			},
 			handleCreate: function () {
@@ -126,36 +121,41 @@
                 this.setTopCategorys();
 			},
 			handleEdit: function (row) {
-			    this.setTopCategorys();
-			    this.editFormLoading = true;
-			    this.myFormTitle = '编辑';
-			    this.editFormVisible = true;
-			    this.axios.get('/categorys/' + row.id).then( (response) => {
+			    var _self = this;
+                _self.setTopCategorys();
+                _self.editFormLoading = true;
+                _self.myFormTitle = '编辑';
+                _self.editFormVisible = true;
+                _self.axios.get('/categorys/' + row.id).then( (response) => {
 			        let res = response.data;
 			        if (!res) {
-			            this.$message({
+                        _self.$message({
 							message: '数据获取失败',
 							type: 'error'
 						});
 					} else {
-			            this.myForm = res;
-			            this.parentids = res.parents;
+                        _self.myForm = res;
+                        _self.myForm.category_parent = res.parents;
 					}
-			        this.myForm = res;
-			        this.editFormLoading = false;
+                    _self.myForm = res;
+                    _self.editFormLoading = false;
 				}).catch(function (error) {
 				    console.log(error);
-                    this.editFormLoading = false;
+                    _self.editFormLoading = false;
 				});
 			},
 			handleDistory: function (row) {
-				this.$confirm('确认要删除该分类么?', '提示', {}).then( ()=> {
-					this.axios.delete('/categorys/destory', {data: {id: row.id}}).then( (response) => {
+			    var _self = this;
+                _self.$confirm('确认要删除该分类么?', '提示', {}).then( ()=> {
+                    _self.axios.delete('/categorys/destory', {data: {id: row.id}}).then( function (response) {
 						let res = response.data;
-						this.$message({
+                        _self.$message({
 							message: res.msg,
 							type: res.status
 						});
+                        if (res.success = 'success') {
+                            _self.getData();
+						}
 					}).catch(function (error) {
 						console.log(error);
 					});
@@ -164,33 +164,32 @@
 				});
 			},
 			submitMyForm: function (myForm) {
-				var $_this = this;
-				$_this.$refs[myForm].validate((valid) => {
+				var _self = this;
+                _self.$refs[myForm].validate((valid) => {
 					if (!valid) {
 						console.log('myForm valid error');
 						return false;
 					}
-
-					if($_this.myForm.id > 0) {
-						$_this.axios.put('/categorys/update', $_this.myForm).then(function (response) {
+					if(_self.myForm.id > 0) {
+                        _self.axios.put('/categorys/update', _self.myForm).then(function (response) {
 							let res = response.data;
-							$_this.$message({
+                            _self.$message({
 								message: res.status == 'success' ? '编辑成功' : '编辑失败',
 								type: res.status
 							});
 							if (res.status == 'success') {
-								$_this.closeForm('myForm');
-								$_this.getData();
+                                _self.closeForm('myForm');
+                                _self.getData();
 							}
 						}).catch(function (error) {console.log(error);});
 					} else {
-						$_this.axios.post('/categorys', $_this.myForm).then(function (response) {
+                        _self.axios.post('/categorys', _self.myForm).then(function (response) {
 							let res = response.data;
 							if (res.status == 'success') {
-								$_this.closeForm('myForm');
-								$_this.getData();
+                                _self.closeForm('myForm');
+                                _self.getData();
 							}
-							$_this.$message({
+                            _self.$message({
 								message: res.status == 'success' ? '新增成功' : '新增失败',
 								type: res.status
 							});
@@ -198,7 +197,7 @@
 							if (error.response) {
 								if (error.response.status == 422) {
 									for (var index in error.response.data) {
-										$_this.$notify({
+                                        _self.$notify({
 											title: '警告',
 											message: error.response.data[index][0],
 											type: 'warning'
@@ -220,19 +219,12 @@
 					category_name: '',
 					category_flag: '',
 					category_description: '',
-					category_parent: 0
+					category_parent: []
 				};
-				console.log('closeForm');
 			},
 			setTopCategorys: function () {
 				var categorys = this.tableData.concat();
 				categorys.splice(0, 0, {id: 0, category_name: '顶级分类', hidden: true, category_parent: 0});
-				/*categorys.forEach(opt=> {
-				    opt.value = parseValueToInt(opt.value);
-				    if(opt.children && opt.children.length > 0) {
-				        parseValueToInt(opt.children);
-					}
-				});*/
 				this.categorys = categorys;
 			}
 		},

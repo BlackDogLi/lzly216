@@ -59,7 +59,7 @@ class CategorysController extends Controller implements FactoryInterface
 		$data = Categorys::find($id);
 
 		//$parentIds = parentIds($id);
-
+        //分类树
 		$category_ids = explode(',',substr($data['category_ids'],2));
         foreach ($category_ids as $value) {
             $parentIds[] = (int)$value;
@@ -81,7 +81,7 @@ class CategorysController extends Controller implements FactoryInterface
 		if (!$result) {
 		    $data = array('status' => 'error' , 'msg' => '删除失败');
         } else {
-            $data = array('status' => 'error' , 'msg' => '删除成功');
+            $data = array('status' => 'success' , 'msg' => '删除成功');
         }
 		return response()->json($data);
 	}

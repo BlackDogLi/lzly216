@@ -37,11 +37,13 @@ class CategorysFactory implements Product
 	}
 	public function transform (Categorys $categorys, Request $request)
 	{
-		$correct = new AutoCorrect();
+        $correct = new AutoCorrect();
 		$categorys->category_name = $correct->convert($request->category_name);
 		$categorys->category_flag = $request->category_flag;
 		$categorys->category_description = $correct->convert($request->category_description);
-		$categorys->category_parent = intval($request->category_parent);
+		$category_parent = $request->category_parent;
+		$categorys->category_parent = is_array($category_parent) ? end($category_parent) : intval($category_parent);
+		$categorys->category_ids = empty($category_parent)? '0' : '0,'.implode(',',$category_parent);
 		$categorys->ipaddress = $request->ip();
 		$categorys->save();
 		return $categorys;

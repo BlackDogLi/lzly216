@@ -57,7 +57,7 @@
                             </el-breadcrumb>
                         </el-col>
                     </el-row>
-                
+
                     <el-row>
                         <router-view></router-view>
                     </el-row>

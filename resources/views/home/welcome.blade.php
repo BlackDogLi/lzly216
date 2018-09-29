@@ -14,7 +14,7 @@
                                         {{$item['title']}}
                                     </a>
                                     <div class="ui inverted divider"></div>
-                                    <div class="description">{!! str_limit($item['markdown'], 300, '......') !!}</div>
+                                    <div class="description">{{str_limit($item['markdown'],300,'...')}}</div>
                                 </div>
                             </div>
                         </div>
