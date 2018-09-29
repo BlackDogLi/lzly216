@@ -36,7 +36,7 @@
         <link rel="author" href="{{bloginfo('google_plus')}}"/>
     @endif
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
-    <script>
+    {{--<script>
         //百度统计代码
         var _hmt = _hmt || [];
         (function() {
@@ -46,7 +46,7 @@
             s.parentNode.insertBefore(hm, s);
         })();
 
-    </script>
+    </script>--}}
 </head>
 <body>
 <div id="app">
@@ -76,25 +76,19 @@
     <!-- footer -->
     <div id="footer" class="ui vertical footer segment">
         <div class="ui container">
-            <div class="ui stackable inverted divided equal height stackable grid">
-                <div class="three wide column">
-                    <h4 class="ui header">关于我</h4>
-                    <div class="ui link list">
-                        <a href="#" class="item">站点地图</a>
-                        <a href="#" class="item">联系我</a>
-                    </div>
+            <div class="ui stackable inverted divided equal height stackable grid" style="text-align: center;">
+                <div class="sixteen wide column">
+                    <span>Copyright © 2018 山人 (<a href="http://www.lzly216.com">lzly216.com</a>) Incorporated. All rights reserved</span>
                 </div>
-                <div class="three wide column">
-                    <h4 class="ui header">关于我</h4>
-                    <div class="ui link list">
-                        <a href="#" class="item">站点地图</a>
-                        <a href="#" class="item">联系我</a>
-                    </div>
+                <div class="sixteen wide column">
+                    <span>合作QQ: 634647919 </span>|
+                    <span>E-mail: lzly216@163.com</span>
                 </div>
-                <div class="seven wide column">
-                    <h4 class="ui header">关于我</h4>
-                    <p>版权归@山人所有</p>
-                    <a href="http://www.miitbeian.gov.cn/">备案号:{{ bloginfo('icp') }}</a>
+                <div class="sixteen wide column">
+                    <span>
+                        <a href="http://www.miitbeian.gov.cn/">备案号:{{ bloginfo('icp') }}</a>
+                    </span>
+
                 </div>
             </div>
         </div>
