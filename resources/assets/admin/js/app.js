@@ -53,12 +53,16 @@ Vue.axios.defaults.baseURL = Laravel.apiUrl;
 import util from './lib/util';
 import marked from 'marked';
 import localforage from 'localforage';
+
 Vue.prototype.util = util;
 Vue.prototype.marked = marked;
 Vue.prototype.localforage = localforage;
 
 
 /* 导入vue单页 */
+import routes from './router';
+import App from './AdminApp.vue';
+/*
 import Login from './components/user/AdminLogin.vue';
 import Menu from './components/main/menu.vue';
 import Main from './components/main/main.vue';
@@ -71,8 +75,10 @@ import Categorys from './components/article/categorys.vue';
 import Tags from './components/article/tags.vue';
 import Navigations from './components/extends/navigation.vue';
 import App from './AdminApp.vue';
+
+*/
 /* router规则 */
-const routes = [
+/*const routes = [
     {
         path: '/login',
         component: Login,
@@ -143,12 +149,14 @@ const routes = [
 			{ path: '/user', component: User, name: '用户设置'}
 		]
 	}
-];
+];*/
+
 
 /* 加载配置router */
 const router = new VueRouter({
     history: true,
     root: 'admin',
+    //mode: history,
     routes
 });
 /* 手动挂载 */
