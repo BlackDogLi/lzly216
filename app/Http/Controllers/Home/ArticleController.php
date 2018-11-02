@@ -50,6 +50,7 @@ class ArticleController extends Controller
      */
     public function articleDetail ($flag)
     {
+
         $key = 'ArticleDetail-' . $flag;    //存取key
         //获取文章详情
         if(Cache::has($key)) {
@@ -58,6 +59,7 @@ class ArticleController extends Controller
             $articleDetail = Articles::select('id', 'title', 'flag', 'content', 'views')->where('flag', '=', $flag)->first();
             Cache::put($key, $articleDetail, 10);
         }
+
         Event::fire(new ArticleView($articleDetail));
         return view('home.article.articledetail', ['articleDetail' => $articleDetail]);
     }

@@ -9,6 +9,7 @@ namespace App\Factorymethod\Factory;
 use Illuminate\Http\Request;
 use App\Models\Setting;
 use App\Factorymethod\Interfaces\FactoryInterface;
+
 interface Product
 {
 	public function create(FactoryInterface $observer, Request $request);

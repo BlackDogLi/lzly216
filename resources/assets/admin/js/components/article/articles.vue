@@ -98,6 +98,7 @@
 				_self.listLoading = true;
 				let query = {
 					rows: _self.pageSize,
+                    page: _self.currentPage,
 					category_id: _self.category_id,
 					q: _self.q
 				};
@@ -125,6 +126,7 @@
 			},
 			handleCurrentChange (val) {
 				this.currentPage = val;
+				this.getData();
 			},
 			handleDistory: function (type, row) {
 				var _self = this, idsParam = {};

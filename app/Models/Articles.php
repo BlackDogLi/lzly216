@@ -18,7 +18,8 @@ class Articles extends Model
 	protected $dates = ['deleted_at'];
 	protected $fillable = ['title', 'flag'];
 
-	public function scopeOfType ($query, $type) {
+	public function scopeOfType ($query, $type)
+    {
 		return $query;
 	}
 
@@ -29,7 +30,8 @@ class Articles extends Model
 	 * @param   $status 是否查询该分类下的子类
 	 * @return  mixed
 	 */
-	public function scopeOfCategory ($query, $category_id, $status = false) {
+	public function scopeOfCategory ($query, $category_id, $status = false)
+    {
 		if (intval($category_id) > 0) {
 		    if ($status) {
 		       return $query->where('id', 2)->orwhere('category_parent', 2);
@@ -55,16 +57,25 @@ class Articles extends Model
 	}
 
 	//标签对应
-	public function tags () {
+	public function tags ()
+    {
 		return $this->belongsToMany(Tags::class, 'articles_tags', '');
 	}
 
+	//查询对应评论
+    public function comments ()
+    {
+        return $this->hasMany(Comments::class)->orderBy('created_at', 'desc');
+    }
+
 	//
-	public function user () {
+	public function user ()
+    {
 		return $this->belongsTo(AdminUsers::class);
 	}
 	//
-	public function categories () {
+	public function categories ()
+    {
 		return $this->belongsTo(Categorys::class, 'category_id');
 	}
 }

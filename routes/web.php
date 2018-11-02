@@ -22,6 +22,8 @@ Route::group(['namespace' => 'Home'], function (){
     Route::get('/articleList/{id}','ArticleController@articleList')->name('articleList');
     Route::get('/ctg', 'ArticleController@index');
     Route::get('/atww', 'AtwwController@index');
+    Route::get('/comment','CommentController@index');
+    Route::post('/comment','CommentController@create');
 });
 
 /*
@@ -55,5 +57,6 @@ Route::group(['prefix' => 'back', 'middleware' => 'auth.admin:admin', 'namespace
     Route::resource('/uploads', 'UploadsController');
     Route::resource('/tags', 'TagsController');
     Route::resource('/imgposition', 'ImagePositionController');
+    Route::resource('/comments', 'CommentsController');
 });
 

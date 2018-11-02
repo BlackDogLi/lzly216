@@ -9,7 +9,7 @@
 			<el-col :span="9">
                 <el-card class="box-card">
                     <div slot="header" class="clearfix">
-                        <span>添加名称</span>
+                        <span>添加导航</span>
                     </div>
                     <el-form ref="myForm" :rules="myRules" :model="myForm">
                         <el-form-item label="菜单名称" prop="name">
@@ -63,7 +63,7 @@
                         <el-table-column prop="url" label="地址" min-width="150"></el-table-column>
                         <el-table-column label="操作">
                             <template slot-scope="scope">
-                                <el-button ></el-button>
+                                <el-button size="small" icon="el-icon-edit"></el-button>
                                 <el-button type="danger" size="small" icon="el-icon-delete" @click="removeItem(row)"></el-button>
                             </template>
                         </el-table-column>
