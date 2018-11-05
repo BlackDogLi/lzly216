@@ -53,7 +53,7 @@ $('.ui.modal .submit.button').api({
             window.alert(response.msg);
             $('.tiny.modal').modal({allowMultiple: false});
             $('.tiny.modal').modal('hide');
-            window.refresh();
+            window.location.reload();
         } else {
             window.alert(response.msg);
         }
