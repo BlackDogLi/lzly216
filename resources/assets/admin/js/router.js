@@ -80,8 +80,8 @@ const routers = [
     {
         path: '/',
         component: Menu,
-        name: '留言管理',
-        icon: 'fa fa-comment-o',
+        name: '留言',
+        iconCls: 'fa fa-comments-o',
         children: [
             {path: '/comments', component: CommentsList, name: '留言列表'}
         ]

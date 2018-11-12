@@ -270,33 +270,6 @@ function deepMerge(target, source) {
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__required__ = __webpack_require__(77);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__whitespace__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__type__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__range__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__enum__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pattern__ = __webpack_require__(151);
-
-
-
-
-
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  required: __WEBPACK_IMPORTED_MODULE_0__required__["a" /* default */],
-  whitespace: __WEBPACK_IMPORTED_MODULE_1__whitespace__["a" /* default */],
-  type: __WEBPACK_IMPORTED_MODULE_2__type__["a" /* default */],
-  range: __WEBPACK_IMPORTED_MODULE_3__range__["a" /* default */],
-  'enum': __WEBPACK_IMPORTED_MODULE_4__enum__["a" /* default */],
-  pattern: __WEBPACK_IMPORTED_MODULE_5__pattern__["a" /* default */]
-});
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -403,6 +376,33 @@ module.exports = function normalizeComponent (
   }
 }
 
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__required__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__whitespace__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__type__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__range__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__enum__ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pattern__ = __webpack_require__(151);
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  required: __WEBPACK_IMPORTED_MODULE_0__required__["a" /* default */],
+  whitespace: __WEBPACK_IMPORTED_MODULE_1__whitespace__["a" /* default */],
+  type: __WEBPACK_IMPORTED_MODULE_2__type__["a" /* default */],
+  range: __WEBPACK_IMPORTED_MODULE_3__range__["a" /* default */],
+  'enum': __WEBPACK_IMPORTED_MODULE_4__enum__["a" /* default */],
+  pattern: __WEBPACK_IMPORTED_MODULE_5__pattern__["a" /* default */]
+});
 
 /***/ }),
 /* 3 */
@@ -19024,7 +19024,7 @@ module.exports = { "default": __webpack_require__(198), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(88);
-module.exports = __webpack_require__(265);
+module.exports = __webpack_require__(268);
 
 
 /***/ }),
@@ -19067,7 +19067,7 @@ var _router = __webpack_require__(195);
 
 var _router2 = _interopRequireDefault(_router);
 
-var _AdminApp = __webpack_require__(257);
+var _AdminApp = __webpack_require__(260);
 
 var _AdminApp2 = _interopRequireDefault(_AdminApp);
 
@@ -19079,7 +19079,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(260);
+__webpack_require__(263);
 
 //window.Vue = require('./App.vue');
 
@@ -72228,7 +72228,7 @@ __webpack_require__(50)('observable');
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
 
 
@@ -72529,7 +72529,7 @@ function pattern(rule, value, source, errors, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
 
 
@@ -72566,7 +72566,7 @@ function method(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
 
 
@@ -72605,7 +72605,7 @@ function number(rule, value, callback, source, options) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rule___ = __webpack_require__(2);
 
 
 
@@ -72641,7 +72641,7 @@ function boolean(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
 
 
@@ -72678,7 +72678,7 @@ function regexp(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
 
 
@@ -72716,7 +72716,7 @@ function integer(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
 
 
@@ -72754,7 +72754,7 @@ function floatFn(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
 
 
@@ -72791,7 +72791,7 @@ function array(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
 
 
@@ -72828,7 +72828,7 @@ function object(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
 
 
@@ -72866,7 +72866,7 @@ function enumerable(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
 
 
@@ -72906,7 +72906,7 @@ function pattern(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
 
 
@@ -72948,7 +72948,7 @@ function date(rule, value, callback, source, options) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_typeof__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rule___ = __webpack_require__(2);
 
 
 
@@ -72966,7 +72966,7 @@ function required(rule, value, callback, source, options) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rule___ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(0);
 
 
@@ -79198,7 +79198,7 @@ var _adposition = __webpack_require__(254);
 
 var _adposition2 = _interopRequireDefault(_adposition);
 
-var _list = __webpack_require__(282);
+var _list = __webpack_require__(257);
 
 var _list2 = _interopRequireDefault(_list);
 
@@ -79249,8 +79249,8 @@ var routers = [{
 }, {
     path: '/',
     component: _menu2.default,
-    name: '留言管理',
-    icon: 'fa fa-comment-o',
+    name: '留言',
+    iconCls: 'fa fa-comments-o',
     children: [{ path: '/comments', component: _list2.default, name: '留言列表' }]
 
 }, {
@@ -79277,7 +79277,7 @@ exports.default = routers;
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(197)
 /* template */
@@ -79557,7 +79557,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(201)
 }
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(204)
 /* template */
@@ -80122,7 +80122,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(207)
 /* template */
@@ -80379,7 +80379,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(210)
 }
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(212)
 /* template */
@@ -80676,7 +80676,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(215)
 /* template */
@@ -80907,7 +80907,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(218)
 /* template */
@@ -81638,7 +81638,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(221)
 /* template */
@@ -82166,7 +82166,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(224)
 }
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(226)
 /* template */
@@ -83564,7 +83564,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(231)
 /* template */
@@ -83857,7 +83857,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(233)
 }
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(235)
 /* template */
@@ -84661,7 +84661,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(249)
 /* template */
@@ -85327,7 +85327,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(252)
 /* template */
@@ -85887,7 +85887,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(255)
 /* template */
@@ -85962,16 +85962,68 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
     data: function data() {
         return {
             tableData: [],
-            tableLoading: false
+            tableLoading: false,
+            myFormTitle: '编辑',
+            editFormVisible: false,
+            checkedAll: [],
+            myForm: {
+                id: 0,
+                img_pname: '',
+                img_flag: '',
+                img_width: 0,
+                img_height: 0,
+                img_size: 0,
+                img_status: true
+            },
+            formRules: {
+                img_pname: [{ required: true, type: 'string', message: '请填广告位名称', trigger: 'blur' }],
+                img_flag: [{ required: true, type: 'string', message: '请填广告位标识', trigger: 'blur' }, { pattern: /^[a-zA-Z0-9_-]+$/, message: '只允许英文或者拼音,横杠(-),下划线(_)', trigger: 'blur' }],
+                img_width: [{ required: true, type: 'number', message: '广告位宽度必须为数值', trigger: 'blur' }],
+                img_height: [{ required: true, type: 'number', message: '广告位高度必须为数值', trigger: 'blur' }],
+                img_size: [{ required: true, type: 'number', message: '广告位图片大小必须为数值', trigger: 'blur' }]
+            }
         };
     },
 
     methods: {
+        //列表获取数据
         getData: function getData() {
             var _self = this;
             _self.tableLoading = true;
@@ -85990,7 +86042,137 @@ exports.default = {
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        //新增弹框
+        handleCreate: function handleCreate() {
+            this.myFormTitle = '新增';
+            this.editFormVisible = true;
+        },
+        //编辑弹框
+        handleEdit: function handleEdit(row) {
+            var _self = this;
+            _self.editFormVisible = true;
+            _self.axios.get('/imgposition/' + row.id).then(function (response) {
+                var res = response.data;
+                if (res.status == 200) {
+                    _self.myForm = res.data;
+                    _self.myForm.img_status = res.data.img_status == 1 ? true : false;
+                } else {
+                    _self.$message({
+                        message: '数据获取失败',
+                        type: 'error'
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        //提交数据
+        submitMyForm: function submitMyForm(formName) {
+            var _self = this;
+            _self.$refs[formName].validate(function (validate) {
+                if (!validate) {
+                    console.log('myForm validate error');
+                    return false;
+                }
+                if (_self.myForm.id > 0) {
+                    //编辑
+                    _self.axios.put('/imgposition/update', _self.myForm).then(function (response) {
+                        var res = response.data;
+                        _self.$message({
+                            message: res.msg,
+                            type: res.status == 200 ? 'success' : 'error'
+                        });
+                        if (res.status == 200) {
+                            _self.closeForm('myForm');
+                            _self.getData();
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                } else {
+                    //新增
+                    _self.axios.post('/imgposition', _self.myForm).then(function (response) {
+                        var res = response.data;
+                        _self.$message({
+                            message: res.msg,
+                            type: res.status == 200 ? 'success' : 'error'
+                        });
+                        if (res.status == 200) {
+                            _self.closeForm('myForm');
+                            _self.getData();
+                        }
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+                }
+            });
+        },
+        //删除
+        handleDelete: function handleDelete(type, row) {
+            var _self = this;
+            var idsParam = {};
+            console.log(type);
+            switch (type) {
+                case 'one':
+                    if (parseInt(row.id) <= 0) {
+                        _self.$message({
+                            message: '请选择需要删除的数据',
+                            type: 'warning'
+                        });
+                        return false;
+                    }
+                    idsParam = { ids: [row.id] };
+                    break;
+                case 'multi':
+                    var ids = _self.util.getIdByArr(_self.checkedAll);
+                    if (ids.length <= 0) {
+                        _self.$message({
+                            message: '请选择需要删除的数据',
+                            type: 'warning'
+                        });
+                        return false;
+                    }
+                    idsParam = { ids: ids };
+                    break;
+                default:
+                    break;
+            }
+            _self.$confirm('确认删除该记录吗?', '提示', {
+                //type: 'warning'
+            }).then(function () {
+                _self.listLoading = true;
+                _self.axios.delete('/imgposition/destroy', { data: idsParam }).then(function (response) {
+                    _self.tableLoading = false;
+                    var res = response.data;
+                    _self.$message({
+                        message: res.msg,
+                        type: res.status == 200 ? 'success' : 'error'
+                    });
+                    if (type == 'one') {
+                        _self.util.removeByValue(_self.tableData, row.id);
+                    } else {
+                        for (var index in _self.checkedAll) {
+                            _self.util.removeByValue(_self.tableData, _self.checkedAll[index].id);
+                        }
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }).catch(function () {
+                _self.tableLoading = false;
+            });
+        },
+        //勾选事件
+        handleChecked: function handleChecked(val) {
+            this.checkedAll = val;
+        },
+        //取消
+        closeForm: function closeForm(formName) {
+            this.$refs[formName].resetFields();
+            this.editFormVisible = false;
         }
+
     },
     mounted: function mounted() {
         this.getData();
@@ -86014,7 +86196,10 @@ var render = function() {
         [
           _c(
             "el-button",
-            { attrs: { type: "primary", icon: "el-icon-plus" } },
+            {
+              attrs: { type: "primary", icon: "el-icon-plus" },
+              on: { click: _vm.handleCreate }
+            },
             [_vm._v("新增")]
           )
         ],
@@ -86036,7 +86221,8 @@ var render = function() {
                   expression: "tableLoading"
                 }
               ],
-              attrs: { data: _vm.tableData }
+              attrs: { data: _vm.tableData },
+              on: { "selection-change": _vm.handleChecked }
             },
             [
               _c("el-table-column", {
@@ -86074,7 +86260,7 @@ var render = function() {
                           attrs: { size: "small", icon: "el-icon-edit" },
                           on: {
                             click: function($event) {
-                              _vm.handleEdit()
+                              _vm.handleEdit(scope.row)
                             }
                           }
                         }),
@@ -86087,7 +86273,7 @@ var render = function() {
                           },
                           on: {
                             click: function($event) {
-                              _vm.handleDelete()
+                              _vm.handleDelete("one", scope.row)
                             }
                           }
                         })
@@ -86096,6 +86282,201 @@ var render = function() {
                   }
                 ])
               })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-col",
+        { attrs: { span: 24 } },
+        [
+          _c(
+            "el-dialog",
+            {
+              attrs: { title: _vm.myFormTitle, visible: _vm.editFormVisible },
+              on: {
+                "update:visible": function($event) {
+                  _vm.editFormVisible = $event
+                }
+              }
+            },
+            [
+              _c(
+                "el-form",
+                {
+                  ref: "myForm",
+                  attrs: {
+                    rules: _vm.formRules,
+                    "status-icon": "",
+                    "label-width": "80px;",
+                    model: _vm.myForm
+                  }
+                },
+                [
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "广告位名称", prop: "img_pname" } },
+                    [
+                      _c("el-input", {
+                        attrs: { "auto-complete": "off" },
+                        model: {
+                          value: _vm.myForm.img_pname,
+                          callback: function($$v) {
+                            _vm.$set(_vm.myForm, "img_pname", $$v)
+                          },
+                          expression: "myForm.img_pname"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "广告位标识", prop: "img_flag" } },
+                    [
+                      _c("el-input", {
+                        attrs: { "auto-complete": "off" },
+                        model: {
+                          value: _vm.myForm.img_flag,
+                          callback: function($$v) {
+                            _vm.$set(_vm.myForm, "img_flag", $$v)
+                          },
+                          expression: "myForm.img_flag"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "广告位宽度", prop: "img_width" } },
+                    [
+                      _c("el-input", {
+                        model: {
+                          value: _vm.myForm.img_width,
+                          callback: function($$v) {
+                            _vm.$set(_vm.myForm, "img_width", _vm._n($$v))
+                          },
+                          expression: "myForm.img_width"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "广告位高度", prop: "img_height" } },
+                    [
+                      _c("el-input", {
+                        model: {
+                          value: _vm.myForm.img_height,
+                          callback: function($$v) {
+                            _vm.$set(_vm.myForm, "img_height", _vm._n($$v))
+                          },
+                          expression: "myForm.img_height"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "图片大小", prop: "img_size" } },
+                    [
+                      _c("el-input", {
+                        model: {
+                          value: _vm.myForm.img_size,
+                          callback: function($$v) {
+                            _vm.$set(_vm.myForm, "img_size", _vm._n($$v))
+                          },
+                          expression: "myForm.img_size"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-form-item",
+                    { attrs: { label: "是否启用" } },
+                    [
+                      _c("el-switch", {
+                        model: {
+                          value: _vm.myForm.img_status,
+                          callback: function($$v) {
+                            _vm.$set(_vm.myForm, "img_status", $$v)
+                          },
+                          expression: "myForm.img_status"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _vm.myForm.id
+                    ? _c(
+                        "el-form-item",
+                        [
+                          _c("el-input", {
+                            staticStyle: { display: "none" },
+                            model: {
+                              value: _vm.myForm.id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.myForm, "id", $$v)
+                              },
+                              expression: "myForm.id"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "dialog-footer",
+                  attrs: { slot: "footer" },
+                  slot: "footer"
+                },
+                [
+                  _c(
+                    "el-button",
+                    {
+                      on: {
+                        click: function($event) {
+                          _vm.closeForm("myForm")
+                        }
+                      }
+                    },
+                    [_vm._v("取消")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-button",
+                    {
+                      attrs: { type: "primary" },
+                      on: {
+                        click: function($event) {
+                          _vm.submitMyForm("myForm")
+                        }
+                      }
+                    },
+                    [_vm._v("确定")]
+                  )
+                ],
+                1
+              )
             ],
             1
           )
@@ -86121,11 +86502,329 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(2)
+var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(258)
 /* template */
 var __vue_template__ = __webpack_require__(259)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/admin/js/components/comments/list.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-01942112", Component.options)
+  } else {
+    hotAPI.reload("data-v-01942112", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 258 */
+/***/ (function(module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+    data: function data() {
+        return {
+            commentData: [],
+            currentPage: 1,
+            total: 0,
+            pageSize: 20,
+            listLoading: false
+        };
+    },
+
+    methods: {
+        getData: function getData() {
+            var _self = this;
+            _self.listLoading = true;
+            var params = { rows: _self.pageSize, page: _self.currentPage };
+            _self.axios.get('/comments', { params: params }).then(function (response) {
+                var res = response.data;
+                if (res) {
+                    _self.commentData = res.data;
+                    _self.total = res.total;
+                    _self.currentPage = res.current_page;
+                    _self.listLoading = false;
+                } else {
+                    _self.$message({
+                        message: '数据获取失败',
+                        type: 'error',
+                        duration: 3 * 1000
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        handleSizeChange: function handleSizeChange(val) {
+            this.pageSize = val;
+            this.getData();
+        },
+        handleCurrentChange: function handleCurrentChange(val) {
+            this.currentPage = val;
+            this.getData();
+        },
+        handleEdit: function handleEdit(val) {
+            var _self = this;
+            var status = val.status == 1 ? 0 : 1;
+            _self.axios.put('/comments/update', { status: status, id: val.id }).then(function (response) {
+                var res = response.data;
+                if (res.status == 200) {
+                    _self.getData();
+                    _self.$message({
+                        message: res.msg,
+                        type: 'success'
+                    });
+                } else {
+                    _self.$message({
+                        message: '修改失败',
+                        type: 'error',
+                        duration: 3 * 1000
+                    });
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        handleDelete: function handleDelete(val) {
+            var _self = this;
+            var param = { id: val.id };
+            _self.axios.delete('/comments/destory', { data: param }).then(function (response) {
+                var res = response.data;
+                _self.$message({
+                    message: res.msg,
+                    type: res.status == 200 ? 'success' : 'error'
+                });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.getData();
+    }
+};
+
+/***/ }),
+/* 259 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "el-row",
+    [
+      _c(
+        "el-col",
+        { attrs: { span: 24 } },
+        [
+          _c(
+            "el-button",
+            { attrs: { type: "primary", icon: "el-icon-plus" } },
+            [_vm._v("新增")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-col",
+        { attrs: { span: 24 } },
+        [
+          _c(
+            "el-table",
+            {
+              directives: [
+                {
+                  name: "loading",
+                  rawName: "v-loading",
+                  value: _vm.listLoading,
+                  expression: "listLoading"
+                }
+              ],
+              attrs: { data: _vm.commentData }
+            },
+            [
+              _c("el-table-column", {
+                attrs: { type: "selection", width: "55" }
+              }),
+              _vm._v(" "),
+              _c("el-table-column", {
+                attrs: { prop: "username", label: "用户名" }
+              }),
+              _vm._v(" "),
+              _c("el-table-column", {
+                attrs: { prop: "nickname", label: "昵称" }
+              }),
+              _vm._v(" "),
+              _c("el-table-column", {
+                attrs: { prop: "email", label: "邮箱" }
+              }),
+              _vm._v(" "),
+              _c("el-table-column", {
+                attrs: { prop: "content", label: "内容" }
+              }),
+              _vm._v(" "),
+              _c("el-table-column", {
+                attrs: { prop: "created_at", label: "留言时间" }
+              }),
+              _vm._v(" "),
+              _c("el-table-column", {
+                attrs: { label: "操作" },
+                scopedSlots: _vm._u([
+                  {
+                    key: "default",
+                    fn: function(scope) {
+                      return [
+                        _c("el-button", {
+                          attrs: {
+                            size: "small",
+                            icon:
+                              scope.row.status == 1
+                                ? "el-icon-success"
+                                : "el-icon-error"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.handleEdit(scope.row)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("el-button", {
+                          attrs: {
+                            size: "small",
+                            type: "danger",
+                            icon: "el-icon-delete"
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.handleDelete(scope.row)
+                            }
+                          }
+                        })
+                      ]
+                    }
+                  }
+                ])
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-col",
+        [
+          _c("el-pagination", {
+            staticClass: "pull-right",
+            attrs: {
+              "current-page": _vm.currentPage,
+              "page-size": _vm.pageSize,
+              layout: "prev, pager, next",
+              total: _vm.total
+            },
+            on: {
+              "size-change": _vm.handleSizeChange,
+              "current-change": _vm.handleCurrentChange
+            }
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-01942112", module.exports)
+  }
+}
+
+/***/ }),
+/* 260 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(261)
+/* template */
+var __vue_template__ = __webpack_require__(262)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -86164,7 +86863,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 258 */
+/* 261 */
 /***/ (function(module, exports) {
 
 Object.defineProperty(exports, "__esModule", {
@@ -86213,7 +86912,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 259 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -86233,11 +86932,11 @@ if (false) {
 }
 
 /***/ }),
-/* 260 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(261);
+window._ = __webpack_require__(264);
 
 /**
  *Vue is a modern Javascript library for building interactive web interfaces
@@ -86254,9 +86953,9 @@ window.Vue = __webpack_require__(3);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(263);
+  window.$ = window.jQuery = __webpack_require__(266);
 
-  __webpack_require__(264);
+  __webpack_require__(267);
 } catch (e) {}
 
 /**
@@ -86299,7 +86998,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 261 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -103409,10 +104108,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(262)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(265)(module)))
 
 /***/ }),
-/* 262 */
+/* 265 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -103440,7 +104139,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 263 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -113811,7 +114510,7 @@ return jQuery;
 
 
 /***/ }),
-/* 264 */
+/* 267 */
 /***/ (function(module, exports) {
 
 /*!
@@ -116194,344 +116893,10 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ }),
-/* 265 */
+/* 268 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 266 */,
-/* 267 */,
-/* 268 */,
-/* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */,
-/* 273 */,
-/* 274 */,
-/* 275 */,
-/* 276 */,
-/* 277 */,
-/* 278 */,
-/* 279 */,
-/* 280 */,
-/* 281 */,
-/* 282 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(283)
-/* template */
-var __vue_template__ = __webpack_require__(284)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/admin/js/components/comments/list.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-01942112", Component.options)
-  } else {
-    hotAPI.reload("data-v-01942112", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 283 */
-/***/ (function(module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-exports.default = {
-    data: function data() {
-        return {
-            commentData: [],
-            currentPage: 1,
-            total: 0,
-            pageSize: 20,
-            listLoading: false
-        };
-    },
-
-    methods: {
-        getData: function getData() {
-            var _self = this;
-            _self.listLoading = true;
-            var params = { rows: _self.pageSize, page: _self.currentPage };
-            _self.axios.get('/comments', { params: params }).then(function (response) {
-                var res = response.data;
-                if (res) {
-                    _self.commentData = res.data;
-                    _self.total = res.total;
-                    _self.currentPage = res.current_page;
-                    _self.listLoading = false;
-                } else {
-                    _self.$message({
-                        message: '数据获取失败',
-                        type: 'error',
-                        duration: 3 * 1000
-                    });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        handleSizeChange: function handleSizeChange(val) {
-            this.pageSize = val;
-            this.getData();
-        },
-        handleCurrentChange: function handleCurrentChange(val) {
-            this.currentPage = val;
-            this.getData();
-        },
-        handleEdit: function handleEdit(val) {
-            var _self = this;
-            var status = val.status == 1 ? 0 : 1;
-            _self.axios.put('/comments/update', { status: status, id: val.id }).then(function (response) {
-                var res = response.data;
-                if (res.status == 200) {
-                    _self.getData();
-                    _self.$message({
-                        message: res.msg,
-                        type: 'success'
-                    });
-                } else {
-                    _self.$message({
-                        message: '修改失败',
-                        type: 'error',
-                        duration: 3 * 1000
-                    });
-                }
-            }).catch(function (error) {
-                console.log(error);
-            });
-        },
-        handleDelete: function handleDelete(val) {
-            var _self = this;
-            var param = { id: val.id };
-            _self.axios.delete('/comments/destory', { data: param }).then(function (response) {
-                var res = response.data;
-                _self.$message({
-                    message: res.msg,
-                    type: res.status == 200 ? 'success' : 'error'
-                });
-            }).catch(function (error) {
-                console.log(error);
-            });
-        }
-    },
-    mounted: function mounted() {
-        this.getData();
-    }
-};
-
-/***/ }),
-/* 284 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "el-row",
-    [
-      _c(
-        "el-col",
-        { attrs: { span: 24 } },
-        [
-          _c(
-            "el-button",
-            { attrs: { type: "primary", icon: "el-icon-plus" } },
-            [_vm._v("新增")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "el-col",
-        { attrs: { span: 24 } },
-        [
-          _c(
-            "el-table",
-            {
-              directives: [
-                {
-                  name: "loading",
-                  rawName: "v-loading",
-                  value: _vm.listLoading,
-                  expression: "listLoading"
-                }
-              ],
-              attrs: { data: _vm.commentData }
-            },
-            [
-              _c("el-table-column", {
-                attrs: { type: "selection", width: "55" }
-              }),
-              _vm._v(" "),
-              _c("el-table-column", {
-                attrs: { prop: "username", label: "用户名" }
-              }),
-              _vm._v(" "),
-              _c("el-table-column", {
-                attrs: { prop: "nickname", label: "昵称" }
-              }),
-              _vm._v(" "),
-              _c("el-table-column", {
-                attrs: { prop: "email", label: "邮箱" }
-              }),
-              _vm._v(" "),
-              _c("el-table-column", {
-                attrs: { prop: "content", label: "内容" }
-              }),
-              _vm._v(" "),
-              _c("el-table-column", {
-                attrs: { prop: "created_at", label: "留言时间" }
-              }),
-              _vm._v(" "),
-              _c("el-table-column", {
-                attrs: { label: "操作" },
-                scopedSlots: _vm._u([
-                  {
-                    key: "default",
-                    fn: function(scope) {
-                      return [
-                        _c("el-button", {
-                          attrs: {
-                            size: "small",
-                            icon:
-                              scope.row.status == 1
-                                ? "el-icon-success"
-                                : "el-icon-error"
-                          },
-                          on: {
-                            click: function($event) {
-                              _vm.handleEdit(scope.row)
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("el-button", {
-                          attrs: {
-                            size: "small",
-                            type: "danger",
-                            icon: "el-icon-delete"
-                          },
-                          on: {
-                            click: function($event) {
-                              _vm.handleDelete(scope.row)
-                            }
-                          }
-                        })
-                      ]
-                    }
-                  }
-                ])
-              })
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "el-col",
-        [
-          _c("el-pagination", {
-            staticClass: "pull-right",
-            attrs: {
-              "current-page": _vm.currentPage,
-              "page-size": _vm.pageSize,
-              layout: "prev, pager, next",
-              total: _vm.total
-            },
-            on: {
-              "size-change": _vm.handleSizeChange,
-              "current-change": _vm.handleCurrentChange
-            }
-          })
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-01942112", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);
