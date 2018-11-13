@@ -12,6 +12,7 @@
                 <el-table-column prop="img_flag" label="广告位标识" ></el-table-column>
                 <el-table-column prop="img_width" label="广告位宽度" ></el-table-column>
                 <el-table-column prop="img_height" label="广告位高度" ></el-table-column>
+                <el-table-column prop="img_size" label="广告位图片大小(KB)"></el-table-column>
                 <el-table-column prop="img_status" label="状态" ></el-table-column>
                 <el-table-column label="操作" >
                     <template slot-scope="scope">

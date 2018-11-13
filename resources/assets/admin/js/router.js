@@ -15,6 +15,7 @@ import Tags from './components/article/tags.vue';
 import Navigations from './components/extends/navigation.vue';
 import Imgposition from './components/image/adposition';
 import CommentsList from './components/comments/list.vue';
+import Imgs from './components/image/img';
 
 /* router规则 */
 const routers = [
@@ -73,7 +74,8 @@ const routers = [
         name: '图片',
         iconCls: 'fa fa-file-image-o',
         children: [
-            {path: '/image', component: Imgposition, name: '广告位管理'}
+            {path: '/img', component: Imgs, name: '图片'},
+            {path: '/image', component: Imgposition, name: '广告位'},
         ]
 
     },

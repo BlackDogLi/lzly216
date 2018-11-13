@@ -58,5 +58,6 @@ Route::group(['prefix' => 'back', 'middleware' => 'auth.admin:admin', 'namespace
     Route::resource('/tags', 'TagsController');
     Route::resource('/imgposition', 'ImagePositionController');
     Route::resource('/comments', 'CommentsController');
+    Route::resource('/img', 'ImgController');
 });
 
