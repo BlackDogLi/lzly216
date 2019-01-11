@@ -16,6 +16,7 @@ class UploadsController extends Controller
 {
 	public function store (Request $request)
 	{
+	    dd($request->position_id);
 		if ($request->isMethod('post'))
 		{
 			$file = $request->file('file');

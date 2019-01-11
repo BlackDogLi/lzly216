@@ -25,11 +25,11 @@
     </title>
     <meta name="keywords" content="{{ bloginfo('keywords') }}"/>
     <meta name="description" content="{{ bloginfo('description') }}"/>
-    <link rel="stylesheet" href="{{ asset('/Home/css/semantic.min.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" href="{{ asset('/Home/css/markdown.css') }}">
     <link rel="stylesheet" href="{{ asset('/Home/css/style.css') }}" />
     <script src="{{ asset('/Home/js/jquery.js') }}"></script>
-    <script src="{{ asset('/Home/js/semantic.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 
     @yield('head')
     @if(!empty(bloginfo('google_plus')))

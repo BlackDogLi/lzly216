@@ -10,20 +10,30 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Models\ImagePosition;
 use App\Models\Img;
+use Illuminate\Http\Request;
 
 
 class ImgController extends Controller
 {
 
-    public function index ()
+    /**
+     * @Desc 图片列表
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index (Request $request)
     {
-        $result = Img::where('deleted_at', '=', null)->get();
-        foreach ($result as $item) {
+        $rows = intval($request->rows) > 0 ? $request->rows : 20;
+        $resImg = Img::OfPosition($request->position_id)->where('deleted_at', '=', null)->orderBy('created_at','Desc')->paginate($rows);
+        foreach ($resImg as $item) {
             $item->positions;
         }
-        //dd($result);
-        return response()->json($result);
+        $resPosition = ImagePosition::where('deleted_at', '=', null)->get();
+        return response()->json(array('img' => $resImg, 'imgposition' => $resPosition));
     }
+
+    
 
 }
