@@ -95,6 +95,7 @@
 			}
 		},
 		methods: {
+		    //获取商品分类
 			getData: function () {
 			    var _self = this;
                 _self.axios.get('/categorys').then( function (response) {

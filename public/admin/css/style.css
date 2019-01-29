@@ -42,9 +42,6 @@ a {
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.2);
 }
 
-.el-header .el-dropdown{
-    line-height: 5rem;
-}
 
 
 /****************** el-aside ********************/
@@ -95,11 +92,7 @@ a {
 .el-main .box-card .el-card__body a {
     color: #7a8599;
 }
-.el-main .el-button,
-         .el-input,
-         .el-select {
-    margin-right: 2rem;
-}
+
 .el-main .el-input {
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.2);
     border-radius: 6px;
@@ -128,11 +121,9 @@ a {
     margin-left: 6rem !important;
 }
 .el-main .el-form .el-form-item__content > .el-input {
-    width: 25rem;
+    width: 22rem;
 }
-.el-main .el-form .el-form-item__content > .el-textarea {
-    width: 48rem;
-}
+
 .el-main .el-col .markdown-previews {
     color: #7a8599;
     border: 1px dashed #ccc;

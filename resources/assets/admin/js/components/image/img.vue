@@ -2,7 +2,7 @@
     <el-row>
         <el-col :span="24">
             <el-button type="primary" icon="el-icon-plus" @click="handleCreate">上传图片</el-button>
-            <el-select v-model="position_id" clearable @change="filterPosition" placeholder="请选择">
+            <el-select v-model="position_id" clearable @change="filterPosition" placeholder="请选择" value-key="id">
                 <el-option v-for="item in imgPositions" :label="item.img_pname" :value="item.id" :key="item.id">
                 </el-option>
             </el-select>
@@ -46,19 +46,21 @@
             <el-dialog title="上传图片" :visible.sync="formVisible">
                 <el-form ref="myForm" status-icon label-width="80px;">
                     <el-form-item label="图片位置">
-                        <el-select v-model="myForm.position_id" placeholder="请选择图片位置" @change="setImgRules">
-                            <el-option v-for="(item,index) in imgPositions" :label="item.img_pname" :index="index" :value="{id:item.id,index:index}" :key="item.id">
+                        <el-select v-model="form.position" placeholder="请选择图片位置" value-key="id">
+                            <el-option v-for="item in imgPositions" :label="item.img_pname" :value="item" :key="item.id">
                             </el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item label="图片上传">
                         <el-upload
-                            :file-list="myForm.fileList"
+                            :file-list="fileList"
                             list-type="picture-card"
+                            ref = "upload"
                             :action="uploadsApi"
                             :headers="headers"
-                            :data="uploadData"
-                            :auto-upload="true"
+                            :data="form.position"
+                            multiple
+                            :auto-upload="false"
                             :before-upload="handlePictureUpload"
                             :on-prview="handlePicturePreview"
                             :on-remove="handlePictureRemove"
@@ -68,8 +70,8 @@
                         </el-upload>
                     </el-form-item>
                     <el-form-item>
-                        <el-button @click="">取消</el-button>
-                        <el-button type="primary" @click="submitMyForm('myForm')">确定</el-button>
+                        <el-button @click="closeForm">取消</el-button>
+                        <el-button type="primary" @click="submitMyForm">确定</el-button>
                     </el-form-item>
                 </el-form>
             </el-dialog>
@@ -91,14 +93,13 @@
                 formVisible: false,
                 uploadsApi: Laravel.apiUrl + '/uploads',
                 imageUrl: '',
-                fileList: {
-                    position_id: 0,
-                    fileList: [],
-                },
+                fileList: [],
                 uploadData: {
 
                 },
-                myForm: [],
+                form : {},
+                myForm: new FormData,
+
                 headers: {'X-CSRF-TOKEN': Laravel.csrfToken},
             };
         },
@@ -153,29 +154,78 @@
             handlePictureRemove: function (file, filelist) {
                 this.myForm.fileList = filelist;
             },
-            handlePictureChange: function (file, filelist) {
-                //console.log(filelist);
+
+            //添加删除图片列表
+            handlePictureChange: function (file) {
+                this.myForm.append('fileList[]', file.raw);
             },
-            handlePictureUpload: function () {
-                this.uploadData.position_id = 123123123;
+            //图片上传之前的校验
+            handlePictureUpload: function (file) {
+                let _self = this;
+                const imageCheck = new Promise(function (resolve, reject) {
+                    let width = _self.myForm.position.img_width;
+                    let height = _self.myForm.position.img_height;
+                    let _URL = window.URL || window.webkitURL;
+                    let img = new Image();
+                    img.onload = function (){
+                        let valid = img.width <= width && img.height <= height;
+                        valid ? resolve() : reject();
+                    };
+                    img.src = _URL.createObjectURL(file);
+                }).then(() => {
+                    return file;
+                }, () => {
+                    this.$message({
+                        type: 'warning',
+                        message: '图片必须小于或等于' + this.myForm.position.img_width + '*' +this.myForm.position.img_height,
+                    });
+                    return Promise.reject();
+                });
+                return imageCheck;
+            },
+            handleDelete: function (row) {
 
             },
-            setImgRules: function (index,value) {
-                console.log(index);
-            },
+
             //状态格式化
             formStatus: function (row) {
                 return row.status == 1 ? '启用' : '禁用';
             },
             //上传图片对话框
             handleCreate: function () {
-                var _self = this;
-                _self.formVisible = true;
+                this.formVisible = true;
             },
-            submitMyForm: function (formName) {
-                console.log(this.myForm);
-                let data = this.myForm;
-                console.log(data);
+            //取消关闭对话框
+            closeForm: function () {
+                this.formVisible = false;
+                this.$refs.upload.clearFiles();
+            },
+            //上传图片
+            submitMyForm: function () {
+                let _self = this;
+                _self.myForm.append('pos', _self.form.position.id);
+                let config = {headers: {'Content-Type': 'application/x-www-form-urlencoded'}};
+                _self.axios.post('/uploads',  _self.myForm, config).then(function (response) {
+                    let res = response.data;
+                    _self.$message({
+                        message: res.msg,
+                        type: res.status == 200 ? 'success' : 'error',
+                    });
+                    if (res.status == 200) {
+                        _self.$refs.upload.clearFiles();  //去除组建内图片
+                        _self.formVisible = false;        //关闭弹窗
+                        _self.getData();
+                    }
+                }).catch(function(error) {
+                    console.log(error);
+                });
+
+            },
+        },
+        watch:{
+            'myForm.position': function (){
+                this.fileList.position_id = this.myForm.position.id;
+                this.$refs.upload.clearFiles();
             },
         },
         mounted() {

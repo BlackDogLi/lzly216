@@ -5,11 +5,9 @@
                 <el-button type="primary" icon="el-icon-plus">新增</el-button>
             </router-link>
             <el-button type="primary" @click="handleDistory('multi', {})" icon="el-icon-delete">删除</el-button>
-            <el-select v-model="category_id" clearable @change="filterCategory" placeholder="请选择">
-                <el-option v-for="item in categorys" :label="item.category_name" :value="item.id" :key="item.id">
-                </el-option>
-            </el-select>
-            <el-input v-model="q" placeholder="请输入内容" icon="el-icon-search" style="width:200px" :on-icon-click="searchBtn"></el-input>
+            <el-cascader expand-trigger="hover" :options="categorys" :props="props" v-model="categoryIds" :show-all-levels="false" @change="filterCategory">
+            </el-cascader>
+            <el-input v-model="q" placeholder="请输入内容" prefix-icon="el-icon-search" style="width:200px" :on-icon-click="searchBtn" @blur="searchBtn"></el-input>
         </el-col>
         <el-col>
             <el-table :data="listData" v-loading="listLoading" style="width: 100%" @selection-change="handleSelectionChange">
@@ -52,15 +50,7 @@
                     layout="prev, pager, next"
                     :total="total" class="pull-right">
             </el-pagination>
-            <!--<el-pagination
-                    @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    :current-page="currentPage"
-                    :page-sizes="[20, 50, 80, 100, 200]"
-                    :page-size="pageSize"
-                    layout="sizes, prev, pager, next"
-                    :total="total" class="pull-right">
-            </el-pagination>-->
+
         </el-col>
     </el-row>
 </template>
@@ -69,9 +59,14 @@
 	export default {
 		data() {
 			return {
+			    props: {
+                    'value': "id",
+                    'label': 'category_name',
+                },
 				listData: [],
 				category_id: '',
 				categorys: [],
+                categoryIds:[],
 				currentPage: 1,
 				total: 0,
 				pageSize: 20,
@@ -91,6 +86,7 @@
 				this.getData();
 			},
 			searchBtn: function (event) {
+			    console.log(event);
 				this.getData();
 			},
 			getData: function () {
@@ -99,7 +95,7 @@
 				let query = {
 					rows: _self.pageSize,
                     page: _self.currentPage,
-					category_id: _self.category_id,
+					category_id: _self.categoryIds[_self.categoryIds.length - 1],
 					q: _self.q
 				};
 				_self.axios.get('/articles', {params: query}).then(function (response) {
@@ -183,12 +179,12 @@
 			},
 			getCategorys: function () {
 				let _self = this;
-				_self.axios.get('/categorys', {params: {rows: this.pageSize, page:this.currentPage}}).then(function (response) {
+				_self.axios.get('/categorys').then(function (response) {
 					let res = response.data;
-					if (res != false) {
-						res.data.splice(0, 0, {id: 0, category_name: '顶级分类', hidden: true, category_parent: 0});
 
-						_self.categorys = res.list;
+					if (res != false) {
+						_self.categorys = res.tree;
+                        _self.categorys.splice(0, 0, {id: 0, category_name: '全部', hidden: true, category_parent: 0});
 					} else {
 						_self.$message({
 							message: '数据获取失败',

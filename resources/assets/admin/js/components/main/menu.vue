@@ -5,13 +5,16 @@
         <el-header>
             <el-row :span="24" :gutter="10" type="flex" justify="space-between">
                 <el-col :span="4">
-                    <div class="grid-content"></div><span><h1>lzly-Blog</h1></span>
+                    <div class="grid-content"><span><h1>lzly-Blog</h1></span></div>
                 </el-col>
                 <el-col :span="16"></el-col>
                 <el-col :span="4" class="rightbar">
+                    <div class="head">
+                        <img src="/admin/image/logo.png" width="50" height="50" />
+                    </div>
+
                     <el-dropdown trigger="click">
                         <span class="el-dropdown-link">
-                            <img :src="this.sysUserAvater" class="head" onerror="javascript:this.src='/admin/image/logo.png'"/>
                             {{sysUserName}}
                         </span>
                         <el-dropdown-menu slot="dropdown">
@@ -156,13 +159,21 @@
 </script>
 <style type="text/css" scoped>
 
-.el-header .rightbar .head {
-	width: 40px;
-	height: 40px;
-	border-radius: 20px;
-	margin: 10px 0px 10px 10px;
-	float: right;
+.el-header .rightbar {
+    display: flex;
+    justify-content: center;
 }
+.el-header .rightbar .head {
+    height: 50px;
+	border-radius: 20px;
+	margin: 10px;
+    align-self: center;
+}
+.el-header .rightbar .el-dropdown {
+    align-self: center;
+}
+
+
 
 .panel-center ul {
 	padding: 5px;

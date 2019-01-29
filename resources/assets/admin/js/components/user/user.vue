@@ -1,18 +1,22 @@
 <template>
-	<div class="main-content">
-		<el-form :label-position="labelPosition" :rules="myRules" :model="myForm" v-loading="editFormLoading" label-width="100px" class="form6" >
-			<el-form-item label="新密码" style="width:60%" prop="password">
-				<el-input type="password" v-model="myForm.password"></el-input>
-			</el-form-item>
-			<el-form-item label="确认新密码" style="width:60%" prop="password_confirmation">
-				<el-input type="password" v-model="myForm.password_confirmation"></el-input>
-			</el-form-item>
-			<el-form-item>
-				<el-button @click="colseForm('myForm')">取 消</el-button>
-				<el-button type="primary" @click="submitMyForm('myForm')">确 定</el-button>
-			</el-form-item>
-		</el-form>
-	</div>
+	<el-row>
+        <el-col :span="24" class="shadow">
+            <div class="main-content">
+                <el-form :label-position="labelPosition" :rules="myRules" :model="myForm" v-loading="editFormLoading" label-width="100px" class="form6" >
+                    <el-form-item label="新密码" style="width:60%" prop="password">
+                        <el-input type="password" v-model="myForm.password"></el-input>
+                    </el-form-item>
+                    <el-form-item label="确认新密码" style="width:60%" prop="password_confirmation">
+                        <el-input type="password" v-model="myForm.password_confirmation"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button @click="colseForm('myForm')">取 消</el-button>
+                        <el-button type="primary" @click="submitMyForm('myForm')">确 定</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+        </el-col>
+    </el-row>
 </template>
 <style type="text/css">
 </style>
