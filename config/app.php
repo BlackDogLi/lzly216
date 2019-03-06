@@ -165,7 +165,6 @@ return [
         //App\Factorymethod\Interfaces\FactoryInterFace::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        SwooleTW\Http\LaravelServiceProvider::class,
 
     ],
 
