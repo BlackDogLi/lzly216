@@ -55,7 +55,7 @@
                 <div class="ui bottom attached segment">
                     <div class="ui items">
                         @foreach($phpArticle as $item)
-                            <div class="item"><a href="{{ route('article', [$item->flag]) }}" >{{ $item['title'] }}</a></div>
+                            <div class="item"><a href="{{ route('article', [$item->flag]) }}" >{{ $item->title }}</a></div>
                         @endforeach
                     </div>
                 </div>

@@ -5,10 +5,10 @@
         <div class="ui styled fluid accordion">
             @foreach ($articleList as $item)
                 <div class="title">
-                    <i class="dropdown icon"></i>{{$item['title']}}
+                    <i class="dropdown icon"></i>{{$item->title}}
                 </div>
                 <div class="content">
-                    <div class="transition hidden markdown-body">{!! $item['content'] !!}</div>
+                    <div class="transition hidden markdown-body">{!! $item->content !!}</div>
                 </div>
             @endforeach
         </div>
