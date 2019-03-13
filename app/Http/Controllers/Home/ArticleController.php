@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Articles;
 use App\Models\Categorys;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use App\Events\ArticleView;
 
@@ -32,7 +33,9 @@ class ArticleController extends Controller
         //存取Key
         $key = 'articleListByCategory-' . $id;
         //分类信息
-        $category = Categorys::where('id', '=', $id)->select('id', 'category_name')->first();
+        //$category = Categorys::where('id', '=', $id)->select('id', 'category_name')->first();
+        //$category = DB::select('select id, category_name from lzly_categorys where id = ? limit 1', [$id]);
+        $category = DB::table('categorys')->select('id', 'category_name')->where('id', $id)->first();
         //文章列表
         if (Cache::has($key)) {
             $artilceList = Cache::get($key);
@@ -40,6 +43,7 @@ class ArticleController extends Controller
             $artilceList = $this->articleListByCategory($id);
             Cache::put($key,$artilceList, 10);
         }
+
         return view('home.article.articleList', ['articleList' => $artilceList, 'category' => $category]);
     }
 
@@ -70,6 +74,7 @@ class ArticleController extends Controller
      */
     private function articleListByCategory ($category_id = 0)
     {
-        return Articles::select('id', 'title', 'flag', 'thumb', 'content')->OfCategory('', $category_id, true)->orderBy('id', 'DESC')->get();
+        $sql = 'SELECT a.id, a.title, a.flag, a.thumb, a.content FROM lzly_articles AS a INNER JOIN lzly_categorys as c ON c.id = a.category_id WHERE c.id = ? OR c.category_parent = ? ORDER BY a.id DESC ';
+        return DB::select($sql, [$category_id, $category_id]);
     }
 }

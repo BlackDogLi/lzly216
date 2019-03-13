@@ -37,6 +37,7 @@ $http->on('request', function ($request, $response) {
     }
 
     //get请求
+
     if ($request->get) {
         foreach ($request->get as $k => $v) {
             $_GET[$k] = $v;
