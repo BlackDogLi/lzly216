@@ -27,13 +27,11 @@
                     </el-upload>
                 </el-form-item>
                 <el-form-item label="内容" prop="markdown">
-                    <el-input type="textarea" ref="myMarkdown" @change="textcomplete" :autosize="{ minRows: 12}" :rows="textareaRow" v-model="myForm.markdown"></el-input>
-                    <!--<div class="editor-container">
-                        <el-button @click="getUEContent2"></el-button>
-                        <UE :defaultMsg=defaultMsg :config=config ref="myMarkdown" :v-model="myForm.markdown"></UE>
-                    </div>-->
-                    <!--<div id="ue"  v-model="myForm.markdown" class="editor-container">
-                    </div>-->
+
+                    <div class="editor-container">
+                        <markdown @mdValue="getMdValue" :edit-content="editContent"></markdown>
+                    </div>
+
                 </el-form-item>
                 <el-form-item>
                     <el-button @click="closeForm('myForm')">取消</el-button>
@@ -42,11 +40,9 @@
                 </el-form-item>
             </el-form>
         </el-col>
+
         <el-col>
-            <article class="markdown-previews markdown-body" v-html="markdownPreviews"></article>
-        </el-col>
-        <el-col>
-            <el-dialog title="图片预览" v-model="previewVisible" size="large">
+            <el-dialog title="图片预览" v-model="previewVisible">
                 <div class="showPreview">
                     <div v-html="showPreview"></div>
                 </div>
@@ -61,7 +57,13 @@
 <script type="text/ecmascript-6">
 	import inlineAttachment from '../../lib/inline-attachment';
 	import hotkeys from '../../lib/hotkeys.min';
+
+	import markdown from '../../../../common/components/markdown/mardown';
+
 	export default {
+	    components: {
+	        markdown
+        },
 		//components: {UE},
 		data(){
 			return {
@@ -90,6 +92,7 @@
 					category_id: 0,
 					markdown: ''
 				},
+                editContent: '',
 				headers: {'X-CSRF-TOKEN': Laravel.csrfToken},
 				myRules: {
 					title: [{required: true, type: "string", message: '请填写文章标题', trigger: 'blur'}],
@@ -105,14 +108,16 @@
 		created () {
 			if (this.$route.params.id != undefined) {
 				this.getPost(this.$route.params.id);
-			}
+			} else {
+			    this.setMarkdown();
+            }
 		},
 		methods: {
 			clearCache: function () {
 				let _self = this;
-				_self.localforage.removeItem('myFormMarkdown').then(function () {
+				_self.localforage.removeItem('mdTmp').then(function () {
 					console.log('Key is cleared!');
-					_self.myForm.markdown = '';
+					_self.editContent = '';
 				}).catch(function (error) {
 					console.log(error);
 				});
@@ -160,30 +165,15 @@
 				}
 				this.imageUrl = response.url;
 			},
-			/*emojies not do*/
-			textcomplete: function (markdown) {
-                /*
-                 let emojies = [];
-                 if (markdown.length <= 0) {
-                 return false;
-                 }
-                 let re = /(^|\b)(\w{1,})$/;
-                 let contentArr = re.exec(markdown);
-                 if (contentArr != null) {
-                 let str = contentArr[contentArr.length - 1];
-                 emojies = this.util.searchEmojies(str);
-                 this.emojiesData = emojies;
-                 this.showEmojies = true;
-                 this.emojiesStyle = {
-                 zIndex: PopupManager.nextZIndex(),
-                 };
-                 } else {
-                 this.emojiesData = [];
-                 this.showEmojies = false;
-                 }
-                 console.log(emojies);
-                 */
-			},
+
+            //获取mdEditor的值
+            getMdValue: function (value) {
+			    this.myForm.markdown = value.mdValue;
+                //缓存编辑的数据
+                let tmpMd = JSON.stringify(value.mdValue);
+                this.localforage.setItem('mdTmp', tmpMd);
+            },
+
 			getPost: function (id) {
 				if (parseInt(id) <= 0) {
 					return false;
@@ -195,7 +185,8 @@
 					let res = response.data;
 					if (res != false) {
 						let tags = [];
-						_self.myForm = res;
+						 _self.myForm = res;
+						 _self.editContent = res.markdown;
 						//tags
 						if (res.tags.length > 0) {
 							for (let index in res.tags) {
@@ -207,7 +198,7 @@
 						if (res.thumb != '') {
 							_self.fileList = [{url: res.thumb}];
 						}
-						_self.compileMarkdown();
+						//_self.compileMarkdown();
 					} else {
 						_self.$message({
 							message: '数据获取失败',
@@ -216,7 +207,6 @@
 					}
 					_self.editFormLoading = false;
 				}).catch(function (error) {
-					console.log(error);
 					_self.editFormLoading = false;
 				});
 			},
@@ -227,7 +217,7 @@
 						console.log('myForm valid error.');
 						return false;
 					}
-					if (_self.myForm.id > 0) {
+                    if (_self.myForm.id > 0) {
 						_self.axios.put('/articles/update', _self.myForm).then(function (response) {
 							let res = response.data;
 							_self.$message({
@@ -269,14 +259,9 @@
 				});
 			},
 			closeForm: function (myForm) {
-				this.localforage.removeItem('myFormMarkdown').then(function () {
-					console.log('Key is cleared!');
-				}).catch(function (error) {
-					console.log(error);
-				});
+				this.localforage.removeItem('mdTmp');
 				this.$refs[myForm].resetFields();
 				this.$router.replace('/articles');
-				console.log('closeForm');
 			},
 			getCategorys: function () {
 				let _self = this;
@@ -296,39 +281,12 @@
 					console.log(error);
 				});
 			},
-			compileMarkdown: function () {
-				this.markdownPreviews = this.marked(this.myForm.markdown);
-				//this.defaultMsg = this.myForm.markdown;
-			},
+
 			setDomain: function () {
 				let location = window.location;
 				this.domain = location.protocol + '//' + location.host + '/';
 			},
-			setMarkdown: function () {
-				let _self = this;
-				this.localforage.getItem('myFormMarkdown').then(function (value) {
-					if (value != '' && value != null) {
-						_self.myForm.markdown = JSON.parse(value);
-					}
-				}).catch(function (error) {
-					console.log(error);
-				});
-			},
-			inlineAttachment: function (el) {
-				let _self = this;
-				inlineAttachment.editors.input.attachToInput(el, {
-					uploadUrl: _self.uploadsApi,
-					uploadFileName: 'file',
-					allowedTypes: ['image/jpg', 'image/png', 'image/jpeg', 'image/gif'],
-					progressText: '![文件上传中...]()',
-					errorText: '文件上传失败,请重试',
-					extraParams: {},
-					extraHeaders: {'X-CSRF-TOKEN': Laravel.csrfToken},
-					onFileUploaded: function (response) {
-						_self.compileMarkdown();
-					}
-				});
-			},
+
 			hotkeys: function () {
 				hotkeys('ctrl+a,ctrl+b,r,f', function (event, handle) {
 					switch (handle.key) {
@@ -344,33 +302,21 @@
 					}
 				});
 			},
+            setMarkdown: function () {
+                let _self = this;
+                this.localforage.getItem('mdTmp').then(function (value) {
+                    if (value != '' && value != null) {
+                        _self.myForm.markdown = JSON.parse(value);
+                        _self.editContent = _self.myForm.markdown;
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
 		},
 		computed: {
-			compiledMarkdown: function () {
-				return marked(this.input, { sanitize: true});
-				let _self = this;
-				_self.compileMarkdown();
-				let markdown2json = JSON.stringify(_self.myForm.markdown);
-				this.localforage.setItem('myFormMarkdown', markdown2json).then(function (value) {
-					//console.log(value);
-				}).catch(function (error) {
-					console.log(error);
-				});
-			}
 		},
 		watch: {
-			'myForm.markdown': {
-				handler: function (curVar, oldVar) {
-					let _self = this;
-					_self.compileMarkdown();
-					let markdown2json = JSON.stringify(_self.myForm.markdown);
-					this.localforage.setItem('myFormMarkdown', markdown2json).then(function (value) {
-
-					}).catch(function (error) {
-						console.log(error);
-					});
-				}
-			},
 			'$route'(to, form) {
 				if (this.$route.params.id == undefined) {
 					this.$refs['myForm'].resetFields();
@@ -379,18 +325,8 @@
 			}
 		},
 		mounted() {
-			/*let _self = this;
-			this.editor = UE.getEditor('ue');
-			this.editor.addListener("ready", function() {
-				_self.editor.setContent(_self.defaultMsg);
-			});
-			this.editor.addListener('contentChange',function () {
-				_self.getUEContent();
-			});*/
 			this.getCategorys();
 			this.setDomain();
-			this.setMarkdown();
-			this.inlineAttachment(this.$refs.myMarkdown.$el.firstElementChild);
 			this.hotkeys();
 		}
 	}

@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('test', 'TestController@aa');
+//Route::get('task', 'TestController@swooleTask');
 /*
  * 前台路由
  * @author: Ly
@@ -59,5 +61,6 @@ Route::group(['prefix' => 'back', 'middleware' => 'auth.admin:admin', 'namespace
     Route::resource('imgposition', 'ImagePositionController');
     Route::resource('comments', 'CommentsController');
     Route::resource('img', 'ImgController');
+    Route::post('article/articleImg', 'UploadsController@articleImg');
 });
 

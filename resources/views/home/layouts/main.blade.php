@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" href="{{ asset('/Home/css/markdown.css') }}">
     <link rel="stylesheet" href="{{ asset('/Home/css/style.css') }}" />
+    <link rel="icon" href="{{asset('/admin/image/logo.png')}}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{asset('/admin/image/logo.png')}}" type="image/x-icon" />
     <script src="{{ asset('/Home/js/jquery.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 

@@ -65,6 +65,19 @@ class UploadsController extends Controller
 	}
 
     /**
+     * @Desc 文章内容图片上传
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+	public function articleImg (Request $request)
+    {
+        $file = $request->file('img');
+        $host =$request->server('HTTP_HOST');
+        $url = $this->saveImage($file->getRealPath(), $file->getClientOriginalExtension());
+        return response()->json(['status' => 200, 'url' => 'http://' . $host . $url]);
+    }
+
+    /**
      * @Desc 获取图片位置信息
      * @param int $id
      * @return mixed

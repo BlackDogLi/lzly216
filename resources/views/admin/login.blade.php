@@ -6,6 +6,8 @@
     <meta name = "csrf-token" content = "{{csrf_token()}}}}">
     <title> 管理后台</title>
     <link rel="stylesheet" href="{{ mix('admin/css/app.css')}}">
+    <link rel="icon" href="{{asset('/admin/image/logo.png')}}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{asset('/admin/image/logo.png')}}" type="image/x-icon" />
 </head>
 <body>
 <div id="app">

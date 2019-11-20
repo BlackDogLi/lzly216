@@ -7,7 +7,7 @@
             <el-button type="primary" @click="handleDistory('multi', {})" icon="el-icon-delete">删除</el-button>
             <el-cascader expand-trigger="hover" :options="categorys" :props="props" v-model="categoryIds" :show-all-levels="false" @change="filterCategory">
             </el-cascader>
-            <el-input v-model="q" placeholder="请输入内容" prefix-icon="el-icon-search" style="width:200px" :on-icon-click="searchBtn" @blur="searchBtn"></el-input>
+            <el-input v-model="q" placeholder="请输入内容" style="width:200px" @blur="searchBtn"><i slot="prefix" class="el-input__icon el-icon-search" @click="searchBtn"></i></el-input>
         </el-col>
         <el-col>
             <el-table :data="listData" v-loading="listLoading" style="width: 100%" @selection-change="handleSelectionChange">
@@ -77,10 +77,10 @@
 		},
 		methods: {
 			formatterDate: function (row, column) {
-				if (row.updated_at == '') {
+				if (row.created_at == '') {
 					return '';
 				}
-				return this.util.formatDate(row.updated_at);
+				return this.util.formatDate(row.created_at);
 			},
 			filterCategory: function (value) {
 				this.getData();

@@ -24,7 +24,7 @@
         </el-table-column>
     </el-table>
 </template>
-<script>
+<script type="text/ecmascript-6">
     import Utils from './tree';
     export default {
         name: "TableTree",

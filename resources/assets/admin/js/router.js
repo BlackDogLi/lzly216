@@ -74,8 +74,8 @@ const routers = [
         name: '图片',
         iconCls: 'fa fa-file-image-o',
         children: [
-            {path: '/img', component: Imgs, name: '图片'},
-            {path: '/image', component: Imgposition, name: '广告位'},
+            {path: '/img', component: Imgs, name: '上传图片'},
+            {path: '/imgpositon', component: Imgposition, name: '广告位'},
         ]
 
     },

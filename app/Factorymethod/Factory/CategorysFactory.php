@@ -43,7 +43,7 @@ class CategorysFactory implements Product
 		$categorys->category_description = $correct->convert($request->category_description);
 		$category_parent = $request->category_parent;
 		$categorys->category_parent = is_array($category_parent) ? end($category_parent) : intval($category_parent);
-		$categorys->category_ids = empty($category_parent)? '0' : '0,'.implode(',',$category_parent);
+		//$categorys->category_ids = empty($category_parent)? '0' : '0,'.implode(',',$category_parent);
 		$categorys->ipaddress = $request->ip();
 		$categorys->save();
 		return $categorys;
