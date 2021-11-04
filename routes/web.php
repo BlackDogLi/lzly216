@@ -42,7 +42,7 @@ Route::get('atww', [AtwwController::class, 'index']);
 Route::get('comment', [CommentController::class, 'index']);
 Route::post('comment', [CommentController::class, 'create']);
 
-Route::prefix('admin')->group(function () {
+Route::prefix('back')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::post('login/check', [LoginController::class, 'check'])->name('admin.check');
     Route::post('login/login', [LoginController::class,'login'])->name('admin.login');
