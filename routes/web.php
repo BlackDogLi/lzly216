@@ -11,56 +11,56 @@
 |
 */
 
-Route::get('test', 'TestController@aa');
-//Route::get('task', 'TestController@swooleTask');
+use App\Http\Controllers\Home\ArticleController;
+use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Home\AtwwController;
+use App\Http\Controllers\Home\CommentController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategorysController;
+use App\Http\Controllers\Admin\ArticlesController;
+use App\Http\Controllers\Admin\NavigationController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\OptionsController;
+use App\Http\Controllers\Admin\UploadsController;
+use App\Http\Controllers\Admin\TagsController;
+use App\Http\Controllers\Admin\ImagePositionController;
+use App\Http\Controllers\Admin\CommentsController;
+use App\Http\Controllers\Admin\ImgController;
+
 /*
  * 前台路由
  * @author: Ly
  * @date: 2017-12-8
  */
-Route::group(['namespace' => 'Home'], function (){
-    Route::get('/', 'HomeController@index') -> name('home');
-    Route::get('article/{flag}', 'ArticleController@articleDetail')->name('article');
-    Route::get('articleList/{id}','ArticleController@articleList')->name('articleList');
-    Route::get('ctg', 'ArticleController@index');
-    Route::get('atww', 'AtwwController@index');
-    Route::get('comment','CommentController@index');
-    Route::post('comment','CommentController@create');
+Route::get('/', [HomeController::class, 'index']) -> name('home');
+Route::get('article/{flag}', [ArticleController::class, 'articleDetail'])->name('article');
+Route::get('articleList/{id}', [ArticleController::class, 'articleList'])->name('articleList');
+Route::get('ctg', [ArticleController::class, 'index']);
+Route::get('atww', [AtwwController::class, 'index']);
+Route::get('comment', [CommentController::class, 'index']);
+Route::post('comment', [CommentController::class, 'create']);
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::post('login/check', [LoginController::class, 'check'])->name('admin.check');
+    Route::post('login/login', [LoginController::class,'login'])->name('admin.login');
+    Route::post('login/logout', [LoginController::class, 'logout'])->name('admin.logout');
+    Route::post('user/resetPassword', [UserController::class,'resetPassword']);
 });
 
-/*
- * 后台路由
- * @author: Ly
- * @date: 2017-12-8
- */
-/*Route::group(['prefix' => 'back', 'namespace' => 'back'], function(){
-    Route::get('/', 'AuthorController@index')->name('admin');
-    Route::post('/check', 'AuthorController@check')->name('admin.check');
-    Route::post('/login', 'AuthorController@login')->name('admin.login');
-});*/
-Route::group(['prefix' => 'back', 'namespace' => 'Admin'], function (){
-    Route::get('/', 'AdminController@index')->name('admin');
-    Route::post('login/check', 'LoginController@check')->name('admin.check');
-    Route::post('login/login', 'LoginController@login')->name('admin.login');
-    Route::post('login/logout', 'LoginController@logout')->name('admin.logout');
-    Route::post('user/resetPassword', 'UserController@resetPassword');
-    //Route::get('index', 'AdminController@index');
-
-
+Route::prefix('back')->middleware(['auth.admin:admin'])->group(function () {
+    Route::get('admin/lately', [AdminController::class, 'lately']);
+    Route::resource('options', OptionsController::class);
+    Route::resource('setting', SettingController::class);
+    Route::resource('categorys', CategorysController::class);
+    Route::resource('navigations', NavigationController::class);
+    Route::resource('articles', ArticlesController::class);
+    Route::resource('uploads', UploadsController::class);
+    Route::resource('tags', TagsController::class);
+    Route::resource('imgposition', ImagePositionController::class);
+    Route::resource('comments', CommentsController::class);
+    Route::resource('img', ImgController::class);
+    Route::post('article/articleImg', [UploadsController::class, 'articleImg']);
 });
-Route::group(['prefix' => 'back', 'middleware' => 'auth.admin:admin', 'namespace' => 'Admin'], function () {
-   // Route::get('/', 'AdminController@index')->name('admin');
-    Route::get('admin/lately', 'AdminController@lately');
-    Route::resource('options', 'OptionsController');
-    Route::resource('setting', 'SettingController');
-    Route::resource('categorys', 'CategorysController');
-    Route::resource('navigations', 'NavigationController');
-    Route::resource('articles', 'ArticlesController');
-    Route::resource('uploads', 'UploadsController');
-    Route::resource('tags', 'TagsController');
-    Route::resource('imgposition', 'ImagePositionController');
-    Route::resource('comments', 'CommentsController');
-    Route::resource('img', 'ImgController');
-    Route::post('article/articleImg', 'UploadsController@articleImg');
-});
-

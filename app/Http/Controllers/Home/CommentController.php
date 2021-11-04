@@ -24,7 +24,7 @@ class CommentController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function create (Request $request)
+    public function create(Request $request)
     {
         $data = array('status' => -1);
         $this->validate($request, [
@@ -35,7 +35,6 @@ class CommentController extends Controller
             //非主评论
             $commentsReplays = new CommentsReplays();
             $commentsReplays = self::commentsReplyTransform($commentsReplays, $request);
-
         } else {
             //主评论
             $comments = new Comments();
@@ -77,7 +76,6 @@ class CommentController extends Controller
             $this->error = $exception;
             return null;
         }
-
     }
 
     /**
@@ -86,7 +84,7 @@ class CommentController extends Controller
      * @param Request $request
      * @return CommentsReplays|bool
      */
-    private function commentsReplyTransform (CommentsReplays $commentsReplays, Request $request)
+    private function commentsReplyTransform(CommentsReplays $commentsReplays, Request $request)
     {
         $commentsReplays->comments_id = $request->main_id;
         $commentsReplays->content = $request->comment;
@@ -97,12 +95,10 @@ class CommentController extends Controller
         try {
             $commentsReplays->save();
             return $commentsReplays;
-
         } catch (QueryException $exception) {
             $this->error = $exception;
             return false;
         }
-
     }
 
     /**
@@ -110,7 +106,7 @@ class CommentController extends Controller
      * @param Request $request
      * @return \Illuminate\Cookie\CookieJar|mixed|string|\Symfony\Component\HttpFoundation\Cookie
      */
-    private function getUserName (Request $request)
+    private function getUserName(Request $request)
     {
         $result = '';
         if (!empty(session('userName'))) {
@@ -119,7 +115,7 @@ class CommentController extends Controller
             if ($request->nickstatus  == false && !empty($request->username)) {
                 $result = $request->username;
             } else {
-                $result = 'UU' . random_int(10000,99999);
+                $result = 'UU' . random_int(10000, 99999);
                 session(['userName'=> $result]);
             }
         }

@@ -7,18 +7,16 @@
  */
 
 namespace App\Http\Controllers\Home;
+
 use App\Http\Controllers\Controller;
 use App\Models\Articles;
-use App\Models\Categorys;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Event;
 use App\Events\ArticleView;
-
 
 class ArticleController extends Controller
 {
-    public function index ()
+    public function index()
     {
         return view('home.caijuyuan.index');
     }
@@ -28,7 +26,7 @@ class ArticleController extends Controller
      * @param $id   分类Id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function articleList ($id)
+    public function articleList($id)
     {
         //存取Key
         $key = 'articleListByCategory-' . $id;
@@ -39,7 +37,7 @@ class ArticleController extends Controller
             $artilceList = Cache::get($key);
         } else {
             $artilceList = $this->articleListByCategory($id);
-            Cache::put($key,$artilceList, 10);
+            Cache::put($key, $artilceList, 10);
         }
 
         return view('home.article.articleList', ['articleList' => $artilceList, 'category' => $category]);
@@ -50,19 +48,18 @@ class ArticleController extends Controller
      * @param $flag
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function articleDetail ($flag)
+    public function articleDetail($flag)
     {
-
         $key = 'ArticleDetail-' . $flag;    //存取key
         //获取文章详情
-        if(Cache::has($key)) {
+        if (Cache::has($key)) {
             $articleDetail = Cache::get($key);
         } else {
             $articleDetail = Articles::select('id', 'title', 'flag', 'content', 'views')->where('flag', '=', $flag)->first();
             Cache::put($key, $articleDetail, 10);
         }
 
-        Event::fire(new ArticleView($articleDetail));
+        ArticleView::dispatch($articleDetail);
         return view('home.article.articledetail', ['articleDetail' => $articleDetail]);
     }
     /**
@@ -70,7 +67,7 @@ class ArticleController extends Controller
      * @param int $category_id
      * @return \Illuminate\Support\Collection
      */
-    private function articleListByCategory ($category_id = 0)
+    private function articleListByCategory($category_id = 0)
     {
         $sql = 'SELECT a.id, a.title, a.flag, a.thumb, a.content FROM lzly_articles AS a INNER JOIN lzly_categorys as c ON c.id = a.category_id WHERE c.id = ? OR c.category_parent = ? ORDER BY a.id DESC ';
         return DB::select($sql, [$category_id, $category_id]);

@@ -30,27 +30,26 @@ class ArticleViewListener
     {
         $article = $event->article;
 
-        if (!$this->hasViewedArticle ($article)) {
+        if (!$this->hasViewedArticle($article)) {
             //保存到数据库
             $article->views = $article->views + 1;
             $article->save();
             //看过之后保存到缓存
             $this->storeViewArticle($article);
         }
-
     }
 
-    protected function hasViewedArticle ($article)
+    protected function hasViewedArticle($article)
     {
         return array_key_exists($article->id, $this->getViewArticle());
     }
 
-    protected function getViewArticle ()
+    protected function getViewArticle()
     {
         return $this->session->get('View_Article', []);
     }
 
-    protected function storeViewArticle ($article)
+    protected function storeViewArticle($article)
     {
         $key = 'View_Article.' . $article->id;
         $this->session->put($key, time());
