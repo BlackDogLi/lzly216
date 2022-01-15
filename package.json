@@ -33,7 +33,7 @@
         "laravel-mix": "^2.0.0",
         "localforage": "^1.5.7",
         "lodash": "^4.17.5",
-        "marked": "^0.3.16",
+        "marked": "^4.0.10",
         "prismjs": "^1.11.0",
         "vue": "^2.5.13",
         "vue-axios": "^2.0.2",
