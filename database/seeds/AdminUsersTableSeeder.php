@@ -13,14 +13,14 @@ class AdminUsersTableSeeder extends Seeder {
 	 */
 	public function run() {
 		\DB::table('admin_users')->delete();
-		\DB::table('admin_users')->insert(array (
-			0 => array(
+		\DB::table('admin_users')->insert( [
+			0 => [
 				'id' => 1,
 				'name' => 'Mr.li',
 				'email' => '634647919@qq.com',
 				'phone' => '18518757556',
 				'password' => '123456',
-			)
-		));
+			]
+		]);
 	}
 }

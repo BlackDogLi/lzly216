@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class Uploads
 {
 	protected $client_ip = '127.0.0.1';
-	protected $file = array();
+	protected $file = [];
 
 	public function fileInfo ($file) {
 		$file['originalName'] = $file->getClientOriginalName(); //文件原名
