@@ -27,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        $this->app->bind('App\Factorymethod\Interfaces\FactoryInterface', '');
+        $this->app->bind(\App\Factorymethod\Interfaces\FactoryInterface::class, '');
     }
 }
